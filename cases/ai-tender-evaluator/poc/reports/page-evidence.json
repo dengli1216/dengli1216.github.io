@@ -1,0 +1,60 @@
+{
+  "evidence_meta": {
+    "evidence_type": "recorded_dify_api_evaluation",
+    "workflow_version": "poc-v1.3-dify-1.16.1",
+    "dify_version": "1.16.1",
+    "evaluated_at": "2026-09-02T08:27:26Z",
+    "dataset": {
+      "case_count": 30,
+      "source_type": "synthetic",
+      "review_status": "human_review_pending"
+    },
+    "display_label": "Synthetic POC / 已验证 API 运行"
+  },
+  "execution_scorecard": {
+    "api_cases_completed": "30/30",
+    "workflow_success_rate": 1.0,
+    "run_id_coverage": "30/30",
+    "average_latency_seconds": 46.33,
+    "p50_latency_seconds": 44.739,
+    "p95_latency_seconds": 58.257,
+    "token_or_cost_metadata_available": false
+  },
+  "quality_scorecard": {
+    "workflow_version_compliance_rate": 1.0,
+    "schema_compliance_rate": 1.0,
+    "synthetic_golden_consistency_rate": 1.0,
+    "requirement_status_accuracy": 1.0,
+    "critical_gap_recall": 1.0,
+    "decision_accuracy": 1.0,
+    "manual_review_recall": 1.0,
+    "citation_validity_rate": 1.0,
+    "hallucinated_clause_or_evidence_rate": 0.0
+  },
+  "key_gate_summary": {
+    "three_run_consistency": "5/5",
+    "gates": [
+      {"case_id": "G10", "decision": "No-Bid", "rule": "关键同类业绩证据缺失触发 Critical Gap", "consistent_across_three_runs": true},
+      {"case_id": "G11", "decision": "No-Bid", "rule": "关键驻场服务承诺缺失触发 Critical Gap", "consistent_across_three_runs": true},
+      {"case_id": "G12", "decision": "No-Bid", "rule": "已过期资质作为明确 Gap", "consistent_across_three_runs": true},
+      {"case_id": "G28", "decision": "No-Bid", "rule": "明确否定资质作为 Gap", "consistent_across_three_runs": true},
+      {"case_id": "G30", "decision": "Conditional Bid", "rule": "即将到期且待确认进入人工复核", "consistent_across_three_runs": true}
+    ]
+  },
+  "decision_distribution": {
+    "Bid": 9,
+    "Conditional Bid": 13,
+    "No-Bid": 8
+  },
+  "representative_cases": [
+    {"case_id": "G01", "decision": "Bid", "risk_summary": "关键资格证据匹配且无 Critical Gap。", "manual_review_required": false, "evidence_summary": "脱敏合规证据已验证；不包含原始招标或投标文本。"},
+    {"case_id": "G10", "decision": "No-Bid", "risk_summary": "关键资格材料缺失，触发 Critical Gap。", "manual_review_required": true, "evidence_summary": "脱敏缺口证据已验证；不包含原始招标或投标文本。"},
+    {"case_id": "G13", "decision": "Conditional Bid", "risk_summary": "关键材料待确认，需补充证明后人工复核。", "manual_review_required": true, "evidence_summary": "脱敏待确认状态已验证；不包含原始招标或投标文本。"}
+  ],
+  "limitations": [
+    "Synthetic POC，不代表真实客户数据验证或生产验收。",
+    "数据集为 human_review_pending，不代表生产准确率。",
+    "不包含真实 ROI、客户效果、Token 或成本数据。",
+    "金额、日期、资质、法律、废标条件和报价仍必须人工复核。"
+  ]
+}
