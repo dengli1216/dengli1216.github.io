@@ -12,7 +12,7 @@
 - 最新工作流：`poc/dify/ai-tender-evaluator-v1.yml`，已导入并发布为 Dify v1.3。
 - Dify 工作流页：`http://localhost/app/6f9b98f7-ebd3-4afb-9a97-c67fe64b6a3b/workflow`。
 - v1.3 关键回归 5/5：G10/G11/G12/G28 → `No-Bid`；G30 → `Conditional Bid`。
-- 页面已按求职作品集定位重构；只展示 Recorded Dify API Run，不称为 Live Dify Run。
+- 页面已按作品集定位重构；只展示 Recorded Dify API Run，不称为 Live Dify Run。
 
 ## 真实评测结果
 
@@ -60,7 +60,7 @@
 
 ## 当前阶段结论
 
-**完整 v1.3 API 验收完成，但仅为 Synthetic POC，不代表生产验收。** 阶段 2C 已基于既有真实 API 评测产物生成脱敏 `page-evidence.json`；本轮未修改 GitHub Pages。当前允许进入页面实施，但页面必须保留数据范围与人工复核边界。
+**完整 v1.3 API 验收完成，但仅为 Synthetic POC，不代表生产验收。** 当前案例页已重构为个人 AI 解决方案架构案例，本轮修改尚未提交或推送。
 
 ## 阶段2C完成（POC 报告与页面证据包）
 
@@ -69,23 +69,17 @@
 - 当前允许进入 GitHub Pages 实施。页面必须将该结果标注为 **Synthetic POC / human_review_pending / 已验证 API 运行**，并保留人工复核边界。
 - 页面禁止使用以下表述：生产准确率、生产可用、真实客户效果、客户 ROI、真实 Token/成本、自动最终投标授权；也不得将 100% synthetic golden consistency 解释为生产准确率。
 
-## 阶段3页面展示完成
+## 阶段3个人解决方案架构案例（当前）
 
-- 已将 `cases/ai-tender-evaluator/index.html` 重构为静态证据展示页：决策驾驶舱、评审闭环、脱敏条款—响应矩阵、POC Scorecard、运行证据与边界。
-- 已将实际 Dify v1.3 Workflow 设计截图作为页面资产展示，用于说明输入校验、LLM 归纳、结构校验、Code Gate 与报告输出的职责链。
-- 页面唯一运行事实来源为 `poc/reports/page-evidence.json`；通过相对路径静态读取，不调用 Dify，不包含客户数据、Run ID、原始响应或密钥。
-- 页面可表述为“Recorded Dify API Run”“Synthetic POC / human_review_pending”“与 Synthetic Golden Set 的一致性”。
-- 页面不得表述为生产准确率、生产可用、已上线、真实客户效果、真实 ROI、真实 Token/成本或自动最终投标授权。
-
-## 阶段3求职作品集重构
-
-- 页面定位由“产品宣传页”调整为“AI 解决方案架构案例”，面向求职作品集与面试讲解。
-- 页面收敛为六段：业务风险与交付能力、G10/G30 决策瞬间、三层架构取舍、紧凑验证证据、个人贡献与方法论、POC 边界与生产化下一步。
-- 首屏明确个人职责：场景建模、Dify Workflow、确定性 Gate、评测与证据化；右侧用 G10 展示 Evidence → Critical Gap → No-Bid → 人工行动。
-- 删除重复的 100% 指标、重复工作流说明和重复边界文案；仅保留 30/30、关键 Gate 5/5 三次一致、P95 58.257s 三项核心证据。
-- Dify Workflow 截图降为可展开辅助证据；页面核心架构表达为 LLM 归纳 → Code Gate 决策 → 人工复核。
-- 已在 320、768、1024、1440px 本地浏览器验证：静态证据加载、6 段结构、无页面横向溢出、控制台无错误或警告。
-- 本轮未调用 Dify、未读取密钥、未新增评测数据、未提交、未推送。
+- 已将上一版页面冻结为 `preview-v2/` 独立预览；主页面继续迭代且未覆盖该版本。
+- 页面控制为六段：个人贡献首屏、G10/G30 完整决策链、双层架构与架构决策、v1.2→v1.3 工程修复、四项验证证据、POC 边界与客户试点计划。
+- 首屏明确个人贡献：业务建模、Dify 编排、Code Gate、Synthetic 黄金集、自动化评测、故障定位与修复。
+- 核心架构表达为 LLM 归纳 → Code Gate 决策 → 人工复核；真实 Dify Workflow 截图增加五个编号标注和节点说明。
+- 工程证据入口包含 Workflow YAML、黄金测试集、`run_eval.py`、POC 报告与 failure analysis。
+- 页面只展示 30/30 Run、5/5 三次一致、Schema 30/30、P95 58.257s；真实客户指标仅作为下一阶段验证计划。
+- 页面事实来源仍为 `poc/reports/page-evidence.json` 与既有报告；不调用 Dify，不新增运行数据。
+- 已在 320、768、1024、1440px 浏览器验证：主页面与归档页可加载、六段结构完整、无全局横向溢出、控制台无错误或警告。
+- 本轮未读取密钥、未提交、未推送。
 
 ## 不应提供给外部模型的文件
 

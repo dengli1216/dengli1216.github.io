@@ -3,130 +3,158 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="投标前风险决策 POC：AI 解决方案架构求职案例。">
-    <title>投标前风险决策 POC · AI 解决方案架构案例</title>
+    <meta name="description" content="AI Tender Evaluator：从 LLM 招标分析到可测试投标风险决策工作流的个人解决方案架构案例。">
+    <title>AI Tender Evaluator · 个人解决方案架构案例</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?v=portfolio-v2">
+    <link rel="stylesheet" href="style.css?v=architecture-case-v3-1">
   </head>
   <body>
     <a class="skip-link" href="#case">跳至案例正文</a>
     <header class="site-header">
       <a class="brand" href="../../index.html" aria-label="返回 AI 案例作品集">DL / AI CASES</a>
-      <p>AI 解决方案架构案例 · Synthetic POC</p>
+      <nav aria-label="案例导航">
+        <a href="#architecture">架构</a>
+        <a href="#evidence">证据</a>
+        <a href="preview-v2/">上一版预览</a>
+      </nav>
     </header>
 
     <main id="case">
-      <section class="hero section-shell" aria-labelledby="page-title">
-        <div class="hero-layout">
-          <div class="hero-copy">
-            <p class="kicker">AI Tender Evaluator · 求职作品集</p>
-            <h1 id="page-title">投标前风险决策 POC</h1>
-            <p class="hero-subtitle">把招标条款与投标证据转化为可审计的 Bid / No-Bid 建议</p>
-            <p class="role-line"><strong>我的角色：</strong>场景建模、Dify Workflow、确定性 Gate、评测与证据化</p>
-            <p class="scope-line">Recorded Dify API Run · Synthetic / human_review_pending · 人工最终复核</p>
-          </div>
-
-          <article class="decision-evidence" aria-labelledby="hero-decision-title">
-            <div class="decision-topline"><span>决策证据卡</span><strong>G10</strong></div>
-            <h2 id="hero-decision-title">缺少关键材料，不直接建议投标</h2>
-            <ol aria-label="G10 决策链">
-              <li><span>证据</span><strong>关键同类业绩材料缺失</strong></li>
-              <li><span>规则</span><strong>Critical Gap</strong></li>
-              <li><span>建议</span><strong class="no-bid">No-Bid</strong></li>
-              <li><span>行动</span><strong>补齐材料并人工复核</strong></li>
-            </ol>
-            <p>该结论由 Code Gate 计算，不由 LLM 自由决定。</p>
-          </article>
+      <section class="hero shell" aria-labelledby="page-title">
+        <div class="hero-main">
+          <p class="eyebrow">AI TENDER EVALUATOR · SYNTHETIC POC</p>
+          <h1 id="page-title">我如何把 LLM 招标分析改造成可测试的投标风险决策工作流</h1>
+          <p class="lead">业务目标不是自动写一份漂亮报告，而是在投标前回答：关键要求是否有证据、风险是否阻断、下一步由谁处理。</p>
+          <p class="fact-line">30/30 Recorded Dify API Run · Workflow v1.3 · 人工最终授权</p>
         </div>
-
-        <div class="business" aria-labelledby="business-title">
-          <header class="section-heading">
-            <p class="section-index">A / 业务风险与交付能力</p>
-            <h2 id="business-title">投标评审的难点，不是“读懂”，而是“不漏判”</h2>
-          </header>
-          <div class="business-grid">
-            <div class="problem-statement">
-              <p>冗长材料中，资格、日期、金额、评分项与废标条件分散存在。只靠摘要无法回答三个关键问题：</p>
-              <ul>
-                <li>哪些条款构成投标阻断？</li>
-                <li>当前响应是否有可核验原文证据？</li>
-                <li>不确定事项应由谁补充和复核？</li>
-              </ul>
-            </div>
-            <dl class="deliverables">
-              <div><dt>场景建模</dt><dd>条款、证据、风险、行动和决策的统一结构</dd></div>
-              <div><dt>工作流实现</dt><dd>输入校验、抽取、匹配、修复、Gate、报告</dd></div>
-              <div><dt>安全决策</dt><dd>LLM 归纳，Code Gate 决策，人工最终复核</dd></div>
-              <div><dt>验收证据</dt><dd>真实 API 运行、关键 Gate 重复验证、脱敏证据包</dd></div>
-            </dl>
-          </div>
-        </div>
+        <aside class="contribution" aria-labelledby="contribution-title">
+          <p class="aside-label">MY CONTRIBUTION</p>
+          <h2 id="contribution-title">从场景定义到验收证据，我完成了六个关键环节</h2>
+          <ol>
+            <li><span>01</span>业务场景建模</li>
+            <li><span>02</span>Dify Workflow 编排</li>
+            <li><span>03</span>确定性 Code Gate</li>
+            <li><span>04</span>Synthetic 黄金集设计</li>
+            <li><span>05</span>自动化评测脚本</li>
+            <li><span>06</span>失败定位与规则修复</li>
+          </ol>
+        </aside>
       </section>
 
-      <section class="section section-shell decision-moment" aria-labelledby="decision-title">
-        <header class="section-heading split-heading">
-          <div><p class="section-index">B / 一个决策瞬间</p><h2 id="decision-title">同样是不确定，处理方式必须不同</h2></div>
-          <p>以下为 Representative Synthetic Case 摘要，不含完整招标、投标文本或原始响应。</p>
-        </header>
-        <div id="decision-cases" class="decision-cases" aria-live="polite"><p class="loading">正在读取脱敏证据包…</p></div>
-      </section>
-
-      <section class="section section-shell architecture" aria-labelledby="architecture-title">
-        <header class="section-heading split-heading">
-          <div><p class="section-index">C / 架构取舍</p><h2 id="architecture-title">把概率模型放在归纳层，把责任留在决策层</h2></div>
-          <p>核心不是节点数量，而是明确谁能归纳、谁能裁决、谁承担最终责任。</p>
-        </header>
-        <div class="architecture-flow" aria-label="三层决策架构">
-          <article><span>01 · LLM</span><h3>归纳条款与证据</h3><p>抽取原文、匹配响应、标记 Met / Gap / Unclear / Conflict。</p></article>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <article class="gate-layer"><span>02 · CODE GATE</span><h3>执行确定性决策</h3><p>关键 Gap、证据缺失与冲突按规则进入 No-Bid 或 Conditional Bid。</p></article>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <article><span>03 · HUMAN</span><h3>复核并最终审批</h3><p>资质、日期、金额、法律、报价与最终投标授权由人工负责。</p></article>
-        </div>
-        <details class="workflow-proof">
-          <summary>查看辅助证据：Dify Workflow v1.3 设计截图</summary>
-          <figure>
-            <img src="assets/dify-workflow-v1.3.png" width="3584" height="610" loading="lazy" alt="AI Tender Evaluator POC v1.3 Dify 工作流设计截图。">
-            <figcaption>实际工作流包含输入校验、条款抽取、证据匹配与 JSON 修复、结构校验与决策 Gate、结构化报告。</figcaption>
-          </figure>
-        </details>
-      </section>
-
-      <section class="section section-shell validation" aria-labelledby="validation-title">
-        <header class="section-heading split-heading">
-          <div><p class="section-index">D / 紧凑验证证据</p><h2 id="validation-title">先证明链路可重复，再讨论生产化</h2></div>
-          <p>所有数字仅描述本轮 Synthetic POC，不代表生产准确率或客户效果。</p>
-        </header>
-        <div id="evidence-metrics" class="evidence-metrics" aria-live="polite"></div>
-        <p id="evidence-caption" class="evidence-caption"></p>
-      </section>
-
-      <section class="section section-shell method" aria-labelledby="method-title">
+      <section class="section shell" aria-labelledby="decision-title">
         <header class="section-heading">
-          <p class="section-index">E / 我的贡献与可复用方法论</p>
-          <h2 id="method-title">从业务规则到可验收 POC，形成一套闭环方法</h2>
+          <div><p class="section-number">01 / DECISION TRACE</p><h2 id="decision-title">两种关键风险，两条不同的受控决策链</h2></div>
+          <p>要求、证据和模型状态只是输入；Code Gate 计算建议，人工负责最终行动。</p>
         </header>
-        <ol class="method-list">
-          <li><span>01</span><div><h3>定义决策对象</h3><p>先把强制条款、评分项、证据和人工责任结构化，再选择模型与节点。</p></div></li>
-          <li><span>02</span><div><h3>分离概率与确定性</h3><p>LLM 处理抽取与归纳；硬规则、Schema 和最终建议进入 Code Gate。</p></div></li>
-          <li><span>03</span><div><h3>为失败设计出口</h3><p>缺证据、冲突、JSON 异常和低置信结果必须安全降级并进入复核。</p></div></li>
-          <li><span>04</span><div><h3>用证据完成验收</h3><p>以合成黄金集、真实 API Run、重复 Gate 和公开脱敏包支撑案例陈述。</p></div></li>
-        </ol>
+        <div id="decision-chains" class="decision-chains" aria-live="polite"><p class="loading">正在读取脱敏决策证据…</p></div>
+        <p class="data-note">Representative Synthetic Case · 仅展示脱敏摘要，不含完整招标/投标原文或原始 API 响应。</p>
       </section>
 
-      <section class="section section-shell boundary" aria-labelledby="boundary-title">
-        <header class="section-heading split-heading">
-          <div><p class="section-index">F / POC 边界与下一步</p><h2 id="boundary-title">可进入展示，不等于可直接进入生产</h2></div>
-          <div class="artifact-links"><a href="poc/reports/POC_REPORT.md">POC 报告</a><a href="poc/reports/page-evidence.json">脱敏证据包</a></div>
-        </header>
-        <div class="boundary-grid">
-          <div><h3>当前事实边界</h3><ul id="limitations-list"></ul></div>
-          <div><h3>生产化下一步</h3><ol><li>由招投标专家复核并版本化黄金集。</li><li>接入真实脱敏文件，验证 OCR、长文档与证据定位。</li><li>补齐权限、审计、成本、监控与人工审批机制。</li></ol></div>
+      <section id="architecture" class="section architecture" aria-labelledby="architecture-title">
+        <div class="shell">
+          <header class="section-heading inverse">
+            <div><p class="section-number">02 / ARCHITECTURE</p><h2 id="architecture-title">双层架构：业务决策链在上，Dify 工程实现为证</h2></div>
+            <p>架构重点是责任分层，不是节点数量。</p>
+          </header>
+
+          <div class="business-flow" aria-label="业务决策流程">
+            <article><span>01</span><strong>条款抽取</strong><p>复制原文与评分要求</p></article><b aria-hidden="true">→</b>
+            <article><span>02</span><strong>证据匹配</strong><p>Met / Gap / Unclear / Conflict</p></article><b aria-hidden="true">→</b>
+            <article class="flow-gate"><span>03</span><strong>Code Gate</strong><p>规则校验与安全降级</p></article><b aria-hidden="true">→</b>
+            <article><span>04</span><strong>人工复核</strong><p>确认高风险与最终授权</p></article>
+          </div>
+
+          <div class="workflow-panel">
+            <div class="workflow-title"><h3>真实 Dify Workflow v1.3</h3><p>辅助工程证据</p></div>
+            <div class="workflow-scroll">
+              <figure class="workflow-figure">
+                <img src="assets/dify-workflow-v1.3.png" width="3584" height="610" loading="lazy" alt="AI Tender Evaluator v1.3 Dify Workflow：输入、校验、条款抽取、证据匹配、Code Gate 与结构化报告。">
+                <span class="node-marker node-1">1</span><span class="node-marker node-2">2</span><span class="node-marker node-3">3</span><span class="node-marker node-4">4</span><span class="node-marker node-5">5</span>
+              </figure>
+            </div>
+            <ol class="node-legend">
+              <li><span>1</span><div><strong>输入校验</strong><p>空输入、超长与无关文本安全降级。</p></div></li>
+              <li><span>2</span><div><strong>条款抽取</strong><p>LLM 只复制并结构化招标原文。</p></div></li>
+              <li><span>3</span><div><strong>证据匹配</strong><p>逐条匹配并提供一次 JSON 修复机会。</p></div></li>
+              <li><span>4</span><div><strong>Schema + Gate</strong><p>引文校验、状态修正与最终建议。</p></div></li>
+              <li><span>5</span><div><strong>结构化报告</strong><p>输出 JSON、人工队列与报告文本。</p></div></li>
+            </ol>
+          </div>
+
+          <div class="decision-table-wrap">
+            <table class="decision-table">
+              <caption>关键架构决策</caption>
+              <thead><tr><th scope="col">决策</th><th scope="col">为什么</th><th scope="col">落地机制</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">LLM 不决定 Bid</th><td>生成结果存在概率性，不能承担资格与投标授权责任。</td><td>LLM 仅抽取条款、证据与状态。</td></tr>
+                <tr><th scope="row">设置 Code Gate</th><td>关键缺口、过期、否定表达必须得到稳定处理。</td><td>规则计算 No-Bid / Conditional Bid / Bid。</td></tr>
+                <tr><th scope="row">校验 Schema 与引文</th><td>结构错误或无原文证据时，正常结论不可被信任。</td><td>解析失败安全降级；无证据不得判定 Met。</td></tr>
+                <tr><th scope="row">保留人工复核</th><td>资质、日期、金额、法律和报价属于高责任事项。</td><td>建立复核队列，人工完成最终审批。</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </section>
+
+      <section class="section shell iteration" aria-labelledby="iteration-title">
+        <header class="section-heading">
+          <div><p class="section-number">03 / ENGINEERING ITERATION</p><h2 id="iteration-title">从 v1.2 暴露问题，到 v1.3 用规则和评测闭环修复</h2></div>
+          <p>失败不被隐藏；问题、根因、修复与验证都进入工程证据。</p>
+        </header>
+        <div class="iteration-table-wrap">
+          <table class="iteration-table">
+            <thead><tr><th scope="col">问题</th><th scope="col">根因</th><th scope="col">最小修复</th><th scope="col">验证</th></tr></thead>
+            <tbody>
+              <tr><td>待补充材料可能被判为明确 Gap</td><td>模型状态缺少确定性归一化</td><td>待确认 / 待补充统一降级为 Unclear</td><td>G30 三次均为 Conditional Bid</td></tr>
+              <tr><td>过期或否定资质语义可能漂移</td><td>仅依赖模型理解 Conflict / Gap</td><td>过期与明确否定证据进入 Gate 规则</td><td>G12、G28 三次均为 No-Bid</td></tr>
+              <tr><td>关键材料缺失可能未形成阻断</td><td>证据匹配与关键性判断耦合在 Prompt</td><td>引文校验 + 确定性 Critical Gap</td><td>G10、G11 三次均为 No-Bid</td></tr>
+              <tr><td>模型 JSON 异常会污染下游</td><td>自由文本缺少数据契约与失败出口</td><td>一次受控修复、Schema 校验、安全返回</td><td>v1.3 Schema 30/30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <nav class="evidence-links" aria-label="工程证据入口">
+          <a href="poc/dify/ai-tender-evaluator-v1.yml"><span>Workflow</span>YAML</a>
+          <a href="poc/tests/golden/golden_cases.jsonl"><span>Dataset</span>黄金测试集</a>
+          <a href="poc/tests/run_eval.py"><span>Evaluation</span>run_eval.py</a>
+          <a href="poc/reports/POC_REPORT.md"><span>Report</span>POC 报告</a>
+          <a href="poc/reports/failure-analysis.md"><span>Debug</span>Failure Analysis</a>
+        </nav>
+      </section>
+
+      <section id="evidence" class="section evidence" aria-labelledby="evidence-title">
+        <div class="shell">
+          <header class="section-heading">
+            <div><p class="section-number">04 / VERIFIED EVIDENCE</p><h2 id="evidence-title">四个数字说明 POC 已可重复，不说明它已生产可用</h2></div>
+            <p>全部来自已保存的真实 Dify API 评测产物。</p>
+          </header>
+          <div id="evidence-metrics" class="evidence-metrics" aria-live="polite"></div>
+          <p id="evidence-caption" class="evidence-caption"></p>
+        </div>
+      </section>
+
+      <section class="section shell boundary" aria-labelledby="boundary-title">
+        <header class="section-heading">
+          <div><p class="section-number">05 / BOUNDARY & PILOT PLAN</p><h2 id="boundary-title">已完成 Synthetic POC 验收；真实客户试点仍需单独验证</h2></div>
+          <p>以下是下一阶段验证计划，不是已实现效果或 ROI。</p>
+        </header>
+        <div class="boundary-layout">
+          <div class="limits"><h3>当前事实边界</h3><ul id="limitations-list"></ul><p>最终 Bid / No-Bid 授权始终由人工承担。</p></div>
+          <div class="pilot-plan">
+            <h3>真实客户试点待验证指标</h3>
+            <table>
+              <thead><tr><th scope="col">待验证指标</th><th scope="col">验证方式</th><th scope="col">状态</th></tr></thead>
+              <tbody>
+                <tr><td>关键条款召回与证据定位</td><td>专家双人标注真实脱敏文件</td><td>待验证</td></tr>
+                <tr><td>决策一致性与人工驳回率</td><td>与 Bid Manager 决策进行盲测对照</td><td>待验证</td></tr>
+                <tr><td>端到端处理耗时</td><td>同一文件对比人工基线与辅助流程</td><td>待验证</td></tr>
+                <tr><td>Token、模型成本与故障率</td><td>接入计量、监控和异常恢复记录</td><td>待验证</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="case-footer"><p>AI Tender Evaluator · Personal Solution Architecture Case</p><p id="workflow-version">Recorded Dify API Run</p></footer>
       </section>
     </main>
-
-    <footer class="site-footer"><p>AI Tender Evaluator · AI 解决方案架构求职案例</p><p id="workflow-version">Recorded Dify API Run</p></footer>
-    <script src="main.js?v=portfolio-v2"></script>
+    <script src="main.js?v=architecture-case-v3-1"></script>
   </body>
 </html>

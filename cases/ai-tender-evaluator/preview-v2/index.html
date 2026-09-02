@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="投标前风险决策 POC：AI 解决方案架构求职案例。">
+    <title>投标前风险决策 POC · AI 解决方案架构案例</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?v=portfolio-v2">
+  </head>
+  <body>
+    <a class="skip-link" href="#case">跳至案例正文</a>
+    <header class="site-header">
+      <a class="brand" href="../../../index.html" aria-label="返回 AI 案例作品集">DL / AI CASES</a>
+      <p>AI 解决方案架构案例 · Synthetic POC</p>
+    </header>
+
+    <main id="case">
+      <section class="hero section-shell" aria-labelledby="page-title">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="kicker">AI Tender Evaluator · 作品集</p>
+            <h1 id="page-title">投标前风险决策 POC</h1>
+            <p class="hero-subtitle">把招标条款与投标证据转化为可审计的 Bid / No-Bid 建议</p>
+            <p class="role-line"><strong>我的角色：</strong>场景建模、Dify Workflow、确定性 Gate、评测与证据化</p>
+            <p class="scope-line">Recorded Dify API Run · Synthetic / human_review_pending · 人工最终复核</p>
+          </div>
+
+          <article class="decision-evidence" aria-labelledby="hero-decision-title">
+            <div class="decision-topline"><span>决策证据卡</span><strong>G10</strong></div>
+            <h2 id="hero-decision-title">缺少关键材料，不直接建议投标</h2>
+            <ol aria-label="G10 决策链">
+              <li><span>证据</span><strong>关键同类业绩材料缺失</strong></li>
+              <li><span>规则</span><strong>Critical Gap</strong></li>
+              <li><span>建议</span><strong class="no-bid">No-Bid</strong></li>
+              <li><span>行动</span><strong>补齐材料并人工复核</strong></li>
+            </ol>
+            <p>该结论由 Code Gate 计算，不由 LLM 自由决定。</p>
+          </article>
+        </div>
+
+        <div class="business" aria-labelledby="business-title">
+          <header class="section-heading">
+            <p class="section-index">A / 业务风险与交付能力</p>
+            <h2 id="business-title">投标评审的难点，不是“读懂”，而是“不漏判”</h2>
+          </header>
+          <div class="business-grid">
+            <div class="problem-statement">
+              <p>冗长材料中，资格、日期、金额、评分项与废标条件分散存在。只靠摘要无法回答三个关键问题：</p>
+              <ul>
+                <li>哪些条款构成投标阻断？</li>
+                <li>当前响应是否有可核验原文证据？</li>
+                <li>不确定事项应由谁补充和复核？</li>
+              </ul>
+            </div>
+            <dl class="deliverables">
+              <div><dt>场景建模</dt><dd>条款、证据、风险、行动和决策的统一结构</dd></div>
+              <div><dt>工作流实现</dt><dd>输入校验、抽取、匹配、修复、Gate、报告</dd></div>
+              <div><dt>安全决策</dt><dd>LLM 归纳，Code Gate 决策，人工最终复核</dd></div>
+              <div><dt>验收证据</dt><dd>真实 API 运行、关键 Gate 重复验证、脱敏证据包</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-shell decision-moment" aria-labelledby="decision-title">
+        <header class="section-heading split-heading">
+          <div><p class="section-index">B / 一个决策瞬间</p><h2 id="decision-title">同样是不确定，处理方式必须不同</h2></div>
+          <p>以下为 具有代表性的案例 摘要，不含完整招标、投标文本或原始响应。</p>
+        </header>
+        <div id="decision-cases" class="decision-cases" aria-live="polite"><p class="loading">正在读取脱敏证据包…</p></div>
+      </section>
+
+      <section class="section section-shell architecture" aria-labelledby="architecture-title">
+        <header class="section-heading split-heading">
+          <div><p class="section-index">C / 架构取舍</p><h2 id="architecture-title">把概率模型放在归纳层，把责任留在决策层</h2></div>
+          <p>核心不是节点数量，而是明确谁能归纳、谁能裁决、谁承担最终责任。</p>
+        </header>
+        <div class="architecture-flow" aria-label="三层决策架构">
+          <article><span>01 · LLM</span><h3>归纳条款与证据</h3><p>抽取原文、匹配响应、标记 Met / Gap / Unclear / Conflict。</p></article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article class="gate-layer"><span>02 · CODE GATE</span><h3>执行确定性决策</h3><p>关键 Gap、证据缺失与冲突按规则进入 No-Bid 或 Conditional Bid。</p></article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article><span>03 · HUMAN</span><h3>复核并最终审批</h3><p>资质、日期、金额、法律、报价与最终投标授权由人工负责。</p></article>
+        </div>
+        <details class="workflow-proof">
+          <summary>查看辅助证据：Dify Workflow v1.3 设计截图</summary>
+          <figure>
+            <img src="../assets/dify-workflow-v1.3.png" width="3584" height="610" loading="lazy" alt="AI Tender Evaluator POC v1.3 Dify 工作流设计截图。">
+            <figcaption>实际工作流包含输入校验、条款抽取、证据匹配与 JSON 修复、结构校验与决策 Gate、结构化报告。</figcaption>
+          </figure>
+        </details>
+      </section>
+
+      <section class="section section-shell validation" aria-labelledby="validation-title">
+        <header class="section-heading split-heading">
+          <div><p class="section-index">D / 紧凑验证证据</p><h2 id="validation-title">先证明链路可重复，再讨论生产化</h2></div>
+          <p>所有数字仅描述本轮 Synthetic POC。</p>
+        </header>
+        <div id="evidence-metrics" class="evidence-metrics" aria-live="polite"></div>
+        <p id="evidence-caption" class="evidence-caption"></p>
+      </section>
+
+      <section class="section section-shell method" aria-labelledby="method-title">
+        <header class="section-heading">
+          <p class="section-index">E / 我的贡献与可复用方法论</p>
+          <h2 id="method-title">从业务规则到可验收 POC，形成一套闭环方法</h2>
+        </header>
+        <ol class="method-list">
+          <li><span>01</span><div><h3>定义决策对象</h3><p>先把强制条款、评分项、证据和人工责任结构化，再选择模型与节点。</p></div></li>
+          <li><span>02</span><div><h3>分离概率与确定性</h3><p>LLM 处理抽取与归纳；硬规则、Schema 和最终建议进入 Code Gate。</p></div></li>
+          <li><span>03</span><div><h3>为失败设计出口</h3><p>缺证据、冲突、JSON 异常和低置信结果必须安全降级并进入复核。</p></div></li>
+          <li><span>04</span><div><h3>用证据完成验收</h3><p>以合成黄金集、真实 API Run、重复 Gate 和公开脱敏包支撑案例陈述。</p></div></li>
+        </ol>
+      </section>
+
+      <section class="section section-shell boundary" aria-labelledby="boundary-title">
+        <header class="section-heading split-heading">
+          <div><p class="section-index">F / POC 边界与下一步</p><h2 id="boundary-title">可进入展示，不等于可直接进入生产</h2></div>
+          <div class="artifact-links"><a href="../poc/reports/POC_REPORT.md">POC 报告</a><a href="../poc/reports/page-evidence.json">脱敏证据包</a></div>
+        </header>
+        <div class="boundary-grid">
+          <div><h3>当前事实边界</h3><ul id="limitations-list"></ul></div>
+          <div><h3>生产化下一步</h3><ol><li>由招投标专家复核并版本化黄金集。</li><li>接入真实脱敏文件，验证 OCR、长文档与证据定位。</li><li>补齐权限、审计、成本、监控与人工审批机制。</li></ol></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><p>AI Tender Evaluator · AI 解决方案架构求职案例</p><p id="workflow-version">Recorded Dify API Run</p></footer>
+    <script src="main.js?v=portfolio-v2"></script>
+  </body>
+</html>

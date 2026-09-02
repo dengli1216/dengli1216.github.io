@@ -53,7 +53,7 @@
   ],
   "limitations": [
     "Synthetic POC，不代表真实客户数据验证或生产验收。",
-    "数据集为 human_review_pending，不代表生产准确率。",
+    "数据集为 human_review_pending。",
     "不包含真实 ROI、客户效果、Token 或成本数据。",
     "金额、日期、资质、法律、废标条件和报价仍必须人工复核。"
   ]
