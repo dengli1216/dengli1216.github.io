@@ -12,7 +12,7 @@
 - 最新工作流：`poc/dify/ai-tender-evaluator-v1.yml`，已导入并发布为 Dify v1.3。
 - Dify 工作流页：`http://localhost/app/6f9b98f7-ebd3-4afb-9a97-c67fe64b6a3b/workflow`。
 - v1.3 关键回归 5/5：G10/G11/G12/G28 → `No-Bid`；G30 → `Conditional Bid`。
-- 页面尚未改造；页面当前样例不应称为 Live Dify Run。
+- 页面已按求职作品集定位重构；只展示 Recorded Dify API Run，不称为 Live Dify Run。
 
 ## 真实评测结果
 
@@ -76,6 +76,16 @@
 - 页面唯一运行事实来源为 `poc/reports/page-evidence.json`；通过相对路径静态读取，不调用 Dify，不包含客户数据、Run ID、原始响应或密钥。
 - 页面可表述为“Recorded Dify API Run”“Synthetic POC / human_review_pending”“与 Synthetic Golden Set 的一致性”。
 - 页面不得表述为生产准确率、生产可用、已上线、真实客户效果、真实 ROI、真实 Token/成本或自动最终投标授权。
+
+## 阶段3求职作品集重构
+
+- 页面定位由“产品宣传页”调整为“AI 解决方案架构案例”，面向求职作品集与面试讲解。
+- 页面收敛为六段：业务风险与交付能力、G10/G30 决策瞬间、三层架构取舍、紧凑验证证据、个人贡献与方法论、POC 边界与生产化下一步。
+- 首屏明确个人职责：场景建模、Dify Workflow、确定性 Gate、评测与证据化；右侧用 G10 展示 Evidence → Critical Gap → No-Bid → 人工行动。
+- 删除重复的 100% 指标、重复工作流说明和重复边界文案；仅保留 30/30、关键 Gate 5/5 三次一致、P95 58.257s 三项核心证据。
+- Dify Workflow 截图降为可展开辅助证据；页面核心架构表达为 LLM 归纳 → Code Gate 决策 → 人工复核。
+- 已在 320、768、1024、1440px 本地浏览器验证：静态证据加载、6 段结构、无页面横向溢出、控制台无错误或警告。
+- 本轮未调用 Dify、未读取密钥、未新增评测数据、未提交、未推送。
 
 ## 不应提供给外部模型的文件
 

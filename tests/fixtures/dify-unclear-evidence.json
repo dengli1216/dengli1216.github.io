@@ -1,0 +1,9 @@
+{
+  "name": "证据不明确",
+  "inputs": {
+    "tender_text": "智慧园区项目。供应商须具备 ISO9001 认证。评分：技术方案 60 分，服务方案 40 分。",
+    "proposal_text": "我方 ISO9001 资质待确认，证明文件待补充；技术方案已提交。",
+    "language": "zh-CN"
+  },
+  "expect": {"decision": "Conditional Bid", "manual_review_required": true}
+}

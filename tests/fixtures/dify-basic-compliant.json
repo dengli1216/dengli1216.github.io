@@ -1,0 +1,9 @@
+{
+  "name": "基本合规",
+  "inputs": {
+    "tender_text": "智慧园区项目。供应商须具备 ISO9001 认证。评分：技术方案 60 分，服务方案 40 分。",
+    "proposal_text": "我方具备 ISO9001 认证，已提供技术方案和服务方案，并承诺按期交付。",
+    "language": "zh-CN"
+  },
+  "expect": {"decision": "Bid", "manual_review_required": false, "scoring_criteria_empty": false}
+}

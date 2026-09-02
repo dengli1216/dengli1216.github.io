@@ -1,0 +1,9 @@
+{
+  "name": "无明确评分标准",
+  "inputs": {
+    "tender_text": "本项目采购园区运维服务，要求在 30 日内完成交付。文件未提供评审维度或分值。",
+    "proposal_text": "我方承诺在 30 日内完成交付，并提供运维人员与实施计划。",
+    "language": "zh-CN"
+  },
+  "expect": {"decision": "Conditional Bid", "manual_review_required": true, "scoring_criteria_empty": true}
+}

@@ -1,23 +1,26 @@
 # Dify 运行手册
 
-## 已验证事实（2026-09-01）
+## 当前已验证事实（2026-09-02）
 
-- 本机 Dify Community `1.16.1` 已通过 Docker Compose 启动。
-- `http://localhost/apps` 返回 HTTP 200。
-- 本地数据库存在 1 个账号与 1 个工作空间。
-- 当前 `poc/dify/dify-workflow-draft.yml` 是节点映射草稿，不是 Dify 1.16.1 可直接导入的 DSL。
-- 页面当前展示的是脱敏样例 JSON，由前端 `main.js` 硬编码，不是 Live Dify Run。
+- 本机 Dify Community `1.16.1` 运行正常；模型为 OpenAI-compatible `qwen3.7-plus`。
+- v1.3 DSL：`poc/dify/ai-tender-evaluator-v1.yml` 已实际导入、发布，应用地址：`http://localhost/app/6f9b98f7-ebd3-4afb-9a97-c67fe64b6a3b/workflow`。
+- Workflow 以两次 LLM 生成结构化条款/证据，由 Code Gate 确定性处理关键条款、显式缺失、过期、待确认和最终 Bid Gate。
+- 30 例黄金集已经通过发布 Web App 批量实际提交；21 条得到结构化输出、9 条无输出。v1.3 关键 Gate 用例 5/5 已通过。
 
-## 运行前人工操作（最短路径）
+## 当前唯一建议的运行方式
 
-1. 在 `http://localhost/apps` 登录现有工作空间。
-2. 新建 Workflow，并配置一个已授权的 Chat Model。
-3. 导入经版本适配的 DSL，或按 `poc/workflow-spec.md` 建立节点。
-4. 在应用的 API Access 页面创建测试专用 API Key；仅保存在本机环境变量，不提交仓库。
-5. 执行测试命令并把经过脱敏的请求、响应、Run ID、节点状态保存到 `poc/runtime-evidence/`。
+1. 在 Dify 当前应用的 **访问 API** 创建测试专用 API Key。
+2. 仅在当前终端设置，不写入文件或仓库：
+
+```bash
+export DIFY_APP_API_KEY='本机测试专用密钥'
+python3 cases/ai-tender-evaluator/poc/tests/run_eval.py --full
+```
+
+3. 仅当脚本真实完成后，更新 `poc/reports/`；保留经过脱敏的 Run ID、耗时、Token/成本和失败详情。
 
 ## 已知限制
 
-- 尚未取得应用 API Key，未执行真实 Workflow 导入或端到端运行。
-- 因此没有真实 Run ID、节点耗时、Token/成本或测试通过率；页面不可将样例标记为真实运行。
-- 金额、日期、资质、法律、废标条件与报价必须进入人工复核队列。
+- Web 批量页的“无输出内容”问题尚未定位；完整 v1.3 30 例指标未完成。
+- `run_eval.py` 需要 API Key，且下一轮应核对脚本报告中的 workflow 版本标签是否与 v1.3 一致。
+- 金额、日期、资质、法律、废标条件与报价必须进入人工复核；该 POC 不产生最终投标授权。

@@ -1,0 +1,20 @@
+project: ai-tender-evaluator
+updated: 2026-09-02
+phase: poc_v1_partial_verified
+source_of_truth:
+  handoff: cases/ai-tender-evaluator/docs/PROJECT_HANDOFF.md
+  workflow: cases/ai-tender-evaluator/poc/dify/ai-tender-evaluator-v1.yml
+  results: cases/ai-tender-evaluator/poc/reports/eval-summary.md
+verified:
+  dify_version: 1.16.1
+  workflow_version: poc-v1.3-dify-1.16.1
+  critical_gate_regression: 5_of_5_passed
+  web_batch: 30_submitted_21_structured_outputs_9_missing
+blocked:
+  - Full v1.3 API evaluation needs DIFY_APP_API_KEY in terminal only.
+  - Web batch missing-output issue is not diagnosed.
+constraints:
+  - Do not claim full production acceptance.
+  - Do not modify Pages or push without explicit user request.
+  - Never store secrets or unredacted customer materials in the repository.
+next_action: Run poc/tests/run_eval.py --full after a test-only Dify API key is configured.

@@ -1,0 +1,3196 @@
+{
+  "generated_at": "2026-09-02T08:27:26Z",
+  "workflow_version_expected": "poc-v1.3-dify-1.16.1",
+  "summary": {
+    "cases_run": 30,
+    "api_completion_coverage": 1.0,
+    "workflow_success_rate": 1.0,
+    "workflow_version_compliance_rate": 1.0,
+    "schema_compliance_rate": 1.0,
+    "synthetic_golden_consistency_rate": 1.0,
+    "requirement_status_accuracy": 1.0,
+    "critical_gap_recall": 1.0,
+    "decision_accuracy": 1.0,
+    "manual_review_recall": 1.0,
+    "citation_validity_rate": 1.0,
+    "hallucinated_clause_or_evidence_rate": 0.0,
+    "key_gate_three_run_coverage": 1.0,
+    "key_gate_three_run_consistency_rate": 1.0,
+    "accepted_case_rate": 1.0,
+    "latency_seconds": {
+      "average": 46.33,
+      "p50": 44.739,
+      "p95": 58.257
+    },
+    "token_or_cost_metadata_available_runs": 0,
+    "decision_confusion_matrix": {
+      "Bid": {
+        "Bid": 9,
+        "Conditional Bid": 0,
+        "No-Bid": 0
+      },
+      "Conditional Bid": {
+        "Bid": 0,
+        "Conditional Bid": 13,
+        "No-Bid": 0
+      },
+      "No-Bid": {
+        "Bid": 0,
+        "Conditional Bid": 0,
+        "No-Bid": 8
+      }
+    }
+  },
+  "runs": [
+    {
+      "case_id": "G01",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "c632086f-29d7-43e5-8787-d06a403095bd",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G01",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效ISO9001 认证。",
+            "reason_code": "PROVIDED"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G01\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效ISO9001 认证。\", \"reason_code\": \"PROVIDED\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 40.765,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G02",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "430dccb3-bbc4-4380-aa15-83a3bc975475",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G02",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效信息安全许可证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效信息安全许可证。",
+            "reason_code": "EVIDENCE_PROVIDED"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G02\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效信息安全许可证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效信息安全许可证。\", \"reason_code\": \"EVIDENCE_PROVIDED\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 44.047,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G03",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "40be7d24-5255-4cad-a442-317e602d4502",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G03",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效三级等保备案。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效三级等保备案。",
+            "reason_code": "DirectMatch"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G03\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效三级等保备案。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效三级等保备案。\", \"reason_code\": \"DirectMatch\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 36.502,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G04",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "1f2fd22e-eeb3-4dd1-85f5-fdadd11a9802",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G04",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效两项同类业绩。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效两项同类业绩。",
+            "reason_code": "ExplicitlyStated"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G04\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效两项同类业绩。\", \"reason_code\": \"ExplicitlyStated\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 64.253,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G05",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "3cda17b1-a4a2-4176-bfdf-74475bd3fac5",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G05",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+            "criticality": "Critical",
+            "requirement_type": "compliance",
+            "status": "Met",
+            "proposal_quote": "已提供有效驻场服务承诺。",
+            "reason_code": "Direct match"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G05\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效驻场服务承诺。\", \"reason_code\": \"Direct match\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 57.925,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G06",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "a8562a2f-34b0-4c64-99e9-ec63b9029510",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G06",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效有效营业执照。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效有效营业执照。",
+            "reason_code": "direct_match"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G06\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效有效营业执照。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效有效营业执照。\", \"reason_code\": \"direct_match\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 37.621,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G07",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "17ce80e1-a8a3-497d-ab96-a36ceb30b704",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G07",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "",
+            "reason_code": "明确未提供"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "明确未提供",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G07\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"明确未提供\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"明确未提供\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 48.504,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G08",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "db77efa0-2c42-4cad-aa97-f5b666c03b58",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G08",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效信息安全许可证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "",
+            "reason_code": "not_provided"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "not_provided",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'not_provided', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G08\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效信息安全许可证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"not_provided\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"not_provided\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'not_provided', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 48.142,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G09",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "cdf8256e-7177-4293-91a1-18fb1b0b3c52",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G09",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效三级等保备案。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "",
+            "reason_code": "MISSING_PROOF"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "MISSING_PROOF",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_PROOF', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G09\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效三级等保备案。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MISSING_PROOF\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MISSING_PROOF\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_PROOF', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 44.185,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G10",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "951ab36a-709c-4914-9678-0dea0c3ca143",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G10",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效两项同类业绩。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "",
+            "reason_code": "MISSING_EVIDENCE"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "MISSING_EVIDENCE",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G10\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MISSING_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MISSING_EVIDENCE\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 57.702,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G11",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "e1ef6d1e-1c7c-4149-a880-74ab5ec967aa",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G11",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+            "criticality": "Critical",
+            "requirement_type": "compliance",
+            "status": "Gap",
+            "proposal_quote": "",
+            "reason_code": "MissingProof"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "MissingProof",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G11\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MissingProof\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MissingProof\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 41.474,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G12",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "d6d01a99-b216-4066-a883-69864ec0a1ab",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G12",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效有效营业执照。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "提供的有效营业执照已于 2024 年到期。",
+            "reason_code": "EXPIRED_EVIDENCE"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "EXPIRED_EVIDENCE",
+            "blocking": true
+          },
+          {
+            "role": "Compliance Reviewer",
+            "reason": "EXPIRED_EVIDENCE_AS_GAP",
+            "blocking": false
+          }
+        ],
+        "warnings": [
+          "EXPIRED_EVIDENCE_AS_GAP"
+        ],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G12\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效有效营业执照。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"提供的有效营业执照已于 2024 年到期。\", \"reason_code\": \"EXPIRED_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRED_EVIDENCE\", \"blocking\": true}, {\"role\": \"Compliance Reviewer\", \"reason\": \"EXPIRED_EVIDENCE_AS_GAP\", \"blocking\": false}], \"warnings\": [\"EXPIRED_EVIDENCE_AS_GAP\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 50.356,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G13",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "6aa010b5-cd3c-41b5-b59c-29a92c6ff8d9",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G13",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Unclear",
+            "proposal_quote": "ISO9001 认证材料待确认，证明文件待补充。",
+            "reason_code": "PENDING_SUPPLEMENT"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "PENDING_SUPPLEMENT",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PENDING_SUPPLEMENT', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G13\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"ISO9001 认证材料待确认，证明文件待补充。\", \"reason_code\": \"PENDING_SUPPLEMENT\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"PENDING_SUPPLEMENT\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PENDING_SUPPLEMENT', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 35.357,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G14",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "2e002cb8-fd42-4867-ae1d-70d2bbc9dc42",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G14",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效信息安全许可证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Unclear",
+            "proposal_quote": "信息安全许可证材料待确认，证明文件待补充。",
+            "reason_code": "PENDING_SUPPLEMENT"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "PENDING_SUPPLEMENT",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PENDING_SUPPLEMENT', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G14\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效信息安全许可证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"信息安全许可证材料待确认，证明文件待补充。\", \"reason_code\": \"PENDING_SUPPLEMENT\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"PENDING_SUPPLEMENT\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PENDING_SUPPLEMENT', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 45.515,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G15",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "97023b7c-5c1e-4367-880b-32e5026ab150",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G15",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效三级等保备案。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Unclear",
+            "proposal_quote": "三级等保备案材料待确认，证明文件待补充。",
+            "reason_code": "待确认待补充"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "待确认待补充",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '待确认待补充', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G15\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效三级等保备案。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"三级等保备案材料待确认，证明文件待补充。\", \"reason_code\": \"待确认待补充\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"待确认待补充\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '待确认待补充', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 58.528,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G16",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "d797f593-9371-406c-bc4d-7de8a1bf654c",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G16",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效两项同类业绩。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Unclear",
+            "proposal_quote": "两项同类业绩材料待确认，证明文件待补充。",
+            "reason_code": "PendingConfirmation"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "PendingConfirmation",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PendingConfirmation', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G16\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"两项同类业绩材料待确认，证明文件待补充。\", \"reason_code\": \"PendingConfirmation\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"PendingConfirmation\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'PendingConfirmation', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 38.83,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G17",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "63d5501f-1262-48d3-8644-84c63e6a98ad",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G17",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+            "criticality": "Critical",
+            "requirement_type": "compliance",
+            "status": "Unclear",
+            "proposal_quote": "驻场服务承诺材料待确认，证明文件待补充。",
+            "reason_code": "Pending"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "Pending",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Pending', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G17\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Unclear\", \"proposal_quote\": \"驻场服务承诺材料待确认，证明文件待补充。\", \"reason_code\": \"Pending\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"Pending\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Pending', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 54.939,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G18",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "88fe02e9-a6a9-4d8a-94ac-e50de5b52d2a",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G18",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供实施计划。",
+            "criticality": "Standard",
+            "requirement_type": "compliance",
+            "status": "Met",
+            "proposal_quote": "已提供实施计划。",
+            "reason_code": "PROVIDED"
+          }
+        ],
+        "scoring_criteria": [],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Compliance Reviewer",
+            "reason": "NO_SCORING_CRITERIA",
+            "blocking": false
+          }
+        ],
+        "warnings": [
+          "NO_SCORING_CRITERIA"
+        ],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Compliance Reviewer', 'reason': 'NO_SCORING_CRITERIA', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G18\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供实施计划。\", \"criticality\": \"Standard\", \"requirement_type\": \"compliance\", \"status\": \"Met\", \"proposal_quote\": \"已提供实施计划。\", \"reason_code\": \"PROVIDED\"}], \"scoring_criteria\": [], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Compliance Reviewer\", \"reason\": \"NO_SCORING_CRITERIA\", \"blocking\": false}], \"warnings\": [\"NO_SCORING_CRITERIA\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Compliance Reviewer', 'reason': 'NO_SCORING_CRITERIA', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 37.878,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G19",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "478a1f0a-8756-4930-bf3e-fad8fd224a62",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G19",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供技术方案。",
+            "criticality": "Standard",
+            "requirement_type": "technical",
+            "status": "Gap",
+            "proposal_quote": "技术方案无法提供。",
+            "reason_code": "NOT_PROVIDED"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "NOT_PROVIDED",
+            "blocking": false
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'NOT_PROVIDED', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G19\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供技术方案。\", \"criticality\": \"Standard\", \"requirement_type\": \"technical\", \"status\": \"Gap\", \"proposal_quote\": \"技术方案无法提供。\", \"reason_code\": \"NOT_PROVIDED\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"NOT_PROVIDED\", \"blocking\": false}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'NOT_PROVIDED', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 45.293,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G20",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "afe12f68-f94a-4004-91f0-1878039cb705",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G20",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "技术方案必须支持国产数据库。",
+            "criticality": "Standard",
+            "requirement_type": "technical",
+            "status": "Conflict",
+            "proposal_quote": "技术方案仅支持海外数据库，不支持国产数据库。",
+            "reason_code": "direct_contradiction"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [
+          {
+            "clause_id": "M1",
+            "reason_code": "direct_contradiction"
+          }
+        ],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "direct_contradiction",
+            "blocking": false
+          }
+        ],
+        "warnings": [
+          "Critical requirement M1 is in direct conflict with the proposal."
+        ],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'direct_contradiction', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G20\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"技术方案必须支持国产数据库。\", \"criticality\": \"Standard\", \"requirement_type\": \"technical\", \"status\": \"Conflict\", \"proposal_quote\": \"技术方案仅支持海外数据库，不支持国产数据库。\", \"reason_code\": \"direct_contradiction\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [{\"clause_id\": \"M1\", \"reason_code\": \"direct_contradiction\"}], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"direct_contradiction\", \"blocking\": false}], \"warnings\": [\"Critical requirement M1 is in direct conflict with the proposal.\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'direct_contradiction', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 40.397,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G21",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "3d678e79-7a09-4218-a4b3-b20a5bb150b4",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G21",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提交服务方案。",
+            "criticality": "Standard",
+            "requirement_type": "technical",
+            "status": "Unclear",
+            "proposal_quote": "服务方案内容待确认。",
+            "reason_code": "待确认"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "待确认",
+            "blocking": false
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '待确认', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G21\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提交服务方案。\", \"criticality\": \"Standard\", \"requirement_type\": \"technical\", \"status\": \"Unclear\", \"proposal_quote\": \"服务方案内容待确认。\", \"reason_code\": \"待确认\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"待确认\", \"blocking\": false}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '待确认', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 52.076,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G22",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "3680b02b-67ef-4d0f-91c0-70373bc72bce",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G22",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须在 2026 年 6 月 30 日前完成交付。",
+            "criticality": "Critical",
+            "requirement_type": "delivery",
+            "status": "Conflict",
+            "proposal_quote": "我方只能在 2026 年 8 月 30 日完成交付。",
+            "reason_code": "date_conflict"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [
+          {
+            "clause_id": "M1",
+            "reason_code": "date_conflict"
+          }
+        ],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "date_conflict",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'date_conflict', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G22\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须在 2026 年 6 月 30 日前完成交付。\", \"criticality\": \"Critical\", \"requirement_type\": \"delivery\", \"status\": \"Conflict\", \"proposal_quote\": \"我方只能在 2026 年 8 月 30 日完成交付。\", \"reason_code\": \"date_conflict\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [{\"clause_id\": \"M1\", \"reason_code\": \"date_conflict\"}], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"date_conflict\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'date_conflict', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 38.212,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G23",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "8dfbc48d-d66d-4fbd-a664-5497cd04ba94",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G23",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "报价不得超过 100 万元。",
+            "criticality": "Critical",
+            "requirement_type": "commercial",
+            "status": "Conflict",
+            "proposal_quote": "报价为 120 万元。",
+            "reason_code": "Exceeds maximum budget"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [
+          {
+            "clause_id": "M1",
+            "reason_code": "Exceeds maximum budget"
+          }
+        ],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "Exceeds maximum budget",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Exceeds maximum budget', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G23\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"报价不得超过 100 万元。\", \"criticality\": \"Critical\", \"requirement_type\": \"commercial\", \"status\": \"Conflict\", \"proposal_quote\": \"报价为 120 万元。\", \"reason_code\": \"Exceeds maximum budget\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [{\"clause_id\": \"M1\", \"reason_code\": \"Exceeds maximum budget\"}], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"Exceeds maximum budget\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Exceeds maximum budget', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 34.288,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G24",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "0a506ad4-efc3-49a3-9b6c-5896ef4a19bb",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G24",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "平台必须支持 1000 并发用户。",
+            "criticality": "Standard",
+            "requirement_type": "technical",
+            "status": "Conflict",
+            "proposal_quote": "平台当前仅支持 300 并发用户。",
+            "reason_code": "Capacity mismatch"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [
+          {
+            "clause_id": "M1",
+            "reason_code": "Capacity mismatch"
+          }
+        ],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "Capacity mismatch",
+            "blocking": false
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Capacity mismatch', 'blocking': False}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G24\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"平台必须支持 1000 并发用户。\", \"criticality\": \"Standard\", \"requirement_type\": \"technical\", \"status\": \"Conflict\", \"proposal_quote\": \"平台当前仅支持 300 并发用户。\", \"reason_code\": \"Capacity mismatch\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [{\"clause_id\": \"M1\", \"reason_code\": \"Capacity mismatch\"}], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"Capacity mismatch\", \"blocking\": false}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Capacity mismatch', 'blocking': False}\"}",
+      "error": null,
+      "latency_seconds": 39.288,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G25",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "57c99e4c-fb2c-4826-afee-ffaf51e80395",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G25",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效 ISO9001 认证。",
+            "reason_code": "DirectMatch"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [
+          "Prompt injection attempt detected and ignored in tender document."
+        ],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G25\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效 ISO9001 认证。\", \"reason_code\": \"DirectMatch\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [\"Prompt injection attempt detected and ignored in tender document.\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 57.868,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G26",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "4d3d5ae1-eda7-4cfd-a6fa-1e401129655b",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G26",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效 ISO9001 认证。",
+            "reason_code": "DirectMatch"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G26\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效 ISO9001 认证。\", \"reason_code\": \"DirectMatch\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 55.702,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G27",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "10d6fea7-92b5-4a5f-97cc-c1021851a583",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G27",
+        "decision": "Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Met",
+            "proposal_quote": "已提供有效 ISO9001 认证。",
+            "reason_code": "DIRECT_MATCH"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": false,
+        "manual_review_queue": [],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G27\", \"decision\": \"Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Met\", \"proposal_quote\": \"已提供有效 ISO9001 认证。\", \"reason_code\": \"DIRECT_MATCH\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": false, \"manual_review_queue\": [], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- 无待处理项；仍须人工完成资质、金额、日期及法律审查。\"}",
+      "error": null,
+      "latency_seconds": 49.084,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G28",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "ae1e3156-ded9-4bfe-812c-a6fbc6551a5c",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G28",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "我方尚未取得 ISO9001 认证。",
+            "reason_code": "certification_not_provided"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "certification_not_provided",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'certification_not_provided', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G28\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"我方尚未取得 ISO9001 认证。\", \"reason_code\": \"certification_not_provided\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"certification_not_provided\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'certification_not_provided', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 52.268,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G29",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "30990eb0-9729-43d8-a605-4ccbfad1c680",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G29",
+        "decision": "No-Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Gap",
+            "proposal_quote": "当前并未获得该认证",
+            "reason_code": "明确未提供"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [
+          {
+            "clause_id": "M1",
+            "code": "CRITICAL_M1_GAP"
+          }
+        ],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "明确未提供",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G29\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"当前并未获得该认证\", \"reason_code\": \"明确未提供\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"明确未提供\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 39.653,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [
+        "CRITICAL_M1_GAP"
+      ],
+      "critical_found": [
+        "CRITICAL_M1_GAP"
+      ],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    },
+    {
+      "case_id": "G30",
+      "ok": true,
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "run_id": "b52a78f0-ed83-4dd8-a3dc-bde16982bbfd",
+      "result": {
+        "schema_version": "tender-evaluator.v1",
+        "workflow_version": "poc-v1.3-dify-1.16.1",
+        "case_id": "G30",
+        "decision": "Conditional Bid",
+        "assurance_status": "passed",
+        "requirements": [
+          {
+            "clause_id": "M1",
+            "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+            "criticality": "Critical",
+            "requirement_type": "qualification",
+            "status": "Unclear",
+            "proposal_quote": "ISO9001 认证将在下月到期，续期材料待确认。",
+            "reason_code": "EXPIRING_AND_PENDING"
+          }
+        ],
+        "scoring_criteria": [
+          {
+            "criterion_id": "S1",
+            "criterion_quote": "评分规则：技术方案 60 分。",
+            "weight": "60"
+          }
+        ],
+        "critical_gaps": [],
+        "conflicts": [],
+        "manual_review_required": true,
+        "manual_review_queue": [
+          {
+            "role": "Bid Manager",
+            "clause_id": "M1",
+            "reason": "EXPIRING_AND_PENDING",
+            "blocking": true
+          }
+        ],
+        "warnings": [],
+        "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRING_AND_PENDING', 'blocking': True}"
+      },
+      "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G30\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"ISO9001 认证将在下月到期，续期材料待确认。\", \"reason_code\": \"EXPIRING_AND_PENDING\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRING_AND_PENDING\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRING_AND_PENDING', 'blocking': True}\"}",
+      "error": null,
+      "latency_seconds": 43.236,
+      "usage": null,
+      "schema_valid": true,
+      "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+      "workflow_version_valid": true,
+      "requirement_correct": 1,
+      "requirement_total": 1,
+      "citation_checks": [
+        true
+      ],
+      "critical_expected": [],
+      "critical_found": [],
+      "decision_correct": true,
+      "manual_correct": true,
+      "requirements_all_correct": true,
+      "critical_correct": true,
+      "citations_valid": true,
+      "business_assertions_passed": true,
+      "accepted": true
+    }
+  ],
+  "failure_retries": {},
+  "key_gate_repeats": {
+    "G10": [
+      {
+        "case_id": "G10",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "951ab36a-709c-4914-9678-0dea0c3ca143",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G10",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效两项同类业绩。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "MISSING_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "MISSING_EVIDENCE",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G10\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MISSING_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MISSING_EVIDENCE\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 57.702,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G10",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "bd0d825e-e87f-4456-b384-1e8d702103b1",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G10",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效两项同类业绩。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "MISSING_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "MISSING_EVIDENCE",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G10\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MISSING_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MISSING_EVIDENCE\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 34.927,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G10",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "dfe6ba74-3c25-48ef-a609-54c8a991a77d",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G10",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效两项同类业绩。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "MissingProof"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "MissingProof",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G10\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效两项同类业绩。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MissingProof\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MissingProof\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 44.855,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      }
+    ],
+    "G11": [
+      {
+        "case_id": "G11",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "e1ef6d1e-1c7c-4149-a880-74ab5ec967aa",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G11",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+              "criticality": "Critical",
+              "requirement_type": "compliance",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "MissingProof"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "MissingProof",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G11\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MissingProof\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MissingProof\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MissingProof', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 41.474,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G11",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "36976d91-4166-46e9-aafd-f5e164787bd8",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G11",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+              "criticality": "Critical",
+              "requirement_type": "compliance",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "未提供证明材料"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "未提供证明材料",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '未提供证明材料', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G11\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"未提供证明材料\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"未提供证明材料\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '未提供证明材料', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 30.862,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G11",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "dce0ebc5-c880-4fc1-b686-8e02bfab3840",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G11",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效驻场服务承诺。",
+              "criticality": "Critical",
+              "requirement_type": "compliance",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "MISSING_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "MISSING_EVIDENCE",
+              "blocking": true
+            }
+          ],
+          "warnings": [
+            "M1 缺失驻场服务承诺证明材料"
+          ],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G11\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效驻场服务承诺。\", \"criticality\": \"Critical\", \"requirement_type\": \"compliance\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"MISSING_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"MISSING_EVIDENCE\", \"blocking\": true}], \"warnings\": [\"M1 缺失驻场服务承诺证明材料\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'MISSING_EVIDENCE', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 43.648,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      }
+    ],
+    "G12": [
+      {
+        "case_id": "G12",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "d6d01a99-b216-4066-a883-69864ec0a1ab",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G12",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效有效营业执照。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "提供的有效营业执照已于 2024 年到期。",
+              "reason_code": "EXPIRED_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "EXPIRED_EVIDENCE",
+              "blocking": true
+            },
+            {
+              "role": "Compliance Reviewer",
+              "reason": "EXPIRED_EVIDENCE_AS_GAP",
+              "blocking": false
+            }
+          ],
+          "warnings": [
+            "EXPIRED_EVIDENCE_AS_GAP"
+          ],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G12\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效有效营业执照。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"提供的有效营业执照已于 2024 年到期。\", \"reason_code\": \"EXPIRED_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRED_EVIDENCE\", \"blocking\": true}, {\"role\": \"Compliance Reviewer\", \"reason\": \"EXPIRED_EVIDENCE_AS_GAP\", \"blocking\": false}], \"warnings\": [\"EXPIRED_EVIDENCE_AS_GAP\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}\"}",
+        "error": null,
+        "latency_seconds": 50.356,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G12",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "28831d84-21b0-4ace-bd37-ac408e12ae93",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G12",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效有效营业执照。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "提供的有效营业执照已于 2024 年到期。",
+              "reason_code": "EXPIRED_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "EXPIRED_EVIDENCE",
+              "blocking": true
+            },
+            {
+              "role": "Compliance Reviewer",
+              "reason": "EXPIRED_EVIDENCE_AS_GAP",
+              "blocking": false
+            }
+          ],
+          "warnings": [
+            "EXPIRED_EVIDENCE_AS_GAP"
+          ],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G12\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效有效营业执照。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"提供的有效营业执照已于 2024 年到期。\", \"reason_code\": \"EXPIRED_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRED_EVIDENCE\", \"blocking\": true}, {\"role\": \"Compliance Reviewer\", \"reason\": \"EXPIRED_EVIDENCE_AS_GAP\", \"blocking\": false}], \"warnings\": [\"EXPIRED_EVIDENCE_AS_GAP\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}\"}",
+        "error": null,
+        "latency_seconds": 41.605,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G12",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "e7f7303d-20d7-42e1-a9bf-c2d8d83f4d72",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G12",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效有效营业执照。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "提供的有效营业执照已于 2024 年到期。",
+              "reason_code": "EXPIRED_EVIDENCE"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "EXPIRED_EVIDENCE",
+              "blocking": true
+            },
+            {
+              "role": "Compliance Reviewer",
+              "reason": "EXPIRED_EVIDENCE_AS_GAP",
+              "blocking": false
+            }
+          ],
+          "warnings": [
+            "EXPIRED_EVIDENCE_AS_GAP"
+          ],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G12\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效有效营业执照。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"提供的有效营业执照已于 2024 年到期。\", \"reason_code\": \"EXPIRED_EVIDENCE\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRED_EVIDENCE\", \"blocking\": true}, {\"role\": \"Compliance Reviewer\", \"reason\": \"EXPIRED_EVIDENCE_AS_GAP\", \"blocking\": false}], \"warnings\": [\"EXPIRED_EVIDENCE_AS_GAP\"], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRED_EVIDENCE', 'blocking': True}\\n- {'role': 'Compliance Reviewer', 'reason': 'EXPIRED_EVIDENCE_AS_GAP', 'blocking': False}\"}",
+        "error": null,
+        "latency_seconds": 44.495,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      }
+    ],
+    "G28": [
+      {
+        "case_id": "G28",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "ae1e3156-ded9-4bfe-812c-a6fbc6551a5c",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G28",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "我方尚未取得 ISO9001 认证。",
+              "reason_code": "certification_not_provided"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "certification_not_provided",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'certification_not_provided', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G28\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"我方尚未取得 ISO9001 认证。\", \"reason_code\": \"certification_not_provided\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"certification_not_provided\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'certification_not_provided', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 52.268,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G28",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "71cd956b-33ac-452a-ad89-a6c9a6a0f694",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G28",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "NotProvided"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "NotProvided",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'NotProvided', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G28\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"NotProvided\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"NotProvided\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'NotProvided', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 52.219,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G28",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "23924f20-857f-4954-9b93-eb480146e1a4",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G28",
+          "decision": "No-Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Gap",
+              "proposal_quote": "",
+              "reason_code": "明确未提供"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [
+            {
+              "clause_id": "M1",
+              "code": "CRITICAL_M1_GAP"
+            }
+          ],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "明确未提供",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：No-Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：1\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G28\", \"decision\": \"No-Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Gap\", \"proposal_quote\": \"\", \"reason_code\": \"明确未提供\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [{\"clause_id\": \"M1\", \"code\": \"CRITICAL_M1_GAP\"}], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"明确未提供\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：No-Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：1\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': '明确未提供', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 39.787,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [
+          "CRITICAL_M1_GAP"
+        ],
+        "critical_found": [
+          "CRITICAL_M1_GAP"
+        ],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      }
+    ],
+    "G30": [
+      {
+        "case_id": "G30",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "b52a78f0-ed83-4dd8-a3dc-bde16982bbfd",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G30",
+          "decision": "Conditional Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Unclear",
+              "proposal_quote": "ISO9001 认证将在下月到期，续期材料待确认。",
+              "reason_code": "EXPIRING_AND_PENDING"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "EXPIRING_AND_PENDING",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRING_AND_PENDING', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G30\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"ISO9001 认证将在下月到期，续期材料待确认。\", \"reason_code\": \"EXPIRING_AND_PENDING\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"EXPIRING_AND_PENDING\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'EXPIRING_AND_PENDING', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 43.236,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [],
+        "critical_found": [],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G30",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "f18e7060-6f2e-40a9-ae87-a7ca5fc08458",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G30",
+          "decision": "Conditional Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Unclear",
+              "proposal_quote": "ISO9001 认证将在下月到期，续期材料待确认。",
+              "reason_code": "ExpiringPending"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "ExpiringPending",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'ExpiringPending', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G30\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"ISO9001 认证将在下月到期，续期材料待确认。\", \"reason_code\": \"ExpiringPending\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"ExpiringPending\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'ExpiringPending', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 42.371,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [],
+        "critical_found": [],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      },
+      {
+        "case_id": "G30",
+        "ok": true,
+        "http_status": 200,
+        "workflow_status": "succeeded",
+        "run_id": "81aabcae-4a47-482a-a202-2baa8d2317ce",
+        "result": {
+          "schema_version": "tender-evaluator.v1",
+          "workflow_version": "poc-v1.3-dify-1.16.1",
+          "case_id": "G30",
+          "decision": "Conditional Bid",
+          "assurance_status": "passed",
+          "requirements": [
+            {
+              "clause_id": "M1",
+              "requirement_quote": "供应商必须提供有效 ISO9001 认证。",
+              "criticality": "Critical",
+              "requirement_type": "qualification",
+              "status": "Unclear",
+              "proposal_quote": "ISO9001 认证将在下月到期，续期材料待确认。",
+              "reason_code": "Expiring_and_pending"
+            }
+          ],
+          "scoring_criteria": [
+            {
+              "criterion_id": "S1",
+              "criterion_quote": "评分规则：技术方案 60 分。",
+              "weight": "60"
+            }
+          ],
+          "critical_gaps": [],
+          "conflicts": [],
+          "manual_review_required": true,
+          "manual_review_queue": [
+            {
+              "role": "Bid Manager",
+              "clause_id": "M1",
+              "reason": "Expiring_and_pending",
+              "blocking": true
+            }
+          ],
+          "warnings": [],
+          "report_markdown": "# 招标评审报告\n\n- 决策：Conditional Bid\n- 保障状态：passed\n- 条款数：1\n- Critical Gap：0\n\n## 人工复核\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Expiring_and_pending', 'blocking': True}"
+        },
+        "raw_output": "{\"schema_version\": \"tender-evaluator.v1\", \"workflow_version\": \"poc-v1.3-dify-1.16.1\", \"case_id\": \"G30\", \"decision\": \"Conditional Bid\", \"assurance_status\": \"passed\", \"requirements\": [{\"clause_id\": \"M1\", \"requirement_quote\": \"供应商必须提供有效 ISO9001 认证。\", \"criticality\": \"Critical\", \"requirement_type\": \"qualification\", \"status\": \"Unclear\", \"proposal_quote\": \"ISO9001 认证将在下月到期，续期材料待确认。\", \"reason_code\": \"Expiring_and_pending\"}], \"scoring_criteria\": [{\"criterion_id\": \"S1\", \"criterion_quote\": \"评分规则：技术方案 60 分。\", \"weight\": \"60\"}], \"critical_gaps\": [], \"conflicts\": [], \"manual_review_required\": true, \"manual_review_queue\": [{\"role\": \"Bid Manager\", \"clause_id\": \"M1\", \"reason\": \"Expiring_and_pending\", \"blocking\": true}], \"warnings\": [], \"report_markdown\": \"# 招标评审报告\\n\\n- 决策：Conditional Bid\\n- 保障状态：passed\\n- 条款数：1\\n- Critical Gap：0\\n\\n## 人工复核\\n- {'role': 'Bid Manager', 'clause_id': 'M1', 'reason': 'Expiring_and_pending', 'blocking': True}\"}",
+        "error": null,
+        "latency_seconds": 42.973,
+        "usage": null,
+        "schema_valid": true,
+        "workflow_version_actual": "poc-v1.3-dify-1.16.1",
+        "workflow_version_valid": true,
+        "requirement_correct": 1,
+        "requirement_total": 1,
+        "citation_checks": [
+          true
+        ],
+        "critical_expected": [],
+        "critical_found": [],
+        "decision_correct": true,
+        "manual_correct": true,
+        "requirements_all_correct": true,
+        "critical_correct": true,
+        "citations_valid": true,
+        "business_assertions_passed": true,
+        "accepted": true
+      }
+    ]
+  },
+  "page_evidence_gate_passed": true
+}

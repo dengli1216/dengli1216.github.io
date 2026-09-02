@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tender Evaluator POC v1 Golden Case",
+  "type": "object",
+  "required": ["case_id", "split", "tags", "tender_text", "proposal_text", "gold", "provenance"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "split": {"enum": ["dev", "holdout"]},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "tender_text": {"type": "string", "minLength": 1},
+    "proposal_text": {"type": "string", "minLength": 1},
+    "gold": {
+      "type": "object",
+      "required": ["decision", "manual_review_required", "requirements", "scoring_criteria", "critical_gap_codes"],
+      "properties": {
+        "decision": {"enum": ["Bid", "Conditional Bid", "No-Bid"]},
+        "manual_review_required": {"type": "boolean"},
+        "requirements": {"type": "array", "minItems": 1},
+        "scoring_criteria": {"type": "array"},
+        "critical_gap_codes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_type", "review_status"],
+      "properties": {
+        "source_type": {"const": "synthetic"},
+        "review_status": {"const": "human_review_pending"}
+      }
+    }
+  }
+}

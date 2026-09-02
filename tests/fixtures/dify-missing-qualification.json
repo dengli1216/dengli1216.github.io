@@ -1,0 +1,9 @@
+{
+  "name": "关键资质缺失",
+  "inputs": {
+    "tender_text": "智慧园区项目。供应商须具备 ISO9001 认证。评分：技术方案 60 分，服务方案 40 分。",
+    "proposal_text": "我方具有相关项目经验，提交技术方案和服务方案，但未附任何证明材料。",
+    "language": "zh-CN"
+  },
+  "expect": {"decision": "No-Bid", "critical_gap": true, "manual_review_required": true}
+}

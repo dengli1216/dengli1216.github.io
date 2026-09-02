@@ -1,47 +1,271 @@
 app:
-  name: AI Tender / Proposal Evaluator
+  description: 'P0：招标文本与响应材料的可追溯初审。LLM 仅做条款和证据归纳；关键资质、证据缺失及人工复核由规则节点确定。'
+  icon: 📋
+  icon_background: '#E0F2FE'
   mode: workflow
-  version: 0.1.0
+  name: AI Tender / Proposal Evaluator P0
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.3.1
 workflow:
-  inputs:
-    - name: tender_text
-      type: paragraph
-      required: true
-    - name: proposal_text
-      type: paragraph
-      required: true
-    - name: language
-      type: text-input
-      default: zh-CN
-  nodes:
-    - id: start
-      type: start
-    - id: extract_project_info
-      type: llm
-      prompt_file: ../prompts/01-extract-project-info.md
-      output: project_info
-    - id: extract_mandatory_requirements
-      type: llm
-      prompt_file: ../prompts/02-extract-mandatory-requirements.md
-      output: mandatory_requirements
-    - id: extract_scoring_criteria
-      type: llm
-      prompt_file: ../prompts/03-extract-scoring-criteria.md
-      output: scoring_criteria
-    - id: risk_and_gap_analysis
-      type: llm
-      prompt_file: ../prompts/04-risk-and-gap-analysis.md
-      output: gap_analysis
-    - id: generate_review_report
-      type: llm
-      prompt_file: ../prompts/05-generate-review-report.md
-      output: report_markdown
-    - id: end
-      type: end
-  edges:
-    - [start, extract_project_info]
-    - [extract_project_info, extract_mandatory_requirements]
-    - [extract_mandatory_requirements, extract_scoring_criteria]
-    - [extract_scoring_criteria, risk_and_gap_analysis]
-    - [risk_and_gap_analysis, generate_review_report]
-    - [generate_review_report, end]
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: start-to-analysis
+      source: start_node
+      sourceHandle: source
+      target: analysis_node
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: analysis-to-rules
+      source: analysis_node
+      sourceHandle: source
+      target: rules_node
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: rules-to-end
+      source: rules_node
+      sourceHandle: source
+      target: end_node
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: '输入为脱敏后的招标要求与当前投标响应。'
+        selected: false
+        title: 输入材料
+        type: start
+        variables:
+        - label: 招标文件文本
+          max_length: 12000
+          options: []
+          required: true
+          type: paragraph
+          variable: tender_text
+        - label: 投标响应文本
+          max_length: 12000
+          options: []
+          required: true
+          type: paragraph
+          variable: proposal_text
+        - label: 输出语言
+          max_length: 16
+          options: []
+          required: false
+          type: text-input
+          variable: language
+      height: 142
+      id: start_node
+      position:
+        x: 40
+        y: 220
+      positionAbsolute:
+        x: 40
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 'LLM 仅归纳条款、评分信息和双方证据；不作最终投标授权。'
+        title: 条款与证据归纳
+        type: llm
+        model:
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+          name: qwen3.7-plus
+          mode: chat
+        prompt_template:
+        - role: system
+          text: |
+            你是招标评审辅助分析员。只能依据输入文本归纳，不得补造条款、评分项或证据。
+            请以 JSON 对象输出，字段固定为 mandatory_requirements、scoring_criteria、evidence_notes、warnings。
+            mandatory_requirements 和 scoring_criteria 必须为数组；每项包含 requirement 或 criterion、evidence。
+            信息不存在时使用空数组或“未在材料中找到”，不要猜测。最终 Bid/No-Bid 由后续规则及人工复核决定。
+        - role: user
+          text: |
+            招标文件：
+            {{#start_node.tender_text#}}
+
+            投标响应：
+            {{#start_node.proposal_text#}}
+
+            输出语言：{{#start_node.language#}}
+        vision:
+          enabled: false
+          configs:
+            variable_selector: []
+        memory:
+          enabled: false
+          window:
+            enabled: false
+            size: 50
+        context:
+          enabled: false
+          variable_selector: []
+        structured_output:
+          enabled: false
+        retry_config:
+          enabled: true
+          max_retries: 1
+          retry_interval: 1000
+          exponential_backoff:
+            enabled: false
+            multiplier: 2
+            max_interval: 10000
+      height: 90
+      id: analysis_node
+      position:
+        x: 340
+        y: 220
+      positionAbsolute:
+        x: 340
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: |
+          import json
+
+          def excerpt(text, limit=180):
+              text = (text or '').strip()
+              return text[:limit] if text else '未提供'
+
+          def main(tender_text: str, proposal_text: str, model_analysis: str) -> dict:
+              tender = (tender_text or '').strip()
+              proposal = (proposal_text or '').strip()
+              qualification_terms = ['资质', '资格', '认证', '许可证', 'ISO', '业绩']
+              score_terms = ['评分', '分值', '权重', '得分']
+              unclear_terms = ['待确认', '不明确', '未说明', '待补充', 'TBD']
+              tender_requires_qualification = any(term in tender for term in qualification_terms)
+              proposal_has_qualification = any(term in proposal for term in qualification_terms)
+              no_scoring_rule = not any(term in tender for term in score_terms)
+              unclear_evidence = any(term in proposal for term in unclear_terms)
+              critical_gaps = []
+              if tender_requires_qualification and not proposal_has_qualification:
+                  critical_gaps.append('招标材料出现资格/资质要求，但响应材料没有对应证据。')
+              manual_review = bool(critical_gaps) or unclear_evidence or no_scoring_rule
+              if critical_gaps:
+                  decision = 'No-Bid'
+              elif manual_review:
+                  decision = 'Conditional Bid'
+              else:
+                  decision = 'Bid'
+              result = {
+                  'workflow_version': 'p0-dify-1.16.1',
+                  'decision': decision,
+                  'critical_gaps': critical_gaps,
+                  'manual_review_required': manual_review,
+                  'scoring_criteria': [] if no_scoring_rule else ['评分规则存在，需人工确认模型归纳结果。'],
+                  'evidence': {
+                      'tender': excerpt(tender),
+                      'proposal': excerpt(proposal),
+                  },
+                  'model_analysis': model_analysis or '模型未返回可用内容',
+                  'warnings': (['未发现明确评分规则，不生成评分项。'] if no_scoring_rule else []) + (['响应证据不明确，需要人工复核。'] if unclear_evidence else []),
+              }
+              return {'review_json': json.dumps(result, ensure_ascii=False)}
+        code_language: python3
+        desc: '确定性规则：资质缺失不得直接 Bid；证据不明和无评分规则必须进入人工复核。'
+        outputs:
+          review_json:
+            children: null
+            type: string
+        selected: false
+        title: 规则与人工复核
+        type: code
+        variables:
+        - value_selector:
+          - start_node
+          - tender_text
+          value_type: string
+          variable: tender_text
+        - value_selector:
+          - start_node
+          - proposal_text
+          value_type: string
+          variable: proposal_text
+        - value_selector:
+          - analysis_node
+          - text
+          value_type: string
+          variable: model_analysis
+      height: 90
+      id: rules_node
+      position:
+        x: 640
+        y: 220
+      positionAbsolute:
+        x: 640
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - rules_node
+          - review_json
+          value_type: string
+          variable: review_json
+        selected: false
+        title: 结构化结果
+        type: end
+      height: 90
+      id: end_node
+      position:
+        x: 940
+        y: 220
+      positionAbsolute:
+        x: 940
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.7

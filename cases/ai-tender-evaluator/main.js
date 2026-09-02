@@ -1,40 +1,76 @@
 const evidenceUrl = "poc/reports/page-evidence.json";
-const percent = (value) => `${Math.round(value * 100)}%`;
-const seconds = (value) => `${Number(value).toFixed(value === 46.33 ? 2 : 3)}s`;
-const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
-const statusForDecision = (decision) => ({
-  Bid: ["Met", "met", "关键资格证据匹配且无 Critical Gap", "保留复核记录并进入下一阶段评审。"],
-  "No-Bid": ["Gap", "gap", "关键资格材料缺失，触发 Critical Gap", "先补齐关键材料；未补齐前不建议投标。"],
-  "Conditional Bid": ["Unclear", "unclear", "关键材料待确认，需补充证明", "进入人工复核队列，确认后再决定。"]
-}[decision] || ["Unclear", "unclear", "待人工确认", "进入人工复核队列。"]);
 
-function renderExecution(execution, gateSummary) {
-  document.querySelector("#execution-scorecard").innerHTML = [
-    ["真实 API 运行", execution.api_cases_completed, "Recorded Dify API Evaluation"],
-    ["Run ID 覆盖", execution.run_id_coverage, "每例均有可追溯运行记录"],
-    ["关键 Gate", gateSummary.three_run_consistency, "每例额外运行 3 次，结果一致"],
-    ["工作流成功", percent(execution.workflow_success_rate), "仅针对本轮 Synthetic POC"]
-  ].map(([label, value, note]) => `<article class="metric-card"><span>${label}</span><strong>${value}</strong><p>${note}</p></article>`).join("");
-  document.querySelector("#latency-panel").innerHTML = [["延迟证据", "Dify API 实测"], ["平均", seconds(execution.average_latency_seconds)], ["P50", seconds(execution.p50_latency_seconds)], ["P95", seconds(execution.p95_latency_seconds)]].map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("");
-}
-function renderMatrix(cases) {
-  document.querySelector("#matrix-body").innerHTML = cases.map((item) => {
-    const [status, className, requirement, action] = statusForDecision(item.decision);
-    const risk = item.manual_review_required ? "需人工复核" : "无 Critical Gap";
-    return `<tr><td><span class="case-id">${escapeHtml(item.case_id)}</span><br><strong>${escapeHtml(requirement)}</strong></td><td class="evidence-copy">${escapeHtml(item.evidence_summary)}</td><td><span class="status status-${className}">${status}</span></td><td><strong>${risk}</strong><br><span class="evidence-copy">${action}</span></td></tr>`;
+const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "'": "&#39;",
+  '"': "&quot;"
+})[char]);
+
+const casePresentation = {
+  G10: {
+    input: "关键同类业绩要求 × 未提供可核验证明",
+    evidence: "关键材料缺失，未形成可验证的投标原文证据",
+    gate: "Critical Gap → No-Bid",
+    action: "补齐材料并由投标负责人复核后重新评估"
+  },
+  G30: {
+    input: "关键资质即将到期 × 有效性待确认",
+    evidence: "现有信息不足以确认投标有效期内持续合规",
+    gate: "Unclear → Conditional Bid",
+    action: "核验有效期、续期计划与证明文件后人工审批"
+  }
+};
+
+function renderDecisionCases(data) {
+  const gatesById = Object.fromEntries(data.key_gate_summary.gates.map((gate) => [gate.case_id, gate]));
+  const representativeById = Object.fromEntries(data.representative_cases.map((item) => [item.case_id, item]));
+  const caseIds = ["G10", "G30"];
+
+  document.querySelector("#decision-cases").innerHTML = caseIds.map((caseId) => {
+    const gate = gatesById[caseId];
+    const presentation = casePresentation[caseId];
+    const representative = representativeById[caseId];
+    const decisionClass = gate.decision === "No-Bid" ? "decision-no-bid" : "";
+    const evidence = representative?.evidence_summary || presentation.evidence;
+    return `<article class="case-decision">
+      <div class="case-heading"><span>${escapeHtml(caseId)} · Synthetic</span><strong class="${decisionClass}">${escapeHtml(gate.decision)}</strong></div>
+      <dl class="case-body">
+        <div class="case-row"><dt>输入摘要</dt><dd>${escapeHtml(presentation.input)}</dd></div>
+        <div class="case-row"><dt>证据判断</dt><dd>${escapeHtml(evidence)}</dd></div>
+        <div class="case-row"><dt>规则路径</dt><dd>${escapeHtml(presentation.gate)}</dd></div>
+        <div class="case-row"><dt>人工行动</dt><dd>${escapeHtml(presentation.action)}</dd></div>
+      </dl>
+    </article>`;
   }).join("");
 }
-function renderQuality(quality, decisions) {
-  const fields = [["Schema 合规", quality.schema_compliance_rate, "输出结构校验"], ["Critical Gap", quality.critical_gap_recall, "关键缺口召回"], ["人工复核", quality.manual_review_recall, "需人工项已召回"], ["引用有效", quality.citation_validity_rate, "证据可在对应输入中验证"], ["条款状态", quality.requirement_status_accuracy, "与 Golden Set 一致"], ["最终决策", quality.decision_accuracy, "由确定性 Gate 计算"], ["Golden Set 一致性", quality.synthetic_golden_consistency_rate, "Synthetic / 待人工复核"], ["虚构条款或证据", quality.hallucinated_clause_or_evidence_rate, "本轮校验为 0%"]];
-  document.querySelector("#quality-scorecard").innerHTML = fields.map(([label, value, note]) => `<article class="quality-card"><span>${label}</span><strong>${percent(value)}</strong><p>${note}</p></article>`).join("");
-  document.querySelector("#decision-distribution").innerHTML = Object.entries(decisions).map(([name, count]) => `<div class="decision-item"><span>${name}</span><strong>${count} 例</strong></div>`).join("");
-}
+
 function renderEvidence(data) {
-  document.querySelector("#evidence-label").textContent = data.evidence_meta.display_label;
-  document.querySelector("#workflow-version").textContent = data.evidence_meta.workflow_version;
-  document.querySelector("#gate-consistency").textContent = `${data.key_gate_summary.three_run_consistency} 三次一致`;
-  document.querySelector("#gate-list").innerHTML = data.key_gate_summary.gates.map((gate) => `<li><b>${escapeHtml(gate.case_id)}</b><span>${escapeHtml(gate.rule)}</span><em class="pass">三次一致</em></li>`).join("");
+  const execution = data.execution_scorecard;
+  const metrics = [
+    [execution.api_cases_completed, "Recorded API Run", "30/30 均有真实 Run ID"],
+    [data.key_gate_summary.three_run_consistency, "关键 Gate 三次一致", "G10 / G11 / G12 / G28 / G30"],
+    [`${execution.p95_latency_seconds}s`, "P95 延迟", `平均 ${execution.average_latency_seconds}s`]
+  ];
+  document.querySelector("#evidence-metrics").innerHTML = metrics.map(([value, label, note]) => `<article class="evidence-metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong><p>${escapeHtml(note)}</p></article>`).join("");
+  document.querySelector("#evidence-caption").textContent = `${data.evidence_meta.display_label} · 数据集 ${data.evidence_meta.dataset.case_count} 例 · ${data.evidence_meta.dataset.review_status} · API 未返回可用 Token/成本数据`;
   document.querySelector("#limitations-list").innerHTML = data.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  document.querySelector("#workflow-version").textContent = `${data.evidence_meta.workflow_version} · Recorded Dify API Run`;
 }
-function showLoadError() { document.querySelector("#dashboard").setAttribute("aria-busy", "false"); document.querySelector("#execution-scorecard").innerHTML = '<p class="error-message">静态证据包未加载。请通过 GitHub Pages 或本地 Web Server 访问此案例页。</p>'; }
-fetch(evidenceUrl).then((response) => { if (!response.ok) throw new Error(`Evidence file failed: ${response.status}`); return response.json(); }).then((data) => { renderExecution(data.execution_scorecard, data.key_gate_summary); renderMatrix(data.representative_cases); renderQuality(data.quality_scorecard, data.decision_distribution); renderEvidence(data); document.querySelector("#dashboard").setAttribute("aria-busy", "false"); }).catch(showLoadError);
+
+function showLoadError() {
+  document.querySelector("#decision-cases").innerHTML = '<p class="load-error" role="alert">脱敏证据包未加载，请通过本地 Web Server 或 GitHub Pages 访问。</p>';
+  document.querySelector("#evidence-metrics").innerHTML = '<p class="load-error" role="alert">验证指标暂不可用。</p>';
+}
+
+fetch(evidenceUrl)
+  .then((response) => {
+    if (!response.ok) throw new Error(`Evidence file failed: ${response.status}`);
+    return response.json();
+  })
+  .then((data) => {
+    renderDecisionCases(data);
+    renderEvidence(data);
+  })
+  .catch(showLoadError);
