@@ -13,14 +13,14 @@ const decisionCases = {
     requirement: "关键同类业绩必须提供可核验材料",
     evidence: "投标响应未提供可验证的同类业绩证明",
     llmStatus: "Gap",
-    gate: "Critical Gap",
+    gate: "关键缺口",
     action: "补齐证明材料，由 Bid Manager 复核后重新评估"
   },
   G30: {
     requirement: "关键资质在投标有效期内持续有效",
     evidence: "现有资质即将到期，续期状态待确认",
     llmStatus: "Unclear",
-    gate: "Manual Review Required",
+    gate: "需要人工审核",
     action: "核验有效期、续期计划与证明文件后人工授权"
   }
 };
