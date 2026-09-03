@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "case": {
+    "id": "ai-solution-copilot",
+    "name": "AI Solution Copilot 02｜分析与报告",
+    "type": "dify_workflow_poc",
+    "data_classification": "synthetic",
+    "review_status": "human_review_pending",
+    "boundary": "结构、分支、证据契约与人工复核暂停态验证；非生产系统，不代表业务效果。"
+  },
+  "workflow": {
+    "inputs": ["intake_artifact_json", "report_language"],
+    "stages": ["INTAKE", "DISCOVERY", "OPPORTUNITY_ASSESSMENT", "SOLUTION_DESIGN", "POC_DESIGN", "ASSURANCE", "FINAL_REPORT"],
+    "design_points": ["LLM 生成阶段候选 Artifact", "代码/规则节点执行结构、Lineage、Gate 与 evidenceRefs 校验", "Assurance 通过后仍进入人工复核，不自动对客发布"]
+  },
+  "validated_metrics": {
+    "golden_set_cases": 12,
+    "real_api_calls": 20,
+    "run_id_coverage": "20/20 (100%)",
+    "contract_and_branch_assertions": "52/52 (100%)",
+    "key_case_three_run_consistency": "4/4 (100%)",
+    "expected_status_and_contract_compliance": "20/20 (100%)",
+    "token_metadata": "20/20 available",
+    "cost_metadata": "0/20 available; no cost inferred"
+  },
+  "latency": {
+    "average_seconds": 45.928,
+    "p50_seconds": 0.071,
+    "p95_seconds": 441.837,
+    "measurement": "Dify workflow elapsed; paused runs use completed-node sum",
+    "interpretation": "分布由快速阻断/失败与包含多阶段 LLM 的长主链共同形成；不是性能优势声明，进一步诊断待确认。"
+  },
+  "representative_evidence": [
+    {"case_id":"GS-01-BLOCKED-ZH","run_id":"bcbc360d-9fc0-4075-8f92-d7b6da9b05bf","result":"Intake 阻断字段通过"},
+    {"case_id":"GS-04-INVALID-SCHEMA","run_id":"467b2678-51c3-49dc-addb-d0455e31f539","result":"schemaVersion 安全失败通过"},
+    {"case_id":"GS-05-EVIDENCE-NULL","run_id":"0f051489-e6f6-4ce6-be33-f6fd24ce241c","result":"null evidenceRefs 拒绝通过"},
+    {"case_id":"GS-10-HAPPY-EN","run_id":"4c63c390-1734-422d-9824-aa452318276a","result":"完整主链通过后暂停人审"},
+    {"case_id":"GS-11-HAPPY-ZH","run_id":"0d4c1715-22ac-4d7b-a6fc-af2c9f1952f1","result":"中文主链通过后暂停人审"}
+  ],
+  "capabilities_verified": ["结构化 Intake 接入", "阶段 Gate 链路", "安全阻断/失败", "evidenceRefs 严格校验", "人工复核暂停态", "真实 Run ID 追溯"],
+  "not_claimed": ["业务准确率", "真实客户效果", "ROI", "生产可用性", "SLA/性能优势", "成本结论", "人工批准完成"],
+  "engineering_showcase": ["Decision Contract 驱动断言", "Golden Set 分支覆盖", "真实 API Run ID 证据链", "安全失败与人审边界", "延迟统计口径审计"],
+  "source_files": [
+    "docs/CASE_BRIEF.md", "docs/DECISION_CONTRACT.md", "docs/WORKFLOW_AUDIT.md", "poc/tests/golden-set.json", "poc/tests/run_eval.py", "poc/reports/eval-summary.json", "poc/reports/EVAL_REPORT.md", "poc/reports/failure-analysis.md"
+  ]
+}

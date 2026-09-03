@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-03T14:12:00Z",
+  "workflow_snapshot_sha256": "b6450ef7f8f315d47a1fe5b9091db2401d533fc08ea84dbc8159775c142d979b",
+  "preflight": {
+    "ok": true,
+    "api_key_configured": true,
+    "base_url_valid": true,
+    "app_interface_accessible": true,
+    "actual_inputs": ["intake_artifact_json", "report_language"],
+    "published_app_name": "AI Solution Copilot 02｜分析与报告",
+    "published_app_name_matches_snapshot": true,
+    "failures": []
+  },
+  "smoke_executed": true,
+  "runs": [
+    {"case_id":"SMK-INTAKE-BLOCKED-001","run_id":"c790df20-7418-4c8b-b568-6dcba71da115","result":"passed","workflow_status":"succeeded","latency_seconds":0.096,"assertions_passed":true},
+    {"case_id":"SMK-INVALID-ARTIFACT-001","run_id":"1889d899-23e3-419d-a65c-9271d30ae0cb","result":"passed","workflow_status":"failed","latency_seconds":0.067,"assertions_passed":true},
+    {"case_id":"SMK-HAPPY-PATH-001","run_id":"1740ec44-923e-4cd5-ac2e-47124cd667eb","result":"passed","workflow_status":"paused","latency_seconds":112.758,"assertions_passed":true}
+  ],
+  "gate_status": "pass"
+}

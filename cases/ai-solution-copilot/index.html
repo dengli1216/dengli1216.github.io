@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Solution Copilot：以证据契约、阶段 Gate 与人工复核为核心的 Dify Workflow POC。">
+    <title>AI Solution Copilot · 解决方案架构 POC</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#case">跳至案例正文</a>
+    <header class="site-header">
+      <a class="brand" href="../../index.html" aria-label="返回 AI 案例作品集">DengLi / AI CASES</a>
+      <nav aria-label="案例导航">
+        <a href="#workflow">Workflow</a>
+        <a href="#evidence">证据</a>
+        <a href="#boundary">边界</a>
+      </nav>
+    </header>
+
+    <main id="case">
+      <section class="hero shell" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">AI SOLUTION COPILOT · SYNTHETIC POC</p>
+          <h1 id="page-title">AI解决方案助手POC</h1>
+          <p class="lead">将符合约束的 Intake Artifact 转换为逐阶段、带证据注册表和前序链路的分析与报告候选；最终由人工复核，而不是自动对客发布。</p>
+          <div class="hero-facts" aria-label="已验证核心事实">
+            <span><strong data-metric="golden_set_cases">—</strong><small>条 Golden Set</small></span>
+            <span><strong data-metric="real_api_calls">—</strong><small>次真实 API 调用</small></span>
+            <span><strong data-metric="contract_and_branch_assertions">—</strong><small>契约/分支断言</small></span>
+          </div>
+          <p class="boundary-note">Synthetic / human_review_pending · 结构与分支验证，不代表业务效果</p>
+        </div>
+        <aside class="contribution" aria-labelledby="contribution-title">
+          <p class="eyebrow">MY CONTRIBUTION</p>
+          <h2 id="contribution-title">从场景建模到证据化验收</h2>
+          <ol>
+            <li><b>01</b><span>场景与 Decision Contract 建模</span></li>
+            <li><b>02</b><span>Dify Workflow 分阶段编排</span></li>
+            <li><b>03</b><span>LLM / 规则 / 人工职责拆分</span></li>
+            <li><b>04</b><span>Golden Set 与关键分支设计</span></li>
+            <li><b>05</b><span>Smoke → 回归 → 报告自动化</span></li>
+            <li><b>06</b><span>Run ID、失败原因与展示证据留存</span></li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="section shell result" aria-labelledby="result-title">
+        <header class="section-heading">
+          <div><p class="section-number">01 / REPRESENTATIVE RESULT</p><h2 id="result-title">从输入缺口，到可执行的人工动作</h2></div>
+          <p>代表性证据均来自脱敏合成样本；展示稳定字段，不展示完整 LLM 长文本。</p>
+        </header>
+        <div class="result-grid">
+          <article class="result-step"><span class="step-index">INPUT</span><h3>Intake Artifact</h3><p>包含结构化事实、证据注册表、阶段和信息覆盖状态。</p><code>caseId · schemaVersion · evidenceRegistry</code></article>
+          <div class="result-arrow" aria-hidden="true">→</div>
+          <article class="result-step accent-step"><span class="step-index">DECISION</span><h3>Gate 判断</h3><p>规则节点检查结构、Lineage、阶段顺序与 evidenceRefs；不合格即安全失败或阻断。</p><code>blocked_* · revision_* · approved_*</code></article>
+          <div class="result-arrow" aria-hidden="true">→</div>
+          <article class="result-step"><span class="step-index">ACTION</span><h3>人工复核</h3><p>正常主链通过 Assurance 后暂停在人审节点，人工批准或退回并留痕。</p><code>human_review · awaiting_action</code></article>
+        </div>
+        <div class="representative-list" id="representative-list" aria-live="polite"></div>
+      </section>
+
+      <section id="workflow" class="section architecture" aria-labelledby="workflow-title">
+        <div class="shell">
+          <header class="section-heading">
+            <div><p class="section-number">02 / WORKFLOW DESIGN</p><h2 id="workflow-title">双层设计：业务判断可读，工程约束可验</h2></div>
+            <p>同一条链路同时回答“产出什么”和“谁有权确认它”。</p>
+          </header>
+          <div class="business-flow" aria-label="业务层 Workflow">
+            <div><b>01</b><strong>输入</strong><p>Intake JSON + 报告语言</p></div><i>→</i>
+            <div><b>02</b><strong>归纳 / 分析</strong><p>LLM 生成阶段候选 Artifact</p></div><i>→</i>
+            <div class="flow-gate"><b>03</b><strong>结构校验</strong><p>规则检查 Schema、Lineage、证据</p></div><i>→</i>
+            <div><b>04</b><strong>人工复核</strong><p>批准或退回，不自动对客发布</p></div>
+          </div>
+          <div class="engineering-layer">
+            <div class="layer-label"><span>ENGINEERING LAYER</span><p>真实 Dify 主链的静态示意，不是控制台截图</p></div>
+            <div class="workflow-scroll">
+              <!-- <figure class="workflow-figure"> -->
+                <img src="assets/dify-workflow.png" width="100%" height="auto" loading="lazy" alt="">
+                <!-- <span class="node-marker node-1">1</span><span class="node-marker node-2">2</span><span class="node-marker node-3">3</span><span class="node-marker node-4">4</span><span class="node-marker node-5">5</span> -->
+              <!-- </figure> -->
+              <!-- <svg class="workflow-svg" viewBox="0 0 1120 190" role="img" aria-labelledby="svg-title svg-desc">
+                <title id="svg-title">AI Solution Copilot 七阶段 Workflow</title>
+                <desc id="svg-desc">从 Intake 到 Final Report 的阶段主链，经过每阶段 Gate，最终进入人工复核。</desc>
+                <line x1="66" y1="88" x2="1054" y2="88" class="svg-line" />
+                <g class="svg-node" transform="translate(20 42)"><rect width="112" height="70"/><text x="56" y="25">INTAKE</text><text x="56" y="48">标准化 / Gate</text></g>
+                <g class="svg-node" transform="translate(174 42)"><rect width="112" height="70"/><text x="56" y="25">DISCOVERY</text><text x="56" y="48">LLM + Gate</text></g>
+                <g class="svg-node" transform="translate(328 42)"><rect width="150" height="70"/><text x="75" y="25">OPPORTUNITY</text><text x="75" y="48">评估 + Gate</text></g>
+                <g class="svg-node" transform="translate(520 42)"><rect width="140" height="70"/><text x="70" y="25">SOLUTION</text><text x="70" y="48">设计 + Gate</text></g>
+                <g class="svg-node" transform="translate(702 42)"><rect width="112" height="70"/><text x="56" y="25">POC</text><text x="56" y="48">设计 + Gate</text></g>
+                <g class="svg-node" transform="translate(856 42)"><rect width="112" height="70"/><text x="56" y="25">ASSURANCE</text><text x="56" y="48">PASS / 修订</text></g>
+                <g class="svg-node svg-human" transform="translate(1012 42)"><rect width="92" height="70"/><text x="46" y="25">REPORT</text><text x="46" y="48">人审</text></g>
+                <g class="svg-dot"><circle cx="76" cy="143" r="4"/><circle cx="230" cy="143" r="4"/><circle cx="403" cy="143" r="4"/><circle cx="590" cy="143" r="4"/><circle cx="758" cy="143" r="4"/><circle cx="912" cy="143" r="4"/><circle cx="1058" cy="143" r="4"/></g>
+              </svg> -->
+            </div>
+            <div class="responsibility-grid">
+              <div><strong>LLM</strong><p>生成阶段候选 Artifact；不拥有最终授权。</p></div>
+              <div><strong>规则 / Code</strong><p>标准化输入，校验结构、阶段、Lineage、Gate 与 evidenceRefs。</p></div>
+              <div><strong>人工</strong><p>核验证据、假设、风险与对客措辞；批准或退回留痕。</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence" class="section evidence" aria-labelledby="evidence-title">
+        <div class="shell">
+          <header class="section-heading">
+            <div><p class="section-number">03 / VERIFIED EVIDENCE</p><h2 id="evidence-title">证据链，而不是宣传数字</h2></div>
+            <p>全部指标来自既有真实回归报告；样本状态保持 Synthetic / human_review_pending。</p>
+          </header>
+          <div class="metrics-grid">
+            <div><span>Golden Set</span><strong data-metric="golden_set_cases">—</strong><small>条 Synthetic 用例</small></div>
+            <div><span>API 完成 / Run ID</span><strong data-metric="real_api_calls">—</strong><small>真实调用均可追溯</small></div>
+            <div><span>契约 / 分支断言</span><strong data-metric="contract_and_branch_assertions">—</strong><small>稳定字段通过</small></div>
+            <div><span>关键用例一致性</span><strong data-metric="key_case_three_run_consistency">—</strong><small>各运行三次</small></div>
+          </div>
+          <div class="latency-audit">
+            <div><p class="eyebrow">LATENCY AUDIT</p><h3>延迟呈明显分层</h3><p>平均 <b data-metric="average_seconds">—</b> · P50 <b data-metric="p50_seconds">—</b> · P95 <b data-metric="p95_seconds">—</b></p></div>
+            <p>快速阻断/失败样本形成低位分布；两条包含多阶段 LLM 的正常主链形成长尾。该分布不是性能优势，性能仍待生产负载验证。</p>
+          </div>
+          <div class="evidence-cases" id="evidence-cases" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section retrospective shell" aria-labelledby="retro-title">
+        <header class="section-heading"><div><p class="section-number">04 / ENGINEERING RETROSPECTIVE</p><h2 id="retro-title">把失败变成可复用的工程护栏</h2></div><p>阶段闭环：Smoke → Golden Set → 失败分析 → 展示证据。</p></header>
+        <div class="retro-grid">
+          <article><span>01</span><h3>Normalizer</h3><p>统一完整 Artifact 与 reusable wrapper，格式不合法时在入口安全失败。</p></article>
+          <article><span>02</span><h3>evidenceRefs 契约</h3><p>只接受原生数组或合法 JSON 数组字符串；null、Markdown、未登记 ID 明确拒绝。</p></article>
+          <article><span>03</span><h3>真实回归</h3><p>每条调用记录 Run ID、状态、断言和错误摘要；关键分支额外重复验证一致性。</p></article>
+        </div>
+        <h3 class="title" style="margin-top: 30px">工程证据入口<small style="color: var(--muted);"> (点击查看工程详情数据)</small></h3>
+        <nav class="evidence-links" aria-label="公开工程证据">
+          <a href="poc/dify/ai-solution-copilot-02-analysis-report.dify.yml" target="_blank"><span>Workflow</span>工作流 YAML ↗</a>
+          <a href="poc/tests/golden-set.json" target="_blank"><span>Dataset</span>Golden Set ↗</a>
+          <a href="poc/tests/run_eval.py" target="_blank"><span>Evaluation</span>run_eval.py ↗</a>
+          <a href="poc/reports/POC_REPORT.md" target="_blank"><span>Report</span>POC 报告 ↗</a>
+          <a href="poc/reports/failure-analysis.md" target="_blank"><span>Debug</span>Failure Analysis ↗</a>
+        </nav>
+      </section>
+
+      <section id="boundary" class="section boundary" aria-labelledby="boundary-title">
+        <div class="shell boundary-layout">
+          <div><p class="section-number">05 / BOUNDARY & NEXT STEP</p><h2 id="boundary-title">POC结构验证完成</h2>
+            <!-- <p class="boundary-lead">当前证据暂不代表生产准确率、ROI、成本或正式上线</p> -->
+             <p class="boundary-lead">当前AI需求解决方案分析poc 可接入生产环境</p>
+          </div>
+          <div class="next-step"><h3>生产试点前仍需补充</h3><ul><li>经审批的真实脱敏样本与专家审核记录</li><li>模型 / 插件版本锁定与端到端观测</li><li>延迟分层、成本采集、权限与数据保留审计</li><li>业务采纳、人工批准完成与独立质量评审</li></ul></div>
+        </div>
+        <footer class="case-footer shell"><span>AI Solution Copilot · 个人解决方案架构案例</span><a href="../../index.html">← 返回案例作品集</a></footer>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

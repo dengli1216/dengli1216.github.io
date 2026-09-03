@@ -1,0 +1,14 @@
+{
+  "dataset": {
+    "name": "[case]-golden-set",
+    "version": "0.1.0",
+    "source": "synthetic",
+    "review_status": "human_review_pending"
+  },
+  "cases": [
+    {"case_id":"HP-01","category":"happy_path","data_source":"synthetic","review_status":"human_review_pending","input":"[sanitized input]","expected":{"decision":"[allowed decision]","status":"[allowed status]","critical_gap":false,"manual_review":false,"citation":true}},
+    {"case_id":"CG-01","category":"critical_gap","data_source":"synthetic","review_status":"human_review_pending","input":"[sanitized input]","expected":{"decision":"[safe decision]","status":"[gap status]","critical_gap":true,"manual_review":true,"citation":true}},
+    {"case_id":"UC-01","category":"needs_confirmation","data_source":"synthetic","review_status":"human_review_pending","input":"[sanitized input]","expected":{"decision":"[safe decision]","status":"[unclear status]","critical_gap":false,"manual_review":true,"citation":true}},
+    {"case_id":"CX-01","category":"conflict_or_exception","data_source":"synthetic","review_status":"human_review_pending","input":"[sanitized input]","expected":{"decision":"[safe decision]","status":"[conflict/exception status]","critical_gap":true,"manual_review":true,"citation":true}}
+  ]
+}

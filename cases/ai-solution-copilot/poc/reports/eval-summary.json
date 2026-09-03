@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-09-03T14:11:23Z",
+  "evaluation_type": "real_dify_api_golden_set",
+  "dataset": {
+    "path": "poc/tests/golden-set.json",
+    "case_count": 12,
+    "data_classification": "synthetic",
+    "review_status": "human_review_pending"
+  },
+  "workflow_snapshot_sha256": "b6450ef7f8f315d47a1fe5b9091db2401d533fc08ea84dbc8159775c142d979b",
+  "base_runs": [
+    {"case_id":"GS-01-BLOCKED-ZH","run_id":"bcbc360d-9fc0-4075-8f92-d7b6da9b05bf","workflow_status":"succeeded","contract":"passed","latency_seconds":0.142,"evidence_refs":"accepted"},
+    {"case_id":"GS-02-BLOCKED-EN-WRAPPER","run_id":"5a358857-7dba-46e8-90a1-92c0b0efea98","workflow_status":"succeeded","contract":"passed","latency_seconds":0.087,"evidence_refs":"accepted"},
+    {"case_id":"GS-03-BLOCKED-EVIDENCE-ARRAY","run_id":"5f912948-b768-491c-9ccd-5e2c3a9a0220","workflow_status":"succeeded","contract":"passed","latency_seconds":0.090,"evidence_refs":"accepted"},
+    {"case_id":"GS-04-INVALID-SCHEMA","run_id":"467b2678-51c3-49dc-addb-d0455e31f539","workflow_status":"failed","contract":"passed","latency_seconds":0.071,"evidence_refs":"rejected"},
+    {"case_id":"GS-05-EVIDENCE-NULL","run_id":"0f051489-e6f6-4ce6-be33-f6fd24ce241c","workflow_status":"failed","contract":"passed","latency_seconds":0.068,"evidence_refs":"rejected"},
+    {"case_id":"GS-06-EVIDENCE-MARKDOWN","run_id":"127537bc-1b8a-4bc7-aeb3-8fabd7d78df9","workflow_status":"failed","contract":"passed","latency_seconds":0.066,"evidence_refs":"rejected"},
+    {"case_id":"GS-07-EVIDENCE-UNKNOWN-ID","run_id":"0b96be13-0b48-4251-801f-3ae7ca2b4bf6","workflow_status":"failed","contract":"passed","latency_seconds":0.067,"evidence_refs":"rejected"},
+    {"case_id":"GS-08-MALFORMED-OUTER","run_id":"da369896-0e19-44e5-9af4-b7c23b8abc6b","workflow_status":"failed","contract":"passed","latency_seconds":0.041,"evidence_refs":"not_reached"},
+    {"case_id":"GS-09-MISSING-CASE-ID","run_id":"4e986e5c-ac03-462f-b8b0-50daedcb1b39","workflow_status":"failed","contract":"passed","latency_seconds":0.040,"evidence_refs":"not_reached"},
+    {"case_id":"GS-10-HAPPY-EN","run_id":"4c63c390-1734-422d-9824-aa452318276a","workflow_status":"paused","contract":"passed","latency_seconds":477.310,"evidence_refs":"accepted_by_all_stage_gates"},
+    {"case_id":"GS-11-HAPPY-ZH","run_id":"0d4c1715-22ac-4d7b-a6fc-af2c9f1952f1","workflow_status":"paused","contract":"passed","latency_seconds":439.970,"evidence_refs":"accepted_by_all_stage_gates"},
+    {"case_id":"GS-12-BLOCKED-TWO-FACTS","run_id":"f99a7c1a-67be-4ac0-9c46-8523fcafcb0f","workflow_status":"succeeded","contract":"passed","latency_seconds":0.086,"evidence_refs":"accepted"}
+  ],
+  "repeat_runs": {
+    "GS-01-BLOCKED-ZH":["bcbc360d-9fc0-4075-8f92-d7b6da9b05bf","e0caa76a-3f23-45f6-a498-30641fc1ec46","69ea0525-ad01-43b6-ab12-66f8afe2c62f"],
+    "GS-04-INVALID-SCHEMA":["467b2678-51c3-49dc-addb-d0455e31f539","9dbbcd08-b615-418e-b145-86ea59415f9a","8f6a4bf0-4bc0-4e84-8316-9550064a3a67"],
+    "GS-05-EVIDENCE-NULL":["0f051489-e6f6-4ce6-be33-f6fd24ce241c","f3180152-d674-4731-a109-ccb3e0a763c3","51be6a4b-5e87-4f1d-887a-6c0a0beeab93"],
+    "GS-08-MALFORMED-OUTER":["da369896-0e19-44e5-9af4-b7c23b8abc6b","13d05840-2a88-45d0-9347-f276f4eda190","7daaf7ef-8822-460e-8f91-40093174a9d4"]
+  },
+  "metrics": {
+    "api_completion_coverage": {"numerator":20,"denominator":20,"rate":1.0},
+    "run_id_coverage": {"numerator":20,"denominator":20,"rate":1.0},
+    "expected_workflow_status_and_contract_compliance": {"numerator":20,"denominator":20,"rate":1.0},
+    "branch_status_assertion_pass_rate": {"numerator":52,"denominator":52,"rate":1.0},
+    "evidence_refs_contract_detection_rate": {"numerator":20,"denominator":20,"rate":1.0},
+    "key_case_three_run_consistency": {"numerator":4,"denominator":4,"rate":1.0},
+    "latency_seconds": {"average":45.928,"p50":0.071,"p95":441.837,"method":"workflow elapsed time; paused runs use completed-node sum"},
+    "token_metadata_available": {"numerator":20,"denominator":20,"note":"Dify returned total_tokens; 18 fast safety/block runs are 0, two paused happy-path runs are 36928 and 34874."},
+    "cost_metadata_available": {"numerator":0,"denominator":20,"note":"No cost metadata was returned; no cost is inferred."}
+  },
+  "gate_status": "pass"
+}

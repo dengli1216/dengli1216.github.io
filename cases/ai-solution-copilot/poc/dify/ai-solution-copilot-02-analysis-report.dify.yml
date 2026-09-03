@@ -1,0 +1,2896 @@
+app:
+  description: 接收应用 01 输出的已验证 Intake JSON，从 Discovery 运行到 Assurance、最终报告和人工审批。
+  icon: 🧭
+  icon_background: '#E0F2FE'
+  icon_type: emoji
+  mode: workflow
+  name: AI Solution Copilot 02｜分析与报告
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.59@fc19490989d886a5f24d21df56be95fd972e474e35a4aac93c29805bfaf089f1
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: assurance-branch-false-blocked-end-target
+      source: assurance_branch
+      sourceHandle: 'false'
+      target: assurance_blocked_end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: assurance-branch-pass-report-target
+      source: assurance_branch
+      sourceHandle: pass
+      target: report_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: assurance-source-gate-assurance-target
+      source: assurance_llm
+      sourceHandle: source
+      target: gate_assurance
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: discovery-source-gate-discovery-target
+      source: discovery_llm
+      sourceHandle: source
+      target: gate_discovery
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: gate-assurance-source-assurance-branch-target
+      source: gate_assurance
+      sourceHandle: source
+      target: assurance_branch
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: gate-discovery-source-opportunity-target
+      source: gate_discovery
+      sourceHandle: source
+      target: opportunity_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: gate-opportunity-source-solution-target
+      source: gate_opportunity
+      sourceHandle: source
+      target: solution_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: gate-poc-source-assurance-target
+      source: gate_poc
+      sourceHandle: source
+      target: assurance_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: human-input
+      id: gate-report-source-human-review-target
+      source: gate_report
+      sourceHandle: source
+      target: human_review
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: gate-solution-source-poc-target
+      source: gate_solution
+      sourceHandle: source
+      target: poc_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: gate_intake-source-intake_branch-target
+      source: gate_intake
+      sourceHandle: source
+      target: intake_branch
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: end
+      id: human-review-approve-approved-end-target
+      source: human_review
+      sourceHandle: approve
+      target: approved_end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: end
+      id: human-review-reject-rejected-end-target
+      source: human_review
+      sourceHandle: reject
+      target: rejected_end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: end
+      id: human-review-timeout-rejected-end-target
+      source: human_review
+      sourceHandle: __timeout
+      target: rejected_end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: intake-branch-blocked-intake-end-target
+      source: intake_branch
+      sourceHandle: blocked
+      target: intake_blocked_end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: intake-branch-false-discovery-target
+      source: intake_branch
+      sourceHandle: 'false'
+      target: discovery_llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: normalize-source-gate-intake-target
+      source: normalize_intake_candidate
+      sourceHandle: source
+      target: gate_intake
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: opportunity-source-gate-opportunity-target
+      source: opportunity_llm
+      sourceHandle: source
+      target: gate_opportunity
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: poc-source-gate-poc-target
+      source: poc_llm
+      sourceHandle: source
+      target: gate_poc
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: report-source-gate-report-target
+      source: report_llm
+      sourceHandle: source
+      target: gate_report
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: solution-source-gate-solution-target
+      source: solution_llm
+      sourceHandle: source
+      target: gate_solution
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: start-source-normalize_intake_candidate-target
+      source: start
+      sourceHandle: source
+      target: normalize_intake_candidate
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        outputs:
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          value_type: string
+          variable: approved_case_id
+        - value_selector:
+          - human_review
+          - __action_id
+          value_type: string
+          variable: approved_workflow_status
+        - value_selector:
+          - gate_report
+          - report_markdown
+          value_type: string
+          variable: approved_report_markdown
+        - value_selector:
+          - gate_report
+          - artifact_json
+          value_type: string
+          variable: approved_final_artifact_json
+        - value_selector:
+          - gate_assurance
+          - artifact_json
+          value_type: string
+          variable: approved_assurance_artifact_json
+        - value_selector:
+          - human_review
+          - review_comment
+          value_type: string
+          variable: approved_review_comment
+        - value_selector:
+          - human_review
+          - risk_level
+          value_type: string
+          variable: approved_risk_level
+        selected: false
+        title: 完成｜人工批准
+        type: end
+      height: 244
+      id: approved_end
+      position:
+        x: 6420
+        y: 250
+      positionAbsolute:
+        x: 6420
+        y: 250
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          value_type: string
+          variable: revision_case_id
+        - value_selector:
+          - gate_assurance
+          - assurance_status
+          value_type: string
+          variable: revision_workflow_status
+        - value_selector:
+          - gate_assurance
+          - stage_message_markdown
+          value_type: string
+          variable: revision_findings
+        - value_selector:
+          - gate_assurance
+          - artifact_json
+          value_type: string
+          variable: revision_assurance_artifact_json
+        selected: false
+        title: 未通过｜修正后重新评测
+        type: end
+      height: 166
+      id: assurance_blocked_end
+      position:
+        x: 5494.746157625995
+        y: -57.6902903636747
+      positionAbsolute:
+        x: 5494.746157625995
+        y: -57.6902903636747
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        cases:
+        - case_id: pass
+          conditions:
+          - comparison_operator: is
+            id: assurance-pass-condition
+            value: PASS
+            varType: string
+            variable_selector:
+            - gate_assurance
+            - assurance_status
+          - comparison_operator: is
+            id: assurance-report-condition
+            value: true
+            varType: boolean
+            variable_selector:
+            - gate_assurance
+            - can_generate_report
+          id: pass
+          logical_operator: and
+        selected: false
+        title: Gate 6A｜是否允许生成报告
+        type: if-else
+      height: 198
+      id: assurance_branch
+      position:
+        x: 5100
+        y: 360
+      positionAbsolute:
+        x: 5100
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 检查事实完整性、缺口、Agent 偏差、跨阶段一致性、追溯和指标聚焦。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: assurance-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 6 Assurance 审计器，只读取 Stage 5 Artifact
+            的累计 Registry 与 Handoff，不得打开旧文件、改写 FACT 或静默新增证据。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="ASSURANCE"，保持正确
+            predecessor/lineage。stageOutput 必须包含 status、canGenerateFinalReport、checks、issues、unresolvedAssumptions、approvedReportInputs。
+
+
+            checks 必须逐项包含 FACT_INTEGRITY、MISSING_INFORMATION、AGENT_BIAS、CROSS_STAGE_CONSISTENCY、TRACEABILITY、POC_METRIC_FOCUS。检查
+            FACT 仅在 Intake 引入且未变化；关键业务信息已知或显式披露；Agent 选择满足四项门槛或非 Agent 设计未暗中加入 Agent；decision/approach/containsAgent/风险/指标一致；所有报告结论可追溯；POC
+            指标为 3–5 个。
+
+
+            仅当无 Blocker/Major 矛盾且限制均披露时 status=PASS 且 canGenerateFinalReport=true。其他情况必须
+            REVISE/BLOCKED 且 false。approvedReportInputs 只能来自当前已验证内容，未知 baseline 写“POC
+            中测量”。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            【Assurance 输出结构硬约束】
+
+            stageOutput.checks 必须是 JSON 数组且恰好 6 项，不得输出成以检查类型为键的对象。每项必须含 checkType、result、details、evidenceRefs；checkType
+            依次且各出现一次：FACT_INTEGRITY、MISSING_INFORMATION、AGENT_BIAS、CROSS_STAGE_CONSISTENCY、TRACEABILITY、POC_METRIC_FOCUS。
+
+            stageOutput.approvedReportInputs 必须是一个 JSON 对象，不得是数组。对象必须包含 decisionId、selectedApproach、containsAgent、executiveSummary、businessValue、feasibility、solutionOutline、pocMetrics、riskIds、nextSteps、disclosures、evidenceRefs。
+
+            输出前检查：checks 长度为 6、类型集合完全一致、approvedReportInputs 为对象；不满足时先修正再输出。
+
+            【证据引用硬约束】newEvidence 中每条 evidenceRefs 必须是 JSON 字符串数组；每个元素只能是授权前序 Artifact 中已存在的完整 evidence ID，或同一 newEvidence 内完整 ID。禁止缩写、猜测或创建未登记 ID（例如 CON-001）；新增 ID 的前缀必须为 FACT、ASSUMPTION、RULE、FINDING、DECISION 或 RISK，且与 type 一致。输出前逐条校验引用均可在合并后的 Registry 解析。
+
+            '
+        - id: assurance-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_previous_artifact>
+
+            {{#gate_poc.artifact_json#}}
+
+            </authorized_previous_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 6｜Assurance 硬质量门槛
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: assurance_llm
+      position:
+        x: 4460
+        y: 360
+      positionAbsolute:
+        x: 4460
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 只读取已验证 Intake Artifact，建立流程、痛点、基线和约束模型。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: discovery-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 2 Discovery 分析器。你只能读取 Stage 1 Artifact；不得读取或要求原始文件。完整复制
+            Evidence Registry，不得新增 FACT。必要时可追加带 owner/action/status 的 ASSUMPTION，以及
+            RULE、FINDING。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="DISCOVERY"；inputArtifactId
+            指向上一 Artifact；lineage=上一 lineage + 上一 artifactId。stageOutput 必须包含 processBoundary、actors、processSteps、painPoints、baselineKpis、constraints、findingIds、informationGaps、handoffSummary。每个流程步骤、痛点、KPI、约束和结论必须引用
+            Registry 中已有证据。未知流程细节保留为信息缺口，不得评估或选择技术方案。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            '
+        - id: discovery-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_previous_artifact>
+
+            {{#gate_intake.artifact_json#}}
+
+            </authorized_previous_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 2｜Discovery
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: discovery_llm
+      position:
+        x: 1910
+        y: 392
+      positionAbsolute:
+        x: 1910
+        y: 392
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        raw_checks = output.get(\"checks\"\
+          , [])\n        if isinstance(raw_checks, dict):\n            normalized_checks\
+          \ = []\n            for check_type, check_value in raw_checks.items():\n\
+          \                if isinstance(check_value, dict):\n                   \
+          \ result = check_value.get(\"result\", \"FAIL\")\n                    details\
+          \ = check_value.get(\"details\", f\"{check_type} check result: {result}\"\
+          )\n                    evidence_refs = check_value.get(\"evidenceRefs\"\
+          , [])\n                else:\n                    result = check_value\n\
+          \                    details = f\"{check_type} check result: {result}\"\n\
+          \                    evidence_refs = []\n                normalized_checks.append({\n\
+          \                    \"checkType\": check_type,\n                    \"\
+          result\": result,\n                    \"details\": details,\n         \
+          \           \"evidenceRefs\": evidence_refs,\n                })\n     \
+          \       output[\"checks\"] = normalized_checks\n        elif isinstance(raw_checks,\
+          \ list):\n            normalized_checks = raw_checks\n        else:\n  \
+          \          normalized_checks = []\n            errors.append(\"Assurance\
+          \ checks must be an array or object\")\n        actual_checks = [\n    \
+          \        item.get(\"checkType\") for item in normalized_checks if isinstance(item,\
+          \ dict)\n        ]\n        if len(actual_checks) != 6 or set(actual_checks)\
+          \ != required_checks:\n            missing_checks = sorted(required_checks\
+          \ - set(actual_checks))\n            errors.append(\n                \"\
+          Assurance must include all six required check types exactly once\"\n   \
+          \             + (f\"; missing={missing_checks}\" if missing_checks else\
+          \ \"\")\n            )\n        approved_inputs = output.get(\"approvedReportInputs\"\
+          )\n        required_approved_inputs = {\n            \"decisionId\", \"\
+          selectedApproach\", \"containsAgent\", \"executiveSummary\",\n         \
+          \   \"businessValue\", \"feasibility\", \"solutionOutline\", \"pocMetrics\"\
+          ,\n            \"riskIds\", \"nextSteps\", \"disclosures\", \"evidenceRefs\"\
+          \n        }\n        if not isinstance(approved_inputs, dict):\n       \
+          \     errors.append(\"Assurance approvedReportInputs must be an object\"\
+          )\n        else:\n            missing_approved = sorted(required_approved_inputs\
+          \ - set(approved_inputs.keys()))\n            if missing_approved:\n   \
+          \             errors.append(\"Missing approvedReportInputs keys: \" + \"\
+          , \".join(missing_approved))\n\n    report_markdown = \"\"\n    if stage\
+          \ == \"FINAL_REPORT\":\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\"\
+          :\n            errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 6｜Assurance 决策校验
+        type: code
+        variables:
+        - value_selector:
+          - assurance_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_poc
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_assurance
+      position:
+        x: 4790
+        y: 360
+      positionAbsolute:
+        x: 4790
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 2｜Discovery 合同校验
+        type: code
+        variables:
+        - value_selector:
+          - discovery_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_intake
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_discovery
+      position:
+        x: 2240
+        y: 360
+      positionAbsolute:
+        x: 2240
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        desc: 失败即停止；验证阶段、Lineage、Registry 不可变性和关键治理规则。
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 1｜合同与证据校验
+        type: code
+        variables:
+        - value_selector:
+          - normalize_intake_candidate
+          - artifact_json
+          variable: candidate_json
+        - value_selector:
+          - normalize_intake_candidate
+          - empty_previous_artifact
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 96
+      id: gate_intake
+      position:
+        x: 898
+        y: 360
+      positionAbsolute:
+        x: 898
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 3｜方案中立与 Agent 门槛
+        type: code
+        variables:
+        - value_selector:
+          - opportunity_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_discovery
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_opportunity
+      position:
+        x: 2870
+        y: 360
+      positionAbsolute:
+        x: 2870
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 5｜POC 指标与一致性校验
+        type: code
+        variables:
+        - value_selector:
+          - poc_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_solution
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_poc
+      position:
+        x: 4140
+        y: 360
+      positionAbsolute:
+        x: 4140
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 7｜最终 Artifact 校验
+        type: code
+        variables:
+        - value_selector:
+          - report_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_assurance
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_report
+      position:
+        x: 5750
+        y: 400
+      positionAbsolute:
+        x: 5750
+        y: 400
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nSTAGE_ORDER = [\n    \"INTAKE\", \"DISCOVERY\", \"OPPORTUNITY_ASSESSMENT\"\
+          ,\n    \"SOLUTION_DESIGN\", \"POC_DESIGN\", \"ASSURANCE\", \"FINAL_REPORT\"\
+          \n]\nEVIDENCE_TYPES = {\"FACT\", \"ASSUMPTION\", \"RULE\", \"FINDING\",\
+          \ \"DECISION\", \"RISK\"}\nREQUIRED_OUTPUTS = {\n    \"INTAKE\": {\"scenarioSummary\"\
+          , \"factIds\", \"informationCoverage\", \"readiness\", \"blockingQuestions\"\
+          , \"handoffSummary\"},\n    \"DISCOVERY\": {\"processBoundary\", \"actors\"\
+          , \"processSteps\", \"painPoints\", \"baselineKpis\", \"constraints\", \"\
+          findingIds\", \"informationGaps\", \"handoffSummary\"},\n    \"OPPORTUNITY_ASSESSMENT\"\
+          : {\"assessmentQuestion\", \"options\", \"selectedOption\", \"agentJustification\"\
+          , \"decisionRuleIds\", \"handoffSummary\"},\n    \"SOLUTION_DESIGN\": {\"\
+          decisionId\", \"selectedApproach\", \"containsAgent\", \"processChanges\"\
+          , \"components\", \"dataRequirements\", \"integrations\", \"humanControls\"\
+          , \"feasibility\", \"businessValue\", \"riskIds\", \"handoffSummary\"},\n\
+          \    \"POC_DESIGN\": {\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          , \"hypothesis\", \"scopeIn\", \"scopeOut\", \"testDesign\", \"metrics\"\
+          , \"dependencies\", \"riskControls\", \"exitCriteria\", \"handoffSummary\"\
+          },\n    \"ASSURANCE\": {\"status\", \"canGenerateFinalReport\", \"checks\"\
+          , \"issues\", \"unresolvedAssumptions\", \"approvedReportInputs\"},\n  \
+          \  \"FINAL_REPORT\": {\"status\", \"title\", \"audience\", \"executiveSummary\"\
+          , \"businessValue\", \"recommendation\", \"feasibility\", \"solutionOverview\"\
+          , \"pocPlan\", \"risks\", \"nextSteps\", \"factAssumptionDisclosure\", \"\
+          traceabilityAppendix\", \"reportMarkdown\"},\n}\n\ndef _clean_json(value):\n\
+          \    if not isinstance(value, str):\n        raise ValueError(\"artifact_json\
+          \ must be a string\")\n    text = value.strip()\n    if not text:\n    \
+          \    raise ValueError(\"Upstream LLM returned empty text; use a non-reasoning\
+          \ model or disable thinking\")\n    if text.startswith(\"```\"):\n     \
+          \   lines = text.splitlines()\n        if lines and lines[0].startswith(\"\
+          ```\"):\n            lines = lines[1:]\n        if lines and lines[-1].strip()\
+          \ == \"```\":\n            lines = lines[:-1]\n        text = \"\\n\".join(lines).strip()\n\
+          \    return json.loads(text)\n\ndef _expand_delta(candidate: dict, previous:\
+          \ dict, case_id: str) -> dict:\n    if previous is None or not isinstance(candidate,\
+          \ dict) or \"newEvidence\" not in candidate:\n        return candidate\n\
+          \    meta_delta = candidate.get(\"artifact\", {})\n    new_evidence = candidate.get(\"\
+          newEvidence\", [])\n    previous_meta = previous.get(\"artifact\", {})\n\
+          \    if not isinstance(meta_delta, dict) or not isinstance(new_evidence,\
+          \ list):\n        raise ValueError(\"Incremental artifact requires object\
+          \ artifact and array newEvidence\")\n    return {\n        \"artifact\"\
+          : {\n            \"caseId\": case_id,\n            \"artifactId\": meta_delta.get(\"\
+          artifactId\"),\n            \"schemaVersion\": previous_meta.get(\"schemaVersion\"\
+          ),\n            \"stage\": meta_delta.get(\"stage\"),\n            \"generatedAt\"\
+          : meta_delta.get(\"generatedAt\"),\n            \"inputArtifactId\": previous_meta.get(\"\
+          artifactId\"),\n            \"lineage\": list(previous_meta.get(\"lineage\"\
+          , [])) + [previous_meta.get(\"artifactId\")],\n        },\n        \"evidenceRegistry\"\
+          : list(previous.get(\"evidenceRegistry\", [])) + new_evidence,\n       \
+          \ \"stageOutput\": candidate.get(\"stageOutput\"),\n    }\n\ndef main(candidate_json:\
+          \ str, previous_json: str, case_id: str) -> dict:\n    raw_candidate = _clean_json(candidate_json)\n\
+          \    previous = _clean_json(previous_json) if previous_json and previous_json.strip()\
+          \ else None\n    candidate = _expand_delta(raw_candidate, previous, case_id)\n\
+          \    errors = []\n\n    if not isinstance(candidate, dict):\n        raise\
+          \ ValueError(\"Artifact must be a JSON object\")\n    if set(candidate.keys())\
+          \ != {\"artifact\", \"evidenceRegistry\", \"stageOutput\"}:\n        errors.append(\"\
+          Top level must contain only artifact, evidenceRegistry, stageOutput\")\n\
+          \n    meta = candidate.get(\"artifact\")\n    registry = candidate.get(\"\
+          evidenceRegistry\")\n    output = candidate.get(\"stageOutput\")\n    if\
+          \ not isinstance(meta, dict):\n        errors.append(\"artifact must be\
+          \ an object\")\n        meta = {}\n    if not isinstance(registry, list):\n\
+          \        errors.append(\"evidenceRegistry must be an array\")\n        registry\
+          \ = []\n    if not isinstance(output, dict):\n        errors.append(\"stageOutput\
+          \ must be an object\")\n        output = {}\n\n    stage = meta.get(\"stage\"\
+          )\n    if stage not in STAGE_ORDER:\n        errors.append(f\"Unknown stage:\
+          \ {stage}\")\n    if meta.get(\"caseId\") != case_id:\n        errors.append(\"\
+          caseId does not match workflow input\")\n    if not isinstance(meta.get(\"\
+          artifactId\"), str) or not meta.get(\"artifactId\"):\n        errors.append(\"\
+          artifactId is required\")\n    if meta.get(\"schemaVersion\") != \"1.0.0\"\
+          :\n        errors.append(\"schemaVersion must be 1.0.0\")\n    if not isinstance(meta.get(\"\
+          generatedAt\"), str) or not meta.get(\"generatedAt\"):\n        errors.append(\"\
+          generatedAt ISO-8601 string is required\")\n\n    if previous is None:\n\
+          \        if stage != \"INTAKE\":\n            errors.append(\"First artifact\
+          \ must be INTAKE\")\n        if meta.get(\"inputArtifactId\") is not None:\n\
+          \            errors.append(\"INTAKE inputArtifactId must be null\")\n  \
+          \      if meta.get(\"lineage\") != []:\n            errors.append(\"INTAKE\
+          \ lineage must be empty\")\n    else:\n        prev_meta = previous.get(\"\
+          artifact\", {})\n        prev_stage = prev_meta.get(\"stage\")\n       \
+          \ expected_index = STAGE_ORDER.index(prev_stage) + 1 if prev_stage in STAGE_ORDER\
+          \ else -1\n        expected_stage = STAGE_ORDER[expected_index] if 0 <=\
+          \ expected_index < len(STAGE_ORDER) else None\n        if stage != expected_stage:\n\
+          \            errors.append(f\"Expected stage {expected_stage}, found {stage}\"\
+          )\n        if meta.get(\"inputArtifactId\") != prev_meta.get(\"artifactId\"\
+          ):\n            errors.append(\"inputArtifactId does not reference the immediate\
+          \ predecessor\")\n        expected_lineage = list(prev_meta.get(\"lineage\"\
+          , [])) + [prev_meta.get(\"artifactId\")]\n        if meta.get(\"lineage\"\
+          ) != expected_lineage:\n            errors.append(\"lineage is not the exact\
+          \ predecessor chain\")\n        if meta.get(\"artifactId\") == prev_meta.get(\"\
+          artifactId\"):\n            errors.append(\"artifactId must be unique per\
+          \ stage\")\n        prior_registry = previous.get(\"evidenceRegistry\",\
+          \ [])\n        if registry[:len(prior_registry)] != prior_registry:\n  \
+          \          errors.append(\"Previous Evidence Registry was modified, reordered,\
+          \ or deleted\")\n        for record in registry[len(prior_registry):]:\n\
+          \            if record.get(\"type\") == \"FACT\":\n                errors.append(\"\
+          FACT may only be introduced at INTAKE\")\n            if record.get(\"introducedAtStage\"\
+          ) != stage:\n                errors.append(\"New evidence introducedAtStage\
+          \ must equal current stage\")\n\n    evidence_ids = []\n    for index, record\
+          \ in enumerate(registry):\n        if not isinstance(record, dict):\n  \
+          \          errors.append(f\"evidenceRegistry[{index}] must be an object\"\
+          )\n            continue\n        record_id = record.get(\"id\")\n      \
+          \  record_type = record.get(\"type\")\n        if record_type not in EVIDENCE_TYPES:\n\
+          \            errors.append(f\"Unsupported evidence type at index {index}\"\
+          )\n        if not isinstance(record_id, str) or not record_id.startswith(f\"\
+          {record_type}-\"):\n            errors.append(f\"Evidence ID/type mismatch\
+          \ at index {index}\")\n        evidence_ids.append(record_id)\n        if\
+          \ record_type == \"FACT\" and record.get(\"introducedAtStage\") != \"INTAKE\"\
+          :\n            errors.append(f\"{record_id} was introduced outside INTAKE\"\
+          )\n    if len(evidence_ids) != len(set(evidence_ids)):\n        errors.append(\"\
+          Evidence IDs must be unique\")\n    known_ids = set(evidence_ids)\n    for\
+          \ index, record in enumerate(registry):\n        if not isinstance(record,\
+          \ dict):\n            continue\n        refs = record.get(\"evidenceRefs\"\
+          , [])\n        if not isinstance(refs, list) or any(ref not in known_ids\
+          \ for ref in refs):\n            errors.append(f\"Unresolved evidenceRefs\
+          \ at registry index {index}\")\n\n    required = REQUIRED_OUTPUTS.get(stage,\
+          \ set())\n    missing = sorted(required - set(output.keys()))\n    if missing:\n\
+          \        errors.append(\"Missing stageOutput keys: \" + \", \".join(missing))\n\
+          \n    readiness = \"\"\n    assurance_status = \"\"\n    can_generate_report\
+          \ = False\n\n    if stage == \"INTAKE\":\n        readiness = output.get(\"\
+          readiness\", \"\")\n        if readiness not in {\"READY\", \"READY_WITH_GAPS\"\
+          , \"BLOCKED\"}:\n            errors.append(\"Invalid Intake readiness\"\
+          )\n        questions = output.get(\"blockingQuestions\", [])\n        if\
+          \ readiness == \"BLOCKED\" and not questions:\n            errors.append(\"\
+          BLOCKED Intake must contain blockingQuestions\")\n\n    if stage == \"OPPORTUNITY_ASSESSMENT\"\
+          :\n        options = output.get(\"options\", [])\n        approaches = {item.get(\"\
+          approach\") for item in options if isinstance(item, dict)}\n        non_ai\
+          \ = {\"PROCESS_REDESIGN\", \"RULES\", \"TRADITIONAL_SOFTWARE\", \"API\"\
+          , \"RPA\"}\n        if \"DO_NOTHING\" not in approaches:\n            errors.append(\"\
+          Opportunity options must include DO_NOTHING\")\n        if not approaches.intersection(non_ai):\n\
+          \            errors.append(\"Opportunity options must include a credible\
+          \ non-AI alternative\")\n        selected = output.get(\"selectedOption\"\
+          , {})\n        if selected.get(\"containsAgent\") is True and not isinstance(output.get(\"\
+          agentJustification\"), dict):\n            errors.append(\"Agent selection\
+          \ requires structured agentJustification\")\n\n    if stage == \"SOLUTION_DESIGN\"\
+          \ and previous:\n        selected = previous.get(\"stageOutput\", {}).get(\"\
+          selectedOption\", {})\n        if output.get(\"selectedApproach\") != selected.get(\"\
+          approach\"):\n            errors.append(\"selectedApproach drifted from\
+          \ Opportunity Assessment\")\n        if output.get(\"containsAgent\") !=\
+          \ selected.get(\"containsAgent\"):\n            errors.append(\"containsAgent\
+          \ drifted from Opportunity Assessment\")\n        if output.get(\"decisionId\"\
+          ) != selected.get(\"decisionId\"):\n            errors.append(\"decisionId\
+          \ drifted from Opportunity Assessment\")\n\n    if stage == \"POC_DESIGN\"\
+          \ and previous:\n        prior = previous.get(\"stageOutput\", {})\n   \
+          \     for key in (\"decisionId\", \"selectedApproach\", \"containsAgent\"\
+          ):\n            if output.get(key) != prior.get(key):\n                errors.append(f\"\
+          {key} drifted from Solution Design\")\n        metrics = output.get(\"metrics\"\
+          , [])\n        if not isinstance(metrics, list) or not 3 <= len(metrics)\
+          \ <= 5:\n            errors.append(\"POC metrics must contain 3 to 5 decision-driving\
+          \ metrics\")\n\n    if stage == \"ASSURANCE\":\n        assurance_status\
+          \ = output.get(\"status\", \"\")\n        can_generate_report = output.get(\"\
+          canGenerateFinalReport\") is True\n        if assurance_status not in {\"\
+          PASS\", \"REVISE\", \"BLOCKED\"}:\n            errors.append(\"Invalid Assurance\
+          \ status\")\n        if (assurance_status == \"PASS\") != can_generate_report:\n\
+          \            errors.append(\"Only PASS may set canGenerateFinalReport=true\"\
+          )\n        required_checks = {\n            \"FACT_INTEGRITY\", \"MISSING_INFORMATION\"\
+          , \"AGENT_BIAS\",\n            \"CROSS_STAGE_CONSISTENCY\", \"TRACEABILITY\"\
+          , \"POC_METRIC_FOCUS\"\n        }\n        actual_checks = {\n         \
+          \   item.get(\"checkType\") for item in output.get(\"checks\", []) if isinstance(item,\
+          \ dict)\n        }\n        if not required_checks.issubset(actual_checks):\n\
+          \            errors.append(\"Assurance must include all six required check\
+          \ types\")\n\n    report_markdown = \"\"\n    if stage == \"FINAL_REPORT\"\
+          :\n        if output.get(\"status\") != \"READY_FOR_HUMAN_REVIEW\":\n  \
+          \          errors.append(\"Final report status must be READY_FOR_HUMAN_REVIEW\"\
+          )\n        report_markdown = output.get(\"reportMarkdown\", \"\")\n    \
+          \    if not isinstance(report_markdown, str) or not report_markdown.strip():\n\
+          \            errors.append(\"Final report must contain non-empty reportMarkdown\"\
+          )\n\n    stage_message_markdown = \"\"\n    if stage == \"INTAKE\":\n  \
+          \      questions = output.get(\"blockingQuestions\", [])\n        if isinstance(questions,\
+          \ list) and questions:\n            lines = []\n            for item in\
+          \ questions:\n                if isinstance(item, dict):\n             \
+          \       text = item.get(\"question\") or item.get(\"statement\") or json.dumps(item,\
+          \ ensure_ascii=False)\n                else:\n                    text =\
+          \ str(item)\n                lines.append(f\"- {text}\")\n            stage_message_markdown\
+          \ = \"## 需要补充的资料\\n\\n\" + \"\\n\".join(lines)\n        else:\n        \
+          \    stage_message_markdown = f\"Intake readiness: {readiness}\"\n    elif\
+          \ stage == \"ASSURANCE\":\n        issues = output.get(\"issues\", [])\n\
+          \        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if\
+          \ issues else \"无阻断问题\"\n        stage_message_markdown = f\"## Assurance：{assurance_status}\\\
+          n\\n{issue_text}\"\n\n    if errors:\n        raise ValueError(\" | \".join(errors))\n\
+          \n    return {\n        \"artifact_json\": json.dumps(candidate, ensure_ascii=False,\
+          \ separators=(\",\", \":\")),\n        \"readiness\": readiness,\n     \
+          \   \"assurance_status\": assurance_status,\n        \"can_generate_report\"\
+          : can_generate_report,\n        \"gate_result\": f\"PASS:{stage}\",\n  \
+          \      \"stage_message_markdown\": stage_message_markdown,\n        \"report_markdown\"\
+          : report_markdown\n    }\n"
+        code_language: python3
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          assurance_status:
+            children: null
+            type: string
+          can_generate_report:
+            children: null
+            type: boolean
+          gate_result:
+            children: null
+            type: string
+          readiness:
+            children: null
+            type: string
+          report_markdown:
+            children: null
+            type: string
+          stage_message_markdown:
+            children: null
+            type: string
+        selected: false
+        title: Gate 4｜决策漂移校验
+        type: code
+        variables:
+        - value_selector:
+          - solution_llm
+          - text
+          variable: candidate_json
+        - value_selector:
+          - gate_opportunity
+          - artifact_json
+          variable: previous_json
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          variable: case_id
+      height: 52
+      id: gate_solution
+      position:
+        x: 3510
+        y: 360
+      positionAbsolute:
+        x: 3510
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        delivery_methods:
+        - config: {}
+          enabled: true
+          id: 7f1c7183-8f2c-4ddd-b4de-fcd37cf27d33
+          type: webapp
+        desc: APPROVED 仅表示顾问审核本次材料，不代表客户批准。
+        form_content: '## AI Solution Copilot 评测报告
+
+
+          Case：{{#normalize_intake_candidate.case_id#}}
+
+          Assurance：{{#gate_assurance.assurance_status#}}
+
+
+          {{#gate_report.report_markdown#}}
+
+
+          ---
+
+          请确认：事实/假设标记、证据引用、方案中立性、风险边界、POC 指标和对客措辞均已复核。
+
+          '
+        inputs:
+        - default:
+            selector: []
+            type: constant
+            value: ''
+          output_variable_name: review_comment
+          type: paragraph
+        - option_source:
+            selector: []
+            type: constant
+            value:
+            - 低
+            - 中
+            - 高
+          output_variable_name: risk_level
+          type: select
+        selected: false
+        timeout: 48
+        timeout_unit: hour
+        title: 人工复核｜客户沟通前审批
+        type: human-input
+        user_actions:
+        - button_style: primary
+          id: approve
+          title: 批准用于客户沟通
+        - button_style: default
+          id: reject
+          title: 退回修改
+      height: 234
+      id: human_review
+      position:
+        x: 6060
+        y: 400
+      positionAbsolute:
+        x: 6060
+        y: 400
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          value_type: string
+          variable: blocked_case_id
+        - value_selector:
+          - gate_intake
+          - readiness
+          value_type: string
+          variable: blocked_workflow_status
+        - value_selector:
+          - gate_intake
+          - stage_message_markdown
+          value_type: string
+          variable: blocked_questions
+        - value_selector:
+          - gate_intake
+          - artifact_json
+          value_type: string
+          variable: blocked_intake_artifact_json
+        selected: false
+        title: 阻断｜补充资料后重试
+        type: end
+      height: 166
+      id: intake_blocked_end
+      position:
+        x: 1630
+        y: -96
+      positionAbsolute:
+        x: 1630
+        y: -96
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        cases:
+        - case_id: blocked
+          conditions:
+          - comparison_operator: is
+            id: intake-blocked-condition
+            value: BLOCKED
+            varType: string
+            variable_selector:
+            - gate_intake
+            - readiness
+          id: blocked
+          logical_operator: and
+        selected: false
+        title: Gate 1A｜是否被关键缺口阻断
+        type: if-else
+      height: 148
+      id: intake_branch
+      position:
+        x: 1442
+        y: 334
+      positionAbsolute:
+        x: 1442
+        y: 334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\nWRAPPER_KEYS = (\n    \"reusable_intake_artifact_json\"\
+          ,\n    \"intake_artifact_json\",\n    \"artifact_json\",\n)\n\ndef _decode_json(value):\n\
+          \    current = value\n    for _ in range(3):\n        if not isinstance(current,\
+          \ str):\n            return current\n        text = current.strip()\n  \
+          \      if not text:\n            raise ValueError(\"Intake input is empty\"\
+          )\n        if text.startswith(\"```\"):\n            lines = text.splitlines()\n\
+          \            if lines and lines[0].startswith(\"```\"):\n              \
+          \  lines = lines[1:]\n            if lines and lines[-1].strip() == \"```\"\
+          :\n                lines = lines[:-1]\n            text = \"\\n\".join(lines).strip()\n\
+          \        current = json.loads(text)\n    return current\n\ndef main(candidate_json:\
+          \ str) -> dict:\n    if not isinstance(candidate_json, str) or not candidate_json.strip():\n\
+          \        raise ValueError(\"No Intake input was provided\")\n    decoded\
+          \ = _decode_json(candidate_json)\n    artifact = decoded\n    if isinstance(decoded,\
+          \ dict) and not isinstance(decoded.get(\"artifact\"), dict):\n        artifact\
+          \ = None\n        for key in WRAPPER_KEYS:\n            if key in decoded:\n\
+          \                artifact = _decode_json(decoded[key])\n               \
+          \ break\n    case_id = artifact.get(\"artifact\", {}).get(\"caseId\") if\
+          \ isinstance(artifact, dict) else None\n    if not isinstance(case_id, str)\
+          \ or not case_id:\n        raise ValueError(\n            \"Intake input\
+          \ must be the App 01 full output or reusable_intake_artifact_json\"\n  \
+          \      )\n    return {\n        \"artifact_json\": json.dumps(artifact,\
+          \ ensure_ascii=False, separators=(\",\", \":\")),\n        \"case_id\":\
+          \ case_id,\n        \"empty_previous_artifact\": \"\"\n    }\n"
+        code_language: python3
+        desc: 从唯一候选中读取稳定 Case ID，并为 Gate 1 提供统一入口。
+        outputs:
+          artifact_json:
+            children: null
+            type: string
+          case_id:
+            children: null
+            type: string
+          empty_previous_artifact:
+            children: null
+            type: string
+        selected: false
+        title: 校验 Intake 输入
+        type: code
+        variables:
+        - value_selector:
+          - start
+          - intake_artifact_json
+          variable: candidate_json
+      height: 96
+      id: normalize_intake_candidate
+      position:
+        x: 458
+        y: 360
+      positionAbsolute:
+        x: 458
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 比较 Do Nothing、非 AI 与 AI 方案；复杂度必须有证据。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: opportunity-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 3 机会评估器，只读取 Stage 2 Artifact。保留 Registry，只追加
+            ASSUMPTION/RULE/FINDING/DECISION/RISK，不得新增 FACT。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="OPPORTUNITY_ASSESSMENT"，并保持正确
+            predecessor/lineage。stageOutput 必须包含 assessmentQuestion、options、selectedOption、agentJustification、decisionRuleIds、handoffSummary。
+
+
+            options 必须包含 DO_NOTHING 和至少一个可信非 AI 方案，并从以下枚举选择：DO_NOTHING、PROCESS_REDESIGN、RULES、TRADITIONAL_SOFTWARE、API、RPA、LLM、RAG、WORKFLOW、AGENT、HYBRID。所有选项用
+            1–5 分评估 businessValue、feasibility、risk、timeToValue（risk 越高表示风险越高）。优先选择满足目标的最简单方案。若
+            AGENT 或含 Agent 的 HYBRID 胜出，必须证明动态多步骤规划、有限工具权限、可恢复动作、固定 Workflow 不足，并填写
+            agentJustification；否则为 null。selectedOption 和 handoffSummary 必须原样记录 decisionId/approach/containsAgent。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            【证据引用硬约束】newEvidence 中每条 evidenceRefs 必须是 JSON 字符串数组；每个元素只能是授权前序 Artifact 中已存在的完整 evidence ID，或同一 newEvidence 内完整 ID。禁止缩写、猜测或创建未登记 ID（例如 CON-001）；新增 ID 的前缀必须为 FACT、ASSUMPTION、RULE、FINDING、DECISION 或 RISK，且与 type 一致。输出前逐条校验引用均可在合并后的 Registry 解析。
+
+            【非 AI 方案硬约束】stageOutput.options 必须包含 approach="DO_NOTHING"，并至少包含一个字面值为 PROCESS_REDESIGN、RULES、TRADITIONAL_SOFTWARE、API 或 RPA 的可信非 AI 方案；WORKFLOW、LLM、RAG、AGENT、HYBRID 不能替代该要求。输出前逐项检查枚举，不满足必须修正。'
+        - id: opportunity-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_previous_artifact>
+
+            {{#gate_discovery.artifact_json#}}
+
+            </authorized_previous_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 3｜机会与方案中立评估
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: opportunity_llm
+      position:
+        x: 2550
+        y: 360
+      positionAbsolute:
+        x: 2550
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 设计能改变 go / redesign / stop 决策的 3–5 个指标。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: poc-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 5 POC 设计器，只读取 Stage 4 Artifact。保留 Registry
+            和 decisionId/selectedApproach/containsAgent。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="POC_DESIGN"，保持正确
+            predecessor/lineage。stageOutput 必须包含 decisionId、selectedApproach、containsAgent、hypothesis、scopeIn、scopeOut、testDesign、metrics、dependencies、riskControls、exitCriteria、handoffSummary。
+
+
+            写一个可证伪假设；严格输出 3–5 个决策指标，优先 1–2 个 Business Value、至少一个 Feasibility/Quality，必要时一个
+            Risk/Adoption。已知 baseline 必须引用 FACT；未知 baseline 标记 TO_MEASURE，不能虚构。未验证
+            target 标记 PROVISIONAL 并引用 ASSUMPTION。明确样本、周期、比较方法、人工复核、依赖、控制和退出条件。生产集成、广泛自动化和次要用例默认
+            Out of Scope。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            【证据引用硬约束】newEvidence 中每条 evidenceRefs 必须是 JSON 字符串数组；每个元素只能是授权前序 Artifact 中已存在的完整 evidence ID，或同一 newEvidence 内完整 ID。禁止缩写、猜测或创建未登记 ID（例如 CON-001）；新增 ID 的前缀必须为 FACT、ASSUMPTION、RULE、FINDING、DECISION 或 RISK，且与 type 一致。输出前逐条校验引用均可在合并后的 Registry 解析。'
+        - id: poc-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_previous_artifact>
+
+            {{#gate_solution.artifact_json#}}
+
+            </authorized_previous_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 5｜POC 评测设计
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: poc_llm
+      position:
+        x: 3820
+        y: 360
+      positionAbsolute:
+        x: 3820
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - normalize_intake_candidate
+          - case_id
+          value_type: string
+          variable: rejected_case_id
+        - value_selector:
+          - human_review
+          - __action_id
+          value_type: string
+          variable: rejected_workflow_status
+        - value_selector:
+          - gate_report
+          - report_markdown
+          value_type: string
+          variable: rejected_draft_report_markdown
+        - value_selector:
+          - gate_report
+          - artifact_json
+          value_type: string
+          variable: rejected_final_artifact_json
+        - value_selector:
+          - human_review
+          - review_comment
+          value_type: string
+          variable: rejected_review_comment
+        - value_selector:
+          - human_review
+          - risk_level
+          value_type: string
+          variable: rejected_risk_level
+        selected: false
+        title: 完成｜退回或超时
+        type: end
+      height: 218
+      id: rejected_end
+      position:
+        x: 6420
+        y: 520
+      positionAbsolute:
+        x: 6420
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 只使用 Assurance 批准的报告输入，生成 JSON Artifact 与 Markdown 报告。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: report-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 7 报告生成器，只读取 Stage 6 Assurance Artifact。仅当
+            status=PASS 且 canGenerateFinalReport=true 才执行。不得新增任何事实、假设、分析、基准、架构、指标或客户数据；Evidence
+            Registry 必须原样复制。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="FINAL_REPORT"，正确
+            predecessor/lineage，stageOutput 必须包含 status="READY_FOR_HUMAN_REVIEW"、title、audience、executiveSummary、businessValue、recommendation、feasibility、solutionOverview、pocPlan、risks、nextSteps、factAssumptionDisclosure、traceabilityAppendix、reportMarkdown。
+
+
+            只使用 approvedReportInputs 及其引用 Registry。原样保留 decisionId、selectedApproach、containsAgent、Metric
+            ID/基线/目标、Risk ID。未知与未验证项必须显式、条件化表达。
+
+
+            stageOutput.reportMarkdown 使用指定语言，按“决策摘要、业务价值、可行性、最小解决方案、POC 必须证明什么、主要风险与控制、下一步、FACT/ASSUMPTION
+            披露、追溯附录”组织。中文正文约 800–1200 字，或英文 600–900 词（不含附录）。报告抬头必须显示“待人工审核”，不得暗示已获客户批准。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            【证据引用硬约束】newEvidence 中每条 evidenceRefs 必须是 JSON 字符串数组；每个元素只能是授权前序 Artifact 中已存在的完整 evidence ID，或同一 newEvidence 内完整 ID。禁止缩写、猜测或创建未登记 ID（例如 CON-001）；新增 ID 的前缀必须为 FACT、ASSUMPTION、RULE、FINDING、DECISION 或 RISK，且与 type 一致。输出前逐条校验引用均可在合并后的 Registry 解析。
+
+            【Final Report 输出结构硬约束】
+
+            stageOutput 必须完整包含 status、title、audience、executiveSummary、businessValue、recommendation、feasibility、solutionOverview、pocPlan、risks、nextSteps、factAssumptionDisclosure、traceabilityAppendix、reportMarkdown。
+
+            status 必须为 READY_FOR_HUMAN_REVIEW，reportMarkdown 必须是非空字符串。中文正文控制在 800–1200
+            字，避免输出被模型上限截断。输出前检查 JSON 可解析且所有必填字段存在。
+
+            '
+        - id: report-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_assurance_artifact>
+
+            {{#gate_assurance.artifact_json#}}
+
+            </authorized_assurance_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 7｜生成评测与解决方案报告
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: report_llm
+      position:
+        x: 5420
+        y: 400
+      positionAbsolute:
+        x: 5420
+        y: 400
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 围绕已选方案设计流程、组件、数据、集成、控制和可行性。
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 4096
+            temperature: 0
+          mode: chat
+          name: qwen3.7-plus
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: solution-system
+          role: system
+          text: '你是 AI Solution Copilot Stage 4 解决方案设计器，只读取 Stage 3 Artifact。不得新增/修改
+            FACT。必须原样继承 decisionId、selectedApproach、containsAgent；不得把 Workflow 暗中升级为
+            Agent。
+
+
+            只输出一个合法 JSON 对象，不要输出解释、前后缀或 Markdown 代码围栏。JSON 顶层仅包含 artifact、evidenceRegistry、stageOutput。artifact.stage="SOLUTION_DESIGN"，保持正确
+            predecessor/lineage。stageOutput 必须包含 decisionId、selectedApproach、containsAgent、processChanges、components、dataRequirements、integrations、humanControls、feasibility、businessValue、riskIds、handoffSummary。
+
+
+            先设计业务流程变化，再设计最少必要组件。数据可用性不足时明确 TO_VALIDATE/UNKNOWN。按风险设计人工复核、异常处理、审计、访问边界、回滚与手工
+            fallback。技术、数据、运营可行性和所有价值主张必须有 evidenceRefs；不得引入未经证据支持的客户系统、数据源、供应商、ROI
+            或控制措施。
+
+
+            必须把完整 JSON 写入最终正文 content；不得只写入 reasoning_content，不得返回空正文。
+
+            【最高优先级输出规则｜节省 Token】不要复制上一阶段的 evidenceRegistry。只输出一个增量 JSON，顶层严格为 artifact、newEvidence、stageOutput。artifact
+            只包含 stage、artifactId、generatedAt；newEvidence 只包含本阶段新增记录，没有新增时输出 []；stageOutput
+            仍按本阶段既定字段完整输出。禁止输出 caseId、schemaVersion、inputArtifactId、lineage、evidenceRegistry，Gate
+            会确定性继承并合并。
+
+            【证据引用硬约束】newEvidence 中每条 evidenceRefs 必须是 JSON 字符串数组；每个元素只能是授权前序 Artifact 中已存在的完整 evidence ID，或同一 newEvidence 内完整 ID。禁止缩写、猜测或创建未登记 ID（例如 CON-001）；新增 ID 的前缀必须为 FACT、ASSUMPTION、RULE、FINDING、DECISION 或 RISK，且与 type 一致。输出前逐条校验引用均可在合并后的 Registry 解析。'
+        - id: solution-user
+          role: user
+          text: '报告语言：{{#start.report_language#}}
+
+            <authorized_previous_artifact>
+
+            {{#gate_opportunity.artifact_json#}}
+
+            </authorized_previous_artifact>
+
+            '
+        retry_config:
+          enabled: true
+          exponential_backoff:
+            enabled: true
+            max_interval: 8000
+            multiplier: 2
+          max_retries: 2
+          retry_interval: 1000
+        selected: false
+        title: Stage 4｜最小解决方案设计
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: solution_llm
+      position:
+        x: 3190
+        y: 360
+      positionAbsolute:
+        x: 3190
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        desc: 可直接粘贴应用 01 的完整输出；也兼容单独的 reusable_intake_artifact_json。
+        selected: false
+        title: 粘贴应用 01 的输出
+        type: start
+        variables:
+        - label: 应用 01 输出
+          max_length: 120000
+          placeholder: 直接粘贴应用 01 的完整输出，或 reusable_intake_artifact_json。
+          required: true
+          type: paragraph
+          variable: intake_artifact_json
+        - label: 报告语言
+          options:
+          - 中文
+          - English
+          required: true
+          type: select
+          variable: report_language
+      height: 195
+      id: start
+      position:
+        x: 40
+        y: 320
+      positionAbsolute:
+        x: 40
+        y: 320
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: -145.8590752058667
+      y: 283.0891952882237
+      zoom: 0.2531387018376233
+  rag_pipeline_variables: []

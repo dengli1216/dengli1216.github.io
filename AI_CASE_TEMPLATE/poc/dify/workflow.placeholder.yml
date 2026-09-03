@@ -1,0 +1,24 @@
+# 平台无关占位；导入任何工作流平台前，补充节点、版本、模型和权限配置。
+workflow:
+  name: "[case-name]-poc"
+  version: "[semantic-version]"
+  purpose: "[assistive decision support only]"
+  inputs:
+    - name: source_material
+      validation: "[required, sanitized, bounded]"
+  nodes:
+    - id: input_guard
+      type: deterministic_validation
+    - id: llm_extract
+      type: llm
+      responsibility: "structured extraction and citation candidates"
+    - id: rule_gate
+      type: deterministic_rule
+      responsibility: "schema, evidence and case-specific gates"
+    - id: human_review_route
+      type: escalation
+    - id: structured_output
+      type: end
+  safety:
+    final_high_risk_authority: human
+    missing_evidence: manual_review
