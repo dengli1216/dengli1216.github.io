@@ -14,7 +14,7 @@ const data = {
       "以证据契约、阶段 Gate 与人工复核，将 Intake 转为可审计的方案分析候选。",
       ["Dify Workflow", "Decision Contract", "POC 证据"],
       "cases/ai-solution-copilot/",
-      "已上线",
+      "Synthetic POC",
     ],
     [
       "手势互动导购",
