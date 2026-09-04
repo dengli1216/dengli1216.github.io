@@ -21,15 +21,16 @@
     <main id="case">
       <section class="hero shell" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">AI SOLUTION COPILOT · SYNTHETIC POC</p>
+          <!-- <p class="eyebrow">AI SOLUTION COPILOT · SYNTHETIC POC</p> -->
           <h1 id="page-title">AI解决方案助手POC</h1>
-          <p class="lead">将符合约束的 Intake Artifact 转换为逐阶段、带证据注册表和前序链路的分析与报告候选；最终由人工复核，而不是自动对客发布。</p>
+          <p class="lead">将模糊的客户需求与业务信息，自动整理为结构化需求分析、方案建议与评估报告，帮助售前更快形成可讨论、可验证的解决方案初稿。</p>
           <div class="hero-facts" aria-label="已验证核心事实">
-            <span><strong data-metric="golden_set_cases">—</strong><small>条 Golden Set</small></span>
-            <span><strong data-metric="real_api_calls">—</strong><small>次真实 API 调用</small></span>
-            <span><strong data-metric="contract_and_branch_assertions">—</strong><small>契约/分支断言</small></span>
+            <span><strong data-metric="golden_set_cases">—</strong><small>组代表性测试样本</small></span>
+            <span><strong data-metric="real_api_calls">—</strong><small>次真实API接口调用</small></span>
+            <span><strong data-metric="contract_and_branch_assertions">—</strong><small>项关键检查</small></span>
           </div>
-          <p class="boundary-note">Synthetic / human_review_pending · 结构与分支验证，不代表业务效果</p>
+          <p class="boundary-note">黄金测试样本：覆盖完整需求、信息缺失、需求冲突、高风险、RAG、Agent、异常输入等典型场景，用于验证 AI 方案助手在不同业务条件下的稳定性、判断能力与可落地性 </p>
+          <p class="boundary-note">真实调用 AI 服务完成端到端流程，主要流程、异常情况和输出规则均符合预期 </p>
         </div>
         <aside class="contribution" aria-labelledby="contribution-title">
           <p class="eyebrow">MY CONTRIBUTION</p>
@@ -43,6 +44,24 @@
             <li><b>06</b><span>Run ID、失败原因与展示证据留存</span></li>
           </ol>
         </aside>
+      </section>
+
+      <section class="workflow-demo shell" aria-labelledby="workflow-demo-title">
+        <div class="workflow-demo-heading">
+          <p class="section-number">WORKFLOW DEMO</p>
+          <h2 id="workflow-demo-title">30 秒看懂：从需求输入到方案报告</h2>
+        </div>
+        <figure class="workflow-demo-media">
+          <video controls autoplay playsinline preload="metadata" poster="assets/ai-solution-workflow-poster.jpg" aria-label="AI Solution Copilot 工作流演示视频">
+            <source src="assets/ai-solution-workflow-demo.mp4" type="video/mp4">
+            当前浏览器不支持 HTML5 视频播放。
+          </video>
+          <figcaption>
+            <p><strong>输入：</strong>客户需求与现有材料</p>
+            <p><strong>处理：</strong>结构化分析、AI 机会判断、方案报告编排</p>
+            <p><strong>输出：</strong>推荐实施路径、可复核结论、待确认事项</p>
+          </figcaption>
+        </figure>
       </section>
 
       <section class="section shell result" aria-labelledby="result-title">

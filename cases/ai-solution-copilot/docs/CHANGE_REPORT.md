@@ -39,3 +39,9 @@
 - 新增独立页面 `cases/ai-solution-copilot/index.html`、`style.css`、`main.js`，并在根目录 `main.js` 注册中英文首页入口。
 - 页面包含业务问题与个人贡献、代表性结果、双层 Workflow 静态 SVG、真实回归证据、工程复盘、生产边界六个主区块；数字和 Run ID 动态来自 `poc/reports/page-evidence.json`。
 - 页面为静态展示，不调用 Dify、不修改 Workflow/Golden Set/报告，不生成客户效果、ROI、成本或性能优势结论；本轮未发布 GitHub Pages。
+
+## Phase 4B — 工作流演示视频
+
+- 保留源文件 `assets/ai_solution_workflow .mov`，新增浏览器兼容的 `assets/ai-solution-workflow-demo.mp4`（H.264/AAC、faststart）及尾帧 poster `assets/ai-solution-workflow-poster.jpg`。
+- 视频位于 Hero 后、正文前；不自动播放，使用原生播放控件、响应式布局和 `preload="metadata"`，并展示输入、处理、输出三句固定说明。
+- 未调用 Dify，未修改 Workflow、测试、Golden Set、报告或 `page-evidence.json`，未提交或推送。

@@ -81,6 +81,13 @@
 - 已在 320、768、1024、1440px 浏览器验证：主页面与归档页可加载、六段结构完整、无全局横向溢出、控制台无错误或警告。
 - 本轮未读取密钥、未提交、未推送。
 
+## 阶段3A工作流演示视频（2026-09-04）
+
+- 主页面在 Hero 后、正文首个决策区块前新增“30 秒看懂”工作流演示；既有内容未删除或改写。
+- 视频衍生产物为 `assets/ai_tender_review.mp4`（H.264 + AAC + faststart）和 `assets/ai_tender_review-poster.jpg`；原始 `assets/ai_tender_review.mov` 已保留。
+- 播放器使用原生控件、无自动播放、`preload="metadata"`、`playsinline` 与响应式宽度，避免首屏下载完整视频。
+- 本轮未调用 Dify、未修改 Workflow、测试、报告、页面事实或其他案例；未读取密钥、未提交、未推送。
+
 ## 不应提供给外部模型的文件
 
 - Dify `.env`、任何 API Key、浏览器会话、数据库转储、Docker 密码。

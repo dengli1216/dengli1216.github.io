@@ -2,7 +2,7 @@
 
 ## 当前阶段
 
-阶段 4B GitHub Pages 案例展示已完成；页面仅消费 `poc/reports/page-evidence.json`，未新增未经核验事实。
+阶段 4B GitHub Pages 案例展示已补充工作流演示视频；页面仍仅消费 `poc/reports/page-evidence.json` 作为 POC 事实源，视频仅演示已有 Workflow 机制。
 
 ## 真实已知事实
 
@@ -28,3 +28,4 @@
 3. 展示只能引用已保存的脱敏 Run ID 与结构化报告；不得将人工暂停态表述为人工批准或生产验证。
 4. 页面实现前需保持 `page-evidence.json` 与 `POC_REPORT.md` 的字段、数字和边界一致；不生成或补充业务准确率、ROI、成本、客户效果。
 5. 当前页面入口为 `cases/ai-solution-copilot/`；本轮未执行 GitHub Pages 发布。
+6. 视频产物为 `assets/ai-solution-workflow-demo.mp4` 与 `assets/ai-solution-workflow-poster.jpg`；播放器不自动播放，使用 H.264/AAC、`faststart` 和 `preload="metadata"`。

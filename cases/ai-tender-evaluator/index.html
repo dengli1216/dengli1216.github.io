@@ -6,7 +6,7 @@
     <meta name="description" content="AI Tender Evaluator：从 LLM 招标分析到可测试投标风险决策工作流的个人解决方案架构案例。">
     <title>AI Tender Evaluator · 个人解决方案架构案例</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?v=architecture-case-v3-1">
+    <link rel="stylesheet" href="style.css?v=architecture-case-v3-2">
   </head>
   <body>
     <a class="skip-link" href="#case">跳至案例正文</a>
@@ -24,7 +24,7 @@
         <div class="hero-main">
           <!-- <p class="eyebrow">AI TENDER EVALUATOR · SYNTHETIC POC</p> -->
           <h1 id="page-title">投标风险决策 POC · AI 解决方案</h1>
-          <p class="lead">业务目标不是ai自动写一份漂亮报告，而是在投标前回答：关键要求是否有证据、风险是否阻断、下一步由谁处理。</p>
+          <p class="lead">投标前识别关键要求、证据缺口及潜在风险，判断其对投标资格和评分的影响，并明确后续处理任务。</p>
           <p class="fact-line">30/30 次黄金数据集 Dify API 运行记录 · Workflow v1.3 </p>
         </div>
         <aside class="contribution" aria-labelledby="contribution-title">
@@ -39,6 +39,25 @@
             <li><span>06</span>失败定位与规则修复</li>
           </ol>
         </aside>
+      </section>
+
+      <section class="section shell workflow-demo" aria-labelledby="workflow-demo-title">
+        <header class="section-heading">
+          <div><p class="section-number">00 / WORKFLOW DEMO</p><h2 id="workflow-demo-title">30 秒看懂：如何把招标材料转成可复核的投标建议</h2></div>
+          <!-- <p>录制演示仅说明 POC 的处理链路；最终投标授权仍由人工承担。</p> -->
+        </header>
+        <figure class="workflow-demo-frame">
+          <video controls autoplay preload="metadata" playsinline poster="assets/ai_tender_review-poster.jpg" aria-describedby="workflow-demo-summary">
+            <source src="assets/ai_tender_review.mp4" type="video/mp4">
+            当前浏览器不支持 HTML5 视频播放。
+          </video>
+          <!-- <figcaption id="workflow-demo-summary">输入材料经过结构化处理与规则校验后，输出可追溯的投标建议和人工复核事项。</figcaption> -->
+        </figure>
+        <dl class="workflow-demo-summary" aria-label="工作流演示摘要">
+          <div><dt>输入</dt><dd>招标条款与投标材料</dd></div>
+          <div><dt>处理</dt><dd>条款—证据匹配、结构校验与确定性 Code Gate</dd></div>
+          <div><dt>输出</dt><dd>Bid / Conditional Bid / No-Bid 建议与人工复核事项</dd></div>
+        </dl>
       </section>
 
       <section class="section shell" aria-labelledby="decision-title">
@@ -136,7 +155,7 @@
 
       <section class="section shell boundary" aria-labelledby="boundary-title">
         <header class="section-heading">
-          <div><p class="section-number">05 / BOUNDARY & PILOT PLAN</p><h2 id="boundary-title">已完成 Synthetic POC 验收；可接入生产环境</h2></div>
+          <div><p class="section-number">05 / BOUNDARY & PILOT PLAN</p><h2 id="boundary-title">已完成 Synthetic POC 验收，可接入生产环境</h2></div>
           <p>以下是下一阶段验证计划</p>
         </header>
         <div class="boundary-layout">

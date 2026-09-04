@@ -1,2 +1,54 @@
-(() => {let lang=localStorage.getItem('portfolio-language')||'zh';const dict={
-'应用案例作品集':'CASE PORTFOLIO','案例':'Cases','定位':'Approach','代码仓库 ↗':'GitHub ↗','面向业务的 AI 应用原型':'BUSINESS-FIRST AI PROTOTYPES','AI 应用':'AI Application','案例作品集':'Case Portfolio','聚焦业务场景、交互设计与可落地实现的浏览器端 AI 应用案例。':'Browser-based AI demos focused on business scenarios, interaction design, and practical implementation.','面向业务场景的 AI 应用案例作品集，重点展示 AI 能力如何转化为可体验、可理解、可落地的应用原型。':'An AI application portfolio that turns capabilities into practical, understandable prototypes.','查看案例':'Explore cases','作品集定位':'Portfolio approach','能力地图':'CAPABILITY MAP','四类可落地的 AI 方向。':'Four practical AI directions.','精选案例':'SELECTED WORK','从技术能力到业务价值。':'From capability to business value.','作品集定位':'WHY THIS PORTFOLIO','返回顶部 ↑':'Back to top ↑'};const rev=Object.fromEntries(Object.entries(dict).map(([k,v])=>[v,k]));function text(){const map=lang==='en'?dict:rev;const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const v=n.nodeValue.trim();if(map[v])n.nodeValue=n.nodeValue.replace(v,map[v]);}}function render(){document.documentElement.lang=lang==='zh'?'zh-CN':'en';text();const b=document.querySelector('#language-toggle');if(b)b.textContent=lang==='zh'?'EN':'中文';window.dispatchEvent(new Event('portfolio-language-changed'));}window.portfolioLanguage=()=>lang;window.addEventListener('DOMContentLoaded',()=>{const nav=document.querySelector('.site-header nav');if(!nav)return;const b=document.createElement('button');b.id='language-toggle';b.className='language-switch';b.type='button';b.onclick=()=>{lang=lang==='zh'?'en':'zh';localStorage.setItem('portfolio-language',lang);render();};nav.append(b);render();});})();
+(() => {
+  const storageKey = "lang";
+  const supported = ["zh", "en"];
+  const queryLang = new URLSearchParams(location.search).get("lang");
+  let lang = supported.includes(queryLang) ? queryLang : localStorage.getItem(storageKey);
+  if (!supported.includes(lang)) lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "zh";
+
+  window.translations = window.translations || { zh: {}, en: {} };
+  window.portfolioLanguage = () => lang;
+  window.t = (key) => window.translations[lang]?.[key] || window.translations.zh?.[key] || key;
+
+  function updateLinks() {
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const raw = link.getAttribute('href');
+      if (!raw || raw.startsWith('#') || /^(https?:|mailto:|tel:)/.test(raw)) return;
+      const url = new URL(raw, location.href);
+      if (url.origin !== location.origin) return;
+      url.searchParams.set('lang', lang);
+      link.href = url.pathname + url.search + url.hash;
+    });
+  }
+
+  function applyLanguage(next = lang) {
+    lang = supported.includes(next) ? next : "zh";
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = window.t(node.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach((node) => { node.setAttribute('aria-label', window.t(node.dataset.i18nAriaLabel)); });
+    const toggle = document.querySelector('#language-toggle');
+    if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';
+    updateLinks();
+    window.dispatchEvent(new CustomEvent('portfolio-language-changed', { detail: lang }));
+  }
+
+  window.applyLanguage = applyLanguage;
+  window.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('[data-language-nav], .site-header nav');
+    if (nav && !document.querySelector('#language-toggle')) {
+      const button = document.createElement('button');
+      button.id = 'language-toggle';
+      button.className = 'language-switch';
+      button.type = 'button';
+      button.addEventListener('click', () => {
+        lang = lang === 'zh' ? 'en' : 'zh';
+        localStorage.setItem(storageKey, lang);
+        const url = new URL(location.href);
+        url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url);
+        applyLanguage(lang);
+      });
+      nav.append(button);
+    }
+    applyLanguage(lang);
+  });
+})();
