@@ -1,8 +1,7 @@
 const previews = {
   'rag-knowledge-ui': { icon: '⌕', zh: ['RAG 知识库界面', '将企业知识检索、问答与引用溯源组织为可理解、可核验的工作界面。', ['资料接入', '检索问答', '引用溯源']], en: ['RAG Knowledge UI', 'A clear, verifiable workspace for enterprise retrieval, answers, and citations.', ['Source intake', 'Retrieval & answer', 'Citation trace']] },
   'ai-agent-workflow': { icon: '↳', zh: ['AI 智能体工作流', '让多步骤任务的规划、工具调用与执行状态变得可观察、可解释、可管理。', ['任务编排', '工具连接', '运行观测']], en: ['AI Agent Workflow', 'Make multi-step planning, tool calls, and execution states observable and manageable.', ['Task orchestration', 'Tool connections', 'Run observability']] },
-  'hand-gesture-store': { icon: '⌁', zh: ['手势互动导购', '用自然手势替代触摸操作，构建无接触商品探索体验。', ['手势识别', '商品流程', '现场数据']], en: ['Hand Gesture Store', 'A touch-free product exploration experience driven by natural gestures.', ['Gesture detection', 'Product flow', 'Field signals']] },
-  'mediapipe-magic-ball': { icon: '◉', zh: ['MediaPipe 魔法球', '将实时手势、粒子视觉与品牌互动结合，打造沉浸式数字装置原型。', ['追踪映射', '粒子交互', '活动模式']], en: ['MediaPipe Magic Ball', 'A gesture-driven visual prototype for immersive brand interaction.', ['Tracking map', 'Particle interaction', 'Event mode']] }
+  'hand-gesture-store': { icon: '⌁', zh: ['手势互动导购', '用自然手势替代触摸操作，构建无接触商品探索体验。', ['手势识别', '商品流程', '现场数据']], en: ['Hand Gesture Store', 'A touch-free product exploration experience driven by natural gestures.', ['Gesture detection', 'Product flow', 'Field signals']] }
 };
 
 function renderPreview() {

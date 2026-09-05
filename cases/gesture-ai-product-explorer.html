@@ -1,0 +1,2759 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Gesture AI 工业数字产品体验</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+  background:#060a12;
+  color:#fff;
+}
+
+.app{
+  width:100vw;
+  height:100vh;
+  display:grid;
+  grid-template-columns:330px 1fr;
+}
+
+
+/* =========================
+   左侧 AI 控制区
+========================= */
+
+.sidebar{
+  position:relative;
+  z-index:20;
+
+  padding:20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(11,18,32,.98),
+      rgba(6,11,20,.98)
+    );
+
+  border-right:
+    1px solid rgba(255,255,255,.08);
+
+  overflow-y:auto;
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#5696ff;
+}
+
+h1{
+  margin:8px 0 5px;
+  font-size:24px;
+  line-height:1.2;
+}
+
+.subtitle{
+  color:#78869e;
+  font-size:12px;
+  line-height:1.6;
+  margin-bottom:17px;
+}
+
+
+.cameraBox{
+  position:relative;
+
+  width:100%;
+  aspect-ratio:4/3;
+
+  background:#000;
+
+  border:
+    1px solid rgba(91,145,235,.3);
+
+  border-radius:14px;
+
+  overflow:hidden;
+}
+
+#video,
+#handCanvas{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transform:scaleX(-1);
+}
+
+#handCanvas{
+  z-index:2;
+}
+
+.gestureBadge{
+  position:absolute;
+  z-index:5;
+
+  left:50%;
+  bottom:10px;
+
+  transform:translateX(-50%);
+
+  background:rgba(30,112,255,.9);
+
+  padding:7px 12px;
+
+  border-radius:20px;
+
+  white-space:nowrap;
+
+  font-size:11px;
+  font-weight:600;
+}
+
+
+button{
+  width:100%;
+
+  border:0;
+
+  margin-top:10px;
+
+  padding:12px;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1769ff,
+      #3788ff
+    );
+
+  color:white;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+
+.intentBox{
+  margin-top:14px;
+
+  padding:12px;
+
+  border-radius:10px;
+
+  background:#0d1729;
+
+  border:
+    1px solid rgba(70,119,200,.2);
+}
+
+.intentTitle{
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:#567db9;
+}
+
+#intentText{
+  margin-top:6px;
+
+  min-height:18px;
+
+  font-size:12px;
+
+  color:#d2d9e7;
+}
+
+
+.gestures{
+  margin-top:15px;
+
+  display:grid;
+
+  gap:7px;
+}
+
+.gestureItem{
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:9px 10px;
+
+  border-radius:8px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  font-size:11px;
+}
+
+.gestureItem span:last-child{
+  color:#78869d;
+}
+
+
+/* =========================
+   右侧 Viewer
+========================= */
+
+.viewer{
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 52% 42%,
+      #172b4c 0,
+      #0a1322 32%,
+      #050911 72%
+    );
+}
+
+#three{
+  position:absolute;
+  inset:0;
+}
+
+
+.productHeader{
+  position:absolute;
+
+  left:30px;
+  top:27px;
+
+  z-index:5;
+
+  pointer-events:none;
+}
+
+.productHeader small{
+  color:#5292ff;
+
+  letter-spacing:2px;
+
+  font-size:9px;
+}
+
+.productHeader h2{
+  font-size:27px;
+
+  margin:7px 0 5px;
+}
+
+.productHeader p{
+  margin:0;
+
+  color:#7d8da6;
+
+  font-size:12px;
+}
+
+
+.metrics{
+  position:absolute;
+
+  right:25px;
+  top:25px;
+
+  z-index:5;
+
+  display:flex;
+
+  gap:7px;
+}
+
+.metric{
+  min-width:92px;
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  background:
+    rgba(8,15,27,.72);
+
+  backdrop-filter:blur(12px);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.metric strong{
+  display:block;
+
+  font-size:17px;
+}
+
+.metric span{
+  display:block;
+
+  margin-top:3px;
+
+  color:#75849d;
+
+  font-size:9px;
+}
+
+
+.mode{
+  position:absolute;
+
+  left:30px;
+  bottom:25px;
+
+  z-index:5;
+
+  padding:9px 14px;
+
+  border-radius:20px;
+
+  background:
+    rgba(5,10,18,.75);
+
+  border:
+    1px solid #233958;
+
+  font-size:10px;
+
+  color:#8492a9;
+}
+
+#mode{
+  color:#5192ff;
+
+  font-weight:700;
+}
+
+
+.valueCard{
+  position:absolute;
+
+  right:25px;
+  bottom:25px;
+
+  z-index:8;
+
+  width:270px;
+
+  padding:16px;
+
+  border-radius:14px;
+
+  background:
+    rgba(7,13,24,.9);
+
+  backdrop-filter:blur(14px);
+
+  border:
+    1px solid rgba(70,135,255,.45);
+
+  opacity:0;
+
+  transform:
+    translateY(30px);
+
+  transition:.35s;
+}
+
+.valueCard.show{
+  opacity:1;
+
+  transform:
+    translateY(0);
+}
+
+.valueCard h3{
+  margin:0 0 12px;
+
+  font-size:14px;
+}
+
+.valueRow{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:9px 0;
+
+  border-top:
+    1px solid rgba(255,255,255,.06);
+}
+
+.valueRow strong{
+  width:55px;
+
+  color:#5696ff;
+
+  font-size:18px;
+}
+
+.valueRow span{
+  font-size:10px;
+
+  color:#8b98ae;
+}
+
+
+/* HUD labels */
+
+.partLabel{
+  position:absolute;
+
+  z-index:7;
+
+  pointer-events:none;
+
+  padding:5px 8px;
+
+  border-radius:5px;
+
+  border:
+    1px solid rgba(74,137,239,.5);
+
+  background:
+    rgba(4,9,17,.82);
+
+  color:#c9d8ee;
+
+  font-size:9px;
+
+  opacity:0;
+
+  transition:
+    opacity .25s;
+}
+
+.viewer.exploded
+.partLabel{
+  opacity:1;
+}
+
+
+/* 中央扫描状态 */
+
+.scanLine{
+  position:absolute;
+
+  z-index:3;
+
+  top:0;
+  bottom:0;
+  left:50%;
+
+  width:1px;
+
+  opacity:.15;
+
+  background:
+    linear-gradient(
+      transparent,
+      #3a92ff,
+      transparent
+    );
+
+  pointer-events:none;
+}
+
+
+@media(max-width:1000px){
+
+  .app{
+    min-width:1050px;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =========================
+     LEFT
+========================= -->
+
+<aside class="sidebar">
+
+  <div class="eyebrow">
+    VISION AI · DIGITAL TWIN
+  </div>
+
+  <h1>
+    手势 AI<br>
+    工业产品体验
+  </h1>
+
+  <div class="subtitle">
+    面向工业展厅、售前讲解与技术培训的
+    无接触 3D 数字产品交互原型
+  </div>
+
+
+  <div class="cameraBox">
+
+    <video
+      id="video"
+      autoplay
+      playsinline>
+    </video>
+
+    <canvas
+      id="handCanvas">
+    </canvas>
+
+    <div
+      id="gestureBadge"
+      class="gestureBadge">
+
+      正在加载 MediaPipe...
+
+    </div>
+
+  </div>
+
+
+  <button id="cameraBtn">
+    启动视觉识别
+  </button>
+
+
+  <div class="intentBox">
+
+    <div class="intentTitle">
+      AI 当前判断
+    </div>
+
+    <div id="intentText">
+      等待手势
+    </div>
+
+  </div>
+
+
+  <div class="gestures">
+
+    <div class="gestureItem">
+      <span>🖐 张开手掌</span>
+      <span>拆解产品</span>
+    </div>
+
+    <div class="gestureItem">
+      <span>✊ 握拳</span>
+      <span>自动回装</span>
+    </div>
+
+    <div class="gestureItem">
+      <span>👍 竖大拇指</span>
+      <span>产品价值</span>
+    </div>
+
+    <div class="gestureItem">
+      <span>↔ 移动手掌</span>
+      <span>旋转设备</span>
+    </div>
+
+    <div class="gestureItem">
+      <span>🤏 食指拇指捏合</span>
+      <span>缩放设备</span>
+    </div>
+
+  </div>
+
+</aside>
+
+
+
+<!-- =========================
+     VIEWER
+========================= -->
+
+<main
+  id="viewer"
+  class="viewer">
+
+  <div id="three"></div>
+
+  <div class="scanLine"></div>
+
+
+  <div class="productHeader">
+
+    <small>
+      INDUSTRIAL DIGITAL TWIN
+    </small>
+
+    <h2>
+      AX-400 智能驱动泵组
+    </h2>
+
+    <p>
+      高效节能 · 智能监测 · 模块化维护
+    </p>
+
+  </div>
+
+
+  <div class="metrics">
+
+    <div class="metric">
+      <strong>98.2%</strong>
+      <span>驱动效率</span>
+    </div>
+
+    <div class="metric">
+      <strong>45 kW</strong>
+      <span>额定功率</span>
+    </div>
+
+    <div class="metric">
+      <strong>IP67</strong>
+      <span>防护等级</span>
+    </div>
+
+  </div>
+
+
+  <div class="mode">
+
+    当前模式：
+
+    <span id="mode">
+      整机展示
+    </span>
+
+  </div>
+
+
+  <div
+    id="valueCard"
+    class="valueCard">
+
+    <h3>
+      核心技术与业务价值
+    </h3>
+
+    <div class="valueRow">
+      <strong>−18%</strong>
+      <span>预计综合能耗降低</span>
+    </div>
+
+    <div class="valueRow">
+      <strong>−32%</strong>
+      <span>维护工作量降低</span>
+    </div>
+
+    <div class="valueRow">
+      <strong>7×24h</strong>
+      <span>设备状态预测监测</span>
+    </div>
+
+    <div class="valueRow">
+      <strong>模块化</strong>
+      <span>核心部件快速维护替换</span>
+    </div>
+
+  </div>
+
+
+  <div
+    id="labelShell"
+    class="partLabel">
+    智能电机外壳
+  </div>
+
+  <div
+    id="labelRotor"
+    class="partLabel">
+    精密转子总成
+  </div>
+
+  <div
+    id="labelDrive"
+    class="partLabel">
+    智能变频驱动器
+  </div>
+
+  <div
+    id="labelImpeller"
+    class="partLabel">
+    高性能叶轮
+  </div>
+
+  <div
+    id="labelPump"
+    class="partLabel">
+    泵体流道
+  </div>
+
+</main>
+
+
+</div>
+
+
+
+<script type="module">
+
+/* =====================================================
+   IMPORT
+===================================================== */
+
+import * as THREE
+from "https://esm.sh/three@0.180.0";
+
+
+import {
+  OrbitControls
+}
+from "https://esm.sh/three@0.180.0/examples/jsm/controls/OrbitControls.js";
+
+
+import {
+  RoomEnvironment
+}
+from "https://esm.sh/three@0.180.0/examples/jsm/environments/RoomEnvironment.js";
+
+
+import {
+  GestureRecognizer,
+  FilesetResolver
+}
+from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/+esm";
+
+
+
+/* =====================================================
+   DOM
+===================================================== */
+
+const container =
+  document.getElementById("three");
+
+const viewer =
+  document.getElementById("viewer");
+
+const video =
+  document.getElementById("video");
+
+const canvas =
+  document.getElementById("handCanvas");
+
+const ctx =
+  canvas.getContext("2d");
+
+const cameraBtn =
+  document.getElementById("cameraBtn");
+
+const gestureBadge =
+  document.getElementById("gestureBadge");
+
+const intentText =
+  document.getElementById("intentText");
+
+const modeText =
+  document.getElementById("mode");
+
+const valueCard =
+  document.getElementById("valueCard");
+
+
+
+/* =====================================================
+   THREE SCENE
+===================================================== */
+
+const scene =
+  new THREE.Scene();
+
+scene.background =
+  new THREE.Color(0x07101d);
+
+
+const camera =
+  new THREE.PerspectiveCamera(
+    38,
+    container.clientWidth /
+    container.clientHeight,
+    0.1,
+    100
+  );
+
+camera.position.set(
+  8,
+  4.4,
+  10
+);
+
+
+const renderer =
+  new THREE.WebGLRenderer({
+    antialias:true
+  });
+
+renderer.setPixelRatio(
+  Math.min(
+    window.devicePixelRatio,
+    2
+  )
+);
+
+renderer.setSize(
+  container.clientWidth,
+  container.clientHeight
+);
+
+renderer.shadowMap.enabled =
+  true;
+
+renderer.shadowMap.type =
+  THREE.PCFSoftShadowMap;
+
+renderer.outputColorSpace =
+  THREE.SRGBColorSpace;
+
+renderer.toneMapping =
+  THREE.ACESFilmicToneMapping;
+
+renderer.toneMappingExposure =
+  1.15;
+
+container.appendChild(
+  renderer.domElement
+);
+
+
+
+/* =====================================================
+   ENVIRONMENT
+===================================================== */
+
+const pmrem =
+  new THREE.PMREMGenerator(
+    renderer
+  );
+
+const room =
+  new RoomEnvironment();
+
+scene.environment =
+  pmrem
+    .fromScene(room)
+    .texture;
+
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+const controls =
+  new OrbitControls(
+    camera,
+    renderer.domElement
+  );
+
+controls.enableDamping =
+  true;
+
+controls.enablePan =
+  false;
+
+controls.minDistance =
+  6;
+
+controls.maxDistance =
+  16;
+
+controls.target.set(
+  0,
+  .2,
+  0
+);
+
+
+
+/* =====================================================
+   LIGHT
+===================================================== */
+
+const keyLight =
+  new THREE.DirectionalLight(
+    0xffffff,
+    4.5
+  );
+
+keyLight.position.set(
+  6,
+  8,
+  5
+);
+
+keyLight.castShadow =
+  true;
+
+scene.add(
+  keyLight
+);
+
+
+const blueLight =
+  new THREE.DirectionalLight(
+    0x317fff,
+    3
+  );
+
+blueLight.position.set(
+  -5,
+  3,
+  -5
+);
+
+scene.add(
+  blueLight
+);
+
+
+const fill =
+  new THREE.HemisphereLight(
+    0x8bbcff,
+    0x08101b,
+    1.4
+  );
+
+scene.add(
+  fill
+);
+
+
+
+/* =====================================================
+   FLOOR
+===================================================== */
+
+const floor =
+  new THREE.Mesh(
+
+    new THREE.CircleGeometry(
+      7.5,
+      80
+    ),
+
+    new THREE.MeshStandardMaterial({
+      color:0x0b1524,
+      metalness:.3,
+      roughness:.65
+    })
+
+  );
+
+floor.rotation.x =
+  -Math.PI / 2;
+
+floor.position.y =
+  -1.65;
+
+floor.receiveShadow =
+  true;
+
+scene.add(
+  floor
+);
+
+
+
+/* 光圈 */
+
+for(
+  let i=0;
+  i<4;
+  i++
+){
+
+  const ring =
+    new THREE.Mesh(
+
+      new THREE.RingGeometry(
+        2.3+i*.7,
+        2.32+i*.7,
+        90
+      ),
+
+      new THREE.MeshBasicMaterial({
+        color:0x236fff,
+        transparent:true,
+        opacity:.08,
+        side:THREE.DoubleSide
+      })
+
+    );
+
+  ring.rotation.x =
+    -Math.PI/2;
+
+  ring.position.y =
+    -1.62;
+
+  scene.add(ring);
+
+}
+
+
+
+/* =====================================================
+   MATERIALS
+===================================================== */
+
+const blueMetal =
+  new THREE.MeshPhysicalMaterial({
+    color:0x245eab,
+    metalness:.85,
+    roughness:.17,
+    clearcoat:1,
+    clearcoatRoughness:.08
+  });
+
+
+const darkMetal =
+  new THREE.MeshPhysicalMaterial({
+    color:0x151e2d,
+    metalness:.9,
+    roughness:.23
+  });
+
+
+const steel =
+  new THREE.MeshPhysicalMaterial({
+    color:0xaab8cb,
+    metalness:1,
+    roughness:.15
+  });
+
+
+const copper =
+  new THREE.MeshPhysicalMaterial({
+    color:0xc86c35,
+    metalness:.9,
+    roughness:.18
+  });
+
+
+const glass =
+  new THREE.MeshPhysicalMaterial({
+    color:0x438cff,
+
+    metalness:0,
+
+    roughness:.08,
+
+    transparent:true,
+
+    opacity:.18,
+
+    transmission:.65,
+
+    thickness:.3
+  });
+
+
+const glow =
+  new THREE.MeshStandardMaterial({
+    color:0x3389ff,
+    emissive:0x1766ff,
+    emissiveIntensity:3
+  });
+
+
+
+/* =====================================================
+   PRODUCT GROUP
+===================================================== */
+
+const product =
+  new THREE.Group();
+
+scene.add(
+  product
+);
+
+
+product.rotation.y =
+  -.25;
+
+
+/* 独立组件 */
+
+const shellGroup =
+  new THREE.Group();
+
+const motorGroup =
+  new THREE.Group();
+
+const rotorGroup =
+  new THREE.Group();
+
+const driveGroup =
+  new THREE.Group();
+
+const impellerGroup =
+  new THREE.Group();
+
+const pumpGroup =
+  new THREE.Group();
+
+const sensorGroup =
+  new THREE.Group();
+
+const baseGroup =
+  new THREE.Group();
+
+
+product.add(
+  shellGroup,
+  motorGroup,
+  rotorGroup,
+  driveGroup,
+  impellerGroup,
+  pumpGroup,
+  sensorGroup,
+  baseGroup
+);
+
+
+
+/* =====================================================
+   MOTOR SHELL
+===================================================== */
+
+const shell =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      1.25,
+      1.25,
+      2.8,
+      64
+    ),
+
+    blueMetal
+  );
+
+shell.rotation.z =
+  Math.PI/2;
+
+shell.castShadow =
+  true;
+
+shellGroup.add(
+  shell
+);
+
+
+/* transparent cover */
+
+const outerShell =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      1.39,
+      1.39,
+      3.0,
+      64
+    ),
+
+    glass
+  );
+
+outerShell.rotation.z =
+  Math.PI/2;
+
+shellGroup.add(
+  outerShell
+);
+
+
+/* fins */
+
+for(
+  let i=-5;
+  i<=5;
+  i++
+){
+
+  const fin =
+    new THREE.Mesh(
+
+      new THREE.BoxGeometry(
+        .08,
+        1.7,
+        .12
+      ),
+
+      darkMetal
+    );
+
+  fin.position.x =
+    i*.23;
+
+  fin.position.y =
+    .75;
+
+  shellGroup.add(
+    fin
+  );
+
+}
+
+
+
+/* =====================================================
+   MOTOR COILS
+===================================================== */
+
+for(
+  let i=-4;
+  i<=4;
+  i++
+){
+
+  const coil =
+    new THREE.Mesh(
+
+      new THREE.TorusGeometry(
+        .67,
+        .095,
+        16,
+        36
+      ),
+
+      copper
+    );
+
+  coil.rotation.y =
+    Math.PI/2;
+
+  coil.position.x =
+    i*.27;
+
+  motorGroup.add(
+    coil
+  );
+
+}
+
+
+
+/* =====================================================
+   ROTOR
+===================================================== */
+
+const shaft =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      .17,
+      .17,
+      5.4,
+      40
+    ),
+
+    steel
+  );
+
+shaft.rotation.z =
+  Math.PI/2;
+
+rotorGroup.add(
+  shaft
+);
+
+
+/* rotor cylinders */
+
+for(
+  let i=-4;
+  i<=4;
+  i++
+){
+
+  const disk =
+    new THREE.Mesh(
+
+      new THREE.CylinderGeometry(
+        .43,
+        .43,
+        .18,
+        32
+      ),
+
+      darkMetal
+    );
+
+  disk.rotation.z =
+    Math.PI/2;
+
+  disk.position.x =
+    i*.4;
+
+  rotorGroup.add(
+    disk
+  );
+
+}
+
+
+
+/* =====================================================
+   DRIVE
+===================================================== */
+
+const driveBody =
+  new THREE.Mesh(
+
+    new THREE.BoxGeometry(
+      1.65,
+      1.35,
+      1.45
+    ),
+
+    darkMetal
+  );
+
+driveBody.castShadow =
+  true;
+
+driveGroup.add(
+  driveBody
+);
+
+
+const screen =
+  new THREE.Mesh(
+
+    new THREE.BoxGeometry(
+      .9,
+      .52,
+      .04
+    ),
+
+    glow
+  );
+
+screen.position.z =
+  .745;
+
+driveGroup.add(
+  screen
+);
+
+
+
+/* =====================================================
+   IMPELLER
+===================================================== */
+
+const hub =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      .34,
+      .34,
+      .4,
+      32
+    ),
+
+    steel
+  );
+
+hub.rotation.z =
+  Math.PI/2;
+
+impellerGroup.add(
+  hub
+);
+
+
+for(
+  let i=0;
+  i<9;
+  i++
+){
+
+  const blade =
+    new THREE.Mesh(
+
+      new THREE.BoxGeometry(
+        .82,
+        .11,
+        .22
+      ),
+
+      blueMetal
+    );
+
+  blade.position.x =
+    .37;
+
+  blade.rotation.z =
+    i *
+    Math.PI *
+    2 /
+    9;
+
+  impellerGroup.add(
+    blade
+  );
+
+}
+
+
+
+/* =====================================================
+   PUMP
+===================================================== */
+
+const pumpRing =
+  new THREE.Mesh(
+
+    new THREE.TorusGeometry(
+      1,
+      .38,
+      32,
+      64
+    ),
+
+    darkMetal
+  );
+
+pumpRing.rotation.y =
+  Math.PI/2;
+
+pumpRing.castShadow =
+  true;
+
+pumpGroup.add(
+  pumpRing
+);
+
+
+const pumpCore =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      .85,
+      .85,
+      .65,
+      50
+    ),
+
+    steel
+  );
+
+pumpCore.rotation.z =
+  Math.PI/2;
+
+pumpGroup.add(
+  pumpCore
+);
+
+
+/* outlet */
+
+const outlet =
+  new THREE.Mesh(
+
+    new THREE.CylinderGeometry(
+      .3,
+      .3,
+      1.6,
+      32
+    ),
+
+    steel
+  );
+
+outlet.position.y =
+  1.45;
+
+pumpGroup.add(
+  outlet
+);
+
+
+
+/* =====================================================
+   SENSOR
+===================================================== */
+
+for(
+  let i=0;
+  i<4;
+  i++
+){
+
+  const sensor =
+    new THREE.Mesh(
+
+      new THREE.SphereGeometry(
+        .11,
+        20,
+        20
+      ),
+
+      glow
+    );
+
+  sensor.position.set(
+    -1.6+i*1.1,
+    1.25,
+    .8
+  );
+
+  sensorGroup.add(
+    sensor
+  );
+
+}
+
+
+
+/* =====================================================
+   BASE
+===================================================== */
+
+const base =
+  new THREE.Mesh(
+
+    new THREE.BoxGeometry(
+      7.2,
+      .28,
+      2.3
+    ),
+
+    darkMetal
+  );
+
+base.position.y =
+  -1.25;
+
+base.castShadow =
+  true;
+
+base.receiveShadow =
+  true;
+
+baseGroup.add(
+  base
+);
+
+
+
+/* =====================================================
+   ASSEMBLED / EXPLODED POSITIONS
+===================================================== */
+
+const assembled = {
+
+  shell:
+    new THREE.Vector3(
+      -2.15,0,0
+    ),
+
+  motor:
+    new THREE.Vector3(
+      -2.15,0,0
+    ),
+
+  rotor:
+    new THREE.Vector3(
+      0,0,0
+    ),
+
+  drive:
+    new THREE.Vector3(
+      -1.8,1.95,0
+    ),
+
+  impeller:
+    new THREE.Vector3(
+      2.05,0,0
+    ),
+
+  pump:
+    new THREE.Vector3(
+      2.85,0,0
+    ),
+
+  sensor:
+    new THREE.Vector3(
+      0,0,0
+    ),
+
+  base:
+    new THREE.Vector3(
+      0,0,0
+    )
+
+};
+
+
+const exploded = {
+
+  shell:
+    new THREE.Vector3(
+      -5.2,0,0
+    ),
+
+  motor:
+    new THREE.Vector3(
+      -3.1,0,0
+    ),
+
+  rotor:
+    new THREE.Vector3(
+      -.25,0,0
+    ),
+
+  drive:
+    new THREE.Vector3(
+      -2.4,3.3,0
+    ),
+
+  impeller:
+    new THREE.Vector3(
+      3.0,.25,0
+    ),
+
+  pump:
+    new THREE.Vector3(
+      5.0,0,0
+    ),
+
+  sensor:
+    new THREE.Vector3(
+      0,2.3,.4
+    ),
+
+  base:
+    new THREE.Vector3(
+      0,-1.2,0
+    )
+
+};
+
+
+let explosion =
+  0;
+
+let targetExplosion =
+  0;
+
+
+function applyAssembly(){
+
+  shellGroup.position
+    .lerpVectors(
+      assembled.shell,
+      exploded.shell,
+      explosion
+    );
+
+  motorGroup.position
+    .lerpVectors(
+      assembled.motor,
+      exploded.motor,
+      explosion
+    );
+
+  rotorGroup.position
+    .lerpVectors(
+      assembled.rotor,
+      exploded.rotor,
+      explosion
+    );
+
+  driveGroup.position
+    .lerpVectors(
+      assembled.drive,
+      exploded.drive,
+      explosion
+    );
+
+  impellerGroup.position
+    .lerpVectors(
+      assembled.impeller,
+      exploded.impeller,
+      explosion
+    );
+
+  pumpGroup.position
+    .lerpVectors(
+      assembled.pump,
+      exploded.pump,
+      explosion
+    );
+
+  sensorGroup.position
+    .lerpVectors(
+      assembled.sensor,
+      exploded.sensor,
+      explosion
+    );
+
+  baseGroup.position
+    .lerpVectors(
+      assembled.base,
+      exploded.base,
+      explosion
+    );
+
+}
+
+
+
+/* =====================================================
+   ENERGY PARTICLES
+===================================================== */
+
+const particleCount =
+  160;
+
+const particleGeometry =
+  new THREE.BufferGeometry();
+
+const particleArray =
+  new Float32Array(
+    particleCount*3
+  );
+
+
+for(
+  let i=0;
+  i<particleCount;
+  i++
+){
+
+  particleArray[
+    i*3
+  ] =
+    THREE.MathUtils
+      .randFloat(
+        -3.4,
+        3.8
+      );
+
+
+  particleArray[
+    i*3+1
+  ] =
+    THREE.MathUtils
+      .randFloat(
+        -.6,
+        .6
+      );
+
+
+  particleArray[
+    i*3+2
+  ] =
+    THREE.MathUtils
+      .randFloat(
+        -.7,
+        .7
+      );
+
+}
+
+
+particleGeometry
+  .setAttribute(
+
+    "position",
+
+    new THREE
+      .BufferAttribute(
+        particleArray,
+        3
+      )
+
+  );
+
+
+const particleMaterial =
+  new THREE.PointsMaterial({
+
+    color:0x3f91ff,
+
+    size:.045,
+
+    transparent:true,
+
+    opacity:.55
+
+  });
+
+
+const particles =
+  new THREE.Points(
+
+    particleGeometry,
+
+    particleMaterial
+
+  );
+
+
+product.add(
+  particles
+);
+
+
+
+/* =====================================================
+   HUD LABELS
+===================================================== */
+
+const labels = [
+
+  [
+    shellGroup,
+    document.getElementById(
+      "labelShell"
+    )
+  ],
+
+  [
+    rotorGroup,
+    document.getElementById(
+      "labelRotor"
+    )
+  ],
+
+  [
+    driveGroup,
+    document.getElementById(
+      "labelDrive"
+    )
+  ],
+
+  [
+    impellerGroup,
+    document.getElementById(
+      "labelImpeller"
+    )
+  ],
+
+  [
+    pumpGroup,
+    document.getElementById(
+      "labelPump"
+    )
+  ]
+
+];
+
+
+function updateLabel(
+  object,
+  element
+){
+
+  const p =
+    new THREE.Vector3();
+
+  object.getWorldPosition(
+    p
+  );
+
+  p.project(
+    camera
+  );
+
+
+  const x =
+    (
+      p.x*.5+.5
+    ) *
+    viewer.clientWidth;
+
+
+  const y =
+    (
+      -p.y*.5+.5
+    ) *
+    viewer.clientHeight;
+
+
+  element.style.left =
+    `${x}px`;
+
+  element.style.top =
+    `${y}px`;
+
+}
+
+
+
+/* =====================================================
+   BUSINESS ACTIONS
+===================================================== */
+
+function explodeProduct(){
+
+  targetExplosion =
+    1;
+
+  viewer.classList.add(
+    "exploded"
+  );
+
+  modeText.textContent =
+    "多层爆炸拆解";
+
+  intentText.textContent =
+    "识别到张开手掌 → 拆解核心组件";
+
+}
+
+
+function assembleProduct(){
+
+  targetExplosion =
+    0;
+
+  viewer.classList.remove(
+    "exploded"
+  );
+
+  valueCard.classList.remove(
+    "show"
+  );
+
+  modeText.textContent =
+    "整机展示";
+
+  intentText.textContent =
+    "识别到握拳 → 自动回装设备";
+
+}
+
+
+function showValue(){
+
+  valueCard.classList.add(
+    "show"
+  );
+
+  intentText.textContent =
+    "识别到点赞 → 展示产品核心价值";
+
+}
+
+
+
+/* =====================================================
+   MEDIAPIPE
+===================================================== */
+
+let recognizer =
+  null;
+
+let cameraRunning =
+  false;
+
+let lastVideoTime =
+  -1;
+
+let activeGesture =
+  "";
+
+let gestureStart =
+  0;
+
+let lastAction =
+  0;
+
+let lastHandX =
+  null;
+
+let previousPinch =
+  null;
+
+
+const HOLD =
+  300;
+
+const COOLDOWN =
+  850;
+
+
+/* 手部连线，避免不同版本 HAND_CONNECTIONS 兼容问题 */
+
+const HAND_CONNECTIONS = [
+
+  [0,1],[1,2],[2,3],[3,4],
+
+  [0,5],[5,6],[6,7],[7,8],
+
+  [5,9],[9,10],[10,11],[11,12],
+
+  [9,13],[13,14],[14,15],[15,16],
+
+  [13,17],[17,18],[18,19],[19,20],
+
+  [0,17]
+
+];
+
+
+async function initMediaPipe(){
+
+  gestureBadge.textContent =
+    "正在加载 MediaPipe...";
+
+
+  const vision =
+    await FilesetResolver
+      .forVisionTasks(
+
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+
+      );
+
+
+  recognizer =
+    await GestureRecognizer
+      .createFromOptions(
+
+        vision,
+
+        {
+
+          baseOptions:{
+
+            modelAssetPath:
+
+              "https://storage.googleapis.com/mediapipe-tasks/gesture_recognizer/gesture_recognizer.task"
+
+          },
+
+          runningMode:
+            "VIDEO",
+
+          numHands:
+            1,
+
+          minHandDetectionConfidence:
+            .5,
+
+          minHandPresenceConfidence:
+            .5,
+
+          minTrackingConfidence:
+            .5
+
+        }
+
+      );
+
+
+  gestureBadge.textContent =
+    "视觉模型已就绪";
+
+}
+
+
+async function startCamera(){
+
+  if(
+    !recognizer
+  ){
+    await initMediaPipe();
+  }
+
+
+  const stream =
+    await navigator.mediaDevices
+      .getUserMedia({
+
+        video:{
+          width:640,
+          height:480
+        }
+
+      });
+
+
+  video.srcObject =
+    stream;
+
+  await video.play();
+
+
+  cameraRunning =
+    true;
+
+
+  cameraBtn.textContent =
+    "视觉识别运行中";
+
+
+  requestAnimationFrame(
+    predictHand
+  );
+
+}
+
+
+cameraBtn.addEventListener(
+  "click",
+  startCamera
+);
+
+
+
+/* =====================================================
+   DRAW HAND
+===================================================== */
+
+function drawHand(
+  landmarks
+){
+
+  canvas.width =
+    video.videoWidth;
+
+  canvas.height =
+    video.videoHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  ctx.strokeStyle =
+    "rgba(255,255,255,.9)";
+
+  ctx.lineWidth =
+    3;
+
+
+  for(
+    const [
+      a,
+      b
+    ]
+    of HAND_CONNECTIONS
+  ){
+
+    const p1 =
+      landmarks[a];
+
+    const p2 =
+      landmarks[b];
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      p1.x*canvas.width,
+      p1.y*canvas.height
+    );
+
+    ctx.lineTo(
+      p2.x*canvas.width,
+      p2.y*canvas.height
+    );
+
+    ctx.stroke();
+
+  }
+
+
+  for(
+    const p
+    of landmarks
+  ){
+
+    ctx.beginPath();
+
+    ctx.fillStyle =
+      "#4d91ff";
+
+    ctx.arc(
+
+      p.x*canvas.width,
+
+      p.y*canvas.height,
+
+      4,
+
+      0,
+
+      Math.PI*2
+
+    );
+
+    ctx.fill();
+
+  }
+
+}
+
+
+
+/* =====================================================
+   GESTURE ACTION
+===================================================== */
+
+function processGesture(
+  name,
+  score
+){
+
+  gestureBadge.textContent =
+
+    `${name} ${Math.round(score*100)}%`;
+
+
+  if(
+    score < .55
+  )
+    return;
+
+
+  const now =
+    performance.now();
+
+
+  if(
+    name !==
+    activeGesture
+  ){
+
+    activeGesture =
+      name;
+
+    gestureStart =
+      now;
+
+    return;
+
+  }
+
+
+  if(
+    now -
+    gestureStart <
+    HOLD
+  )
+    return;
+
+
+  if(
+    now -
+    lastAction <
+    COOLDOWN
+  )
+    return;
+
+
+  lastAction =
+    now;
+
+
+  if(
+    name ===
+    "Open_Palm"
+  ){
+
+    explodeProduct();
+
+  }
+
+
+  if(
+    name ===
+    "Closed_Fist"
+  ){
+
+    assembleProduct();
+
+  }
+
+
+  if(
+    name ===
+    "Thumb_Up"
+  ){
+
+    showValue();
+
+  }
+
+}
+
+
+
+/* =====================================================
+   HAND ROTATION + PINCH
+===================================================== */
+
+function processContinuousHand(
+  landmarks
+){
+
+  /* 手掌中心 */
+
+  const handX =
+    landmarks[9].x;
+
+
+  if(
+    lastHandX !==
+    null
+  ){
+
+    const dx =
+      handX -
+      lastHandX;
+
+
+    /* 镜像摄像头 */
+
+    product.rotation.y -=
+      dx *
+      3.6;
+
+  }
+
+
+  lastHandX =
+    handX;
+
+
+
+  /* pinch */
+
+  const thumb =
+    landmarks[4];
+
+  const index =
+    landmarks[8];
+
+
+  const pinch =
+    Math.hypot(
+
+      thumb.x -
+      index.x,
+
+      thumb.y -
+      index.y
+
+    );
+
+
+  if(
+    previousPinch !==
+    null
+  ){
+
+    const delta =
+      pinch -
+      previousPinch;
+
+
+    /*
+      手指拉开：
+      放大产品
+
+      手指靠近：
+      缩小产品
+    */
+
+    const targetScale =
+
+      THREE.MathUtils
+        .clamp(
+
+          product.scale.x +
+          delta*3.5,
+
+          .75,
+
+          1.35
+
+        );
+
+
+    product.scale.setScalar(
+      targetScale
+    );
+
+  }
+
+
+  previousPinch =
+    pinch;
+
+}
+
+
+
+/* =====================================================
+   MEDIAPIPE LOOP
+===================================================== */
+
+function predictHand(){
+
+  if(
+    !cameraRunning
+  )
+    return;
+
+
+  if(
+
+    video.readyState >= 2 &&
+
+    video.currentTime !==
+    lastVideoTime
+
+  ){
+
+    lastVideoTime =
+      video.currentTime;
+
+
+    const result =
+      recognizer
+        .recognizeForVideo(
+
+          video,
+
+          performance.now()
+
+        );
+
+
+    if(
+
+      result.landmarks &&
+
+      result.landmarks.length
+
+    ){
+
+      const landmarks =
+        result.landmarks[0];
+
+
+      drawHand(
+        landmarks
+      );
+
+
+      processContinuousHand(
+        landmarks
+      );
+
+
+      if(
+
+        result.gestures &&
+
+        result.gestures.length
+
+      ){
+
+        const g =
+          result.gestures[0][0];
+
+
+        processGesture(
+
+          g.categoryName,
+
+          g.score
+
+        );
+
+      }
+
+    }
+
+    else{
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      gestureBadge.textContent =
+        "请将手放入画面";
+
+
+      lastHandX =
+        null;
+
+
+      previousPinch =
+        null;
+
+
+      activeGesture =
+        "";
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    predictHand
+  );
+
+}
+
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+function animate(){
+
+  requestAnimationFrame(
+    animate
+  );
+
+
+  controls.update();
+
+
+  /* 爆炸动画 */
+
+  explosion =
+    THREE.MathUtils.lerp(
+
+      explosion,
+
+      targetExplosion,
+
+      .055
+
+    );
+
+
+  applyAssembly();
+
+
+  /* 转子 */
+
+  rotorGroup.rotation.x +=
+    .018;
+
+
+  /* 叶轮 */
+
+  impellerGroup.rotation.x +=
+    .032;
+
+
+  /* sensor pulse */
+
+  const pulse =
+    1 +
+    Math.sin(
+      performance.now()*.004
+    ) *
+    .15;
+
+
+  sensorGroup.children
+    .forEach(
+
+      item =>
+        item.scale
+          .setScalar(
+            pulse
+          )
+
+    );
+
+
+  /* particle flow */
+
+  const arr =
+
+    particleGeometry
+      .attributes
+      .position
+      .array;
+
+
+  for(
+    let i=0;
+    i<particleCount;
+    i++
+  ){
+
+    arr[
+      i*3
+    ] +=
+      .011;
+
+
+    if(
+      arr[i*3] >
+      4
+    ){
+
+      arr[
+        i*3
+      ] =
+        -3.4;
+
+    }
+
+  }
+
+
+  particleGeometry
+    .attributes
+    .position
+    .needsUpdate =
+      true;
+
+
+  /* HUD */
+
+  labels.forEach(
+
+    ([obj,element]) =>
+      updateLabel(
+        obj,
+        element
+      )
+
+  );
+
+
+  renderer.render(
+    scene,
+    camera
+  );
+
+}
+
+
+animate();
+
+
+
+/* =====================================================
+   INITIAL POSITION
+===================================================== */
+
+applyAssembly();
+
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    if(
+      container.clientWidth === 0 ||
+      container.clientHeight === 0
+    )
+      return;
+
+
+    camera.aspect =
+
+      container.clientWidth /
+      container.clientHeight;
+
+
+    camera
+      .updateProjectionMatrix();
+
+
+    renderer.setSize(
+
+      container.clientWidth,
+
+      container.clientHeight
+
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   INIT MP IN BACKGROUND
+===================================================== */
+
+initMediaPipe()
+  .catch(
+    err=>{
+
+      console.error(err);
+
+      gestureBadge.textContent =
+        "MediaPipe 加载失败";
+
+    }
+  );
+
+</script>
+
+</body>
+</html> 
