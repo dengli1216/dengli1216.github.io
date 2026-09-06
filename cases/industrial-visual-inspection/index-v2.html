@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI 工业视觉巡检 POC：面向存量工业设备的低改造视觉巡检与异常处置。">
+    <title>AI 工业视觉巡检 POC · 快速阅读版</title>
+    <link rel="stylesheet" href="../../shared/case-framework/case-template.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#case">跳至案例正文</a>
+    <header class="site-header">
+      <a class="brand" href="../../index.html" aria-label="返回 AI 案例作品集">DengLi / AI CASES</a>
+      <nav aria-label="案例导航">
+        <a href="#value">商业价值</a>
+        <a href="#solution">解决方案</a>
+        <a href="#result">POC 结果</a>
+        <a href="#roadmap">生产化</a>
+      </nav>
+    </header>
+    <main id="case"></main>
+    <script type="module">
+      import { industrialVisualInspectionCase } from "./case.config.js";
+      import { renderCasePage } from "../../shared/case-framework/case-renderer.js";
+
+      renderCasePage(industrialVisualInspectionCase);
+    </script>
+  </body>
+</html>

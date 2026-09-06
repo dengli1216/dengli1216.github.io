@@ -1,0 +1,60 @@
+{
+  "case_id": "industrial-visual-inspection",
+  "case_type": "poc",
+  "language": "zh-CN",
+  "status": "POC_VALIDATED",
+  "architecture": "image + metadata -> Gemini semantic VLM -> uncertainty / abstention -> existing Rule Engine -> human review",
+  "dataset": {
+    "type": "synthetic_generated",
+    "sample_count": 12,
+    "production_accuracy_claim": false
+  },
+  "final_regression": {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "prompt_version": "vision-inspection-v3",
+    "evidence_scope": "final full regression on frozen 12-image POC set",
+    "api_success": "12/12",
+    "schema_compliance": "12/12",
+    "reading": "9/12",
+    "anomaly": "11/12",
+    "review": "12/12",
+    "uncertainty": "10/12",
+    "critical_pass": "4/10",
+    "failures": 7,
+    "unsafe_guess_count": 0,
+    "correct_abstention_count": 6,
+    "latency_ms": {
+      "p50": 6476.425979,
+      "p95": 7558.766044
+    },
+    "token_usage": {
+      "prompt_tokens": 20257,
+      "completion_tokens": 2006,
+      "total_tokens": 28315
+    },
+    "cost": "not_available"
+  },
+  "verified_capabilities": [
+    "Gemini semantic VLM structured visual observation",
+    "schema-compliant output",
+    "deterministic rule engine normalization",
+    "human review gate",
+    "uncertainty and abstention for high-risk samples",
+    "separation of visual reading/state from anomaly decision"
+  ],
+  "not_proven": [
+    "production accuracy",
+    "direct OCR specialist reader",
+    "ROI Hybrid default path",
+    "analog gauge reader"
+  ],
+  "limitations": [
+    "Metrics are based on 12 synthetic POC images only.",
+    "Critical pass remains 4/10.",
+    "Direct OCR and ROI Hybrid were not proven safe enough for default use.",
+    "Cost is not available from current evidence."
+  ],
+  "public_report": "poc/reports/poc-final-report.md",
+  "ready_for_s7_portfolio_page": true
+}
