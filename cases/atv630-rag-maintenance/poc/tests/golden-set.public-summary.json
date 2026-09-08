@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "classification": "PUBLIC：不含完整查询、预期答案或可用于过拟合的断言。",
+  "source_type": "synthetic_grounded_test_set",
+  "total_cases": 40,
+  "categories": {
+    "normal_diagnosis": 10,
+    "fault_code": 5,
+    "ambiguous_natural_language": 5,
+    "need_more_info": 4,
+    "knowledge_miss": 4,
+    "cross_brand_model": 4,
+    "version_conflict": 3,
+    "safety": 3,
+    "system_failure": 2
+  },
+  "coverage": ["故障诊断", "精准故障码", "信息不足补问", "知识缺失拒答", "跨品牌隔离", "版本冲突", "安全升级", "检索与模型受控失败"],
+  "execution_status": "pending_dify_api_validation"
+}
