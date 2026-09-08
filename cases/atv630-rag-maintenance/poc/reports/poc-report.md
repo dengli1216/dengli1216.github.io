@@ -2,7 +2,7 @@
 
 ## 结论
 
-**POC_PARTIALLY_VALIDATED**。已完成范围、知识 metadata、工作流设计、40 条私有 Golden Set 与离线合同校验；当前环境未提供可用的 Dify 地址和应用 API Key，故未创建/发布 Knowledge 与 Workflow，也没有真实 API、检索、引用、时延或安全 Gate 指标。
+**POC_PARTIALLY_VALIDATED**。已完成范围、知识 metadata、工作流设计、40 条私有 Golden Set 与离线合同校验；Dify Workflow App 已创建，App API 参数端点已通过认证。但官方知识语料尚未导入、Workflow 尚未完成或发布，故没有真实检索、引用、时延或安全 Gate 指标。
 
 ## 目标与范围
 
@@ -18,7 +18,7 @@
 
 - 私有 Golden Set 共 40 条，覆盖正常诊断、精准故障码、模糊查询、信息不足、知识缺失、跨品牌、版本冲突、安全与系统异常。
 - `python3 poc/tests/run_eval.py --offline` 已通过：编号 G01–G40、分类计数与非空查询合同正确。
-- 尚未执行真实 Dify API：API 成功率、Schema、Hit@K、引用有效性、诊断正确性、拒答、安全升级、P50/P95 与 Token 均为未验证。
+- Dify App 的 `/v1/parameters` 已认证通过，且返回 `query`、`manufacturer`、`model` 三个输入；尚未执行真实 Workflow Run。API 成功率、Schema、Hit@K、引用有效性、诊断正确性、拒答、安全升级、P50/P95 与 Token 均为未验证。
 
 ## 生产化建议
 
