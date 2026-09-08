@@ -59,7 +59,7 @@ export const industrialVisualInspectionCase = {
       { label: "Reading", description: "读数/状态匹配", type: "reading_quality", sourceKey: "final_regression.reading" },
       { label: "Anomaly", description: "异常判断匹配", type: "decision_quality", sourceKey: "final_regression.anomaly" },
       { label: "Critical", description: "困难样本仍保留边界", type: "critical_recall", sourceKey: "final_regression.critical_pass" },
-      { label: "P95", unit: "ms", description: "最终回归延迟", type: "latency", sourceKey: "final_regression.latency_ms.p95" }
+      { label: "P95", unit: "ms", precision: 2, description: "最终回归延迟", type: "latency", sourceKey: "final_regression.latency_ms.p95" }
     ],
     evidenceNote: "困难样本未通过时优先停止自动判断并转人工，而不是输出高置信度错误结论。",
     datasetSummary: "12 张 synthetic_generated POC 图；不能外推真实生产准确率。",
