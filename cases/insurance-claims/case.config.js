@@ -18,7 +18,7 @@ export const caseConfig = {
     { title: "Deterministic decision", detail: "risk_score、risk_level、signals、route 与审计字段先由版本化规则固定。" }, { title: "LLM output gate", detail: "字段漂移、格式错误或取消人工复核会被拒绝。" }, { title: "Fallback + human", detail: "LLM 执行或输出失败均返回确定性结果，并保持 human_review_required=true。" }
   ], note: "Boundary：score=20 在现有离散规则点数组合中不可达；以 15 / 25、55 / 60 / 65 验证阈值两侧。" } }],
   decisionBoundary: { title: "已证明的是控制能力", verifiedCapabilities: ["SIMULATED 输入校验、确定性风险评分与 LOW / MEDIUM / HIGH 路由", "稳定 decision_id、规则版本与审计字段", "LLM 确定性字段篡改拦截", "LLM 执行错误与非合规输出的安全降级", "人工复核始终为必经边界"], notProvenItems: ["真实欺诈识别准确率或保险企业效果", "真实 Policy、Claims History、Fraud API 集成", "自动赔付、自动拒赔或生产 SLA", "真实成本与 ROI"], decisionSummary: "本地确定性 POC Gate 通过；进入工程 POC 前仍需获得合规数据范围、只读 Sandbox、运行审计与负责人准入。" },
-  productionPath: { title: "从 POC 到受控试点", steps: [
+  productionPath: { title: "从 POC 到生产", steps: [
     { title: "POC", detail: "冻结规则、黄金集和本地安全证据。", gate: "当前完成：仅 SIMULATED 本地验证。" }, { title: "Sandbox", detail: "接入获批只读 Policy / Claims History / Fraud Adapter。", gate: "端到端失败、超时、审计与人工队列可验证。" }, { title: "Controlled pilot", detail: "以带 Ground Truth 的代表性数据进行影子或小流量验证。", gate: "业务、合规与模型风险负责人共同评审。" }
   ] },
   roleDeliverables: { title: "案例交付物", roleItems: ["业务边界与 Decision Contract", "Dify Workflow 预检", "Golden Set 与本地回归", "证据包与案例页面"], deliverables: ["CASE_BRIEF", "Workflow Audit", "Golden Set", "Eval Summary", "POC Report"], reportLink: "poc/reports/POC_REPORT.md", workflowLink: "poc/dify/insurance_claims_workflow.yml", repoLink: "poc/tests/run_eval.py" }

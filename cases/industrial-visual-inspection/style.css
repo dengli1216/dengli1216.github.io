@@ -123,7 +123,7 @@ h1 { max-width: 840px; margin-bottom: 24px; font-size: clamp(2.5rem, 5vw, 4.9rem
 .target-step { background: rgba(255,255,255,.04); }
 .role-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin-top: 34px;
   background: #35506a;

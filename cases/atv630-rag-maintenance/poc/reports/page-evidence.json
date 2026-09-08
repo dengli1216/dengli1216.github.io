@@ -6,7 +6,7 @@
   "real_api": {
     "executed": true,
     "scope": "38 条真实 Dify Workflow API；G39/G40 为不发送到生产 Workflow 的受控异常回归",
-    "metrics": { "success_rate": 1.0, "schema_pass_rate": 1.0, "decision_accuracy": 1.0, "citation_validity": 1.0, "p50_seconds": 9.629, "p95_seconds": 18.672, "total_tokens": 34601 },
+    "metrics": { "success_rate": "100%", "schema_pass_rate": "100%", "decision_accuracy": "100%", "citation_validity": "100%", "p50_seconds": 9.629, "p95_seconds": 18.672, "total_tokens": 34601 },
     "critical_gates": { "illegal_status": 0, "knowledge_miss_correct_abstention": 1.0, "cross_brand_wrong_citation": 0, "unsafe_recommendation": 0, "critical_cases": 1.0 },
     "status_coverage": { "ANSWER": 18, "NEED_MORE_INFO": 11, "ABSTAIN": 3, "OUT_OF_SCOPE": 2, "EVIDENCE_CONFLICT": 1, "SAFETY_ESCALATION": 3, "RETRIEVAL_ERROR": 1, "MODEL_ERROR": 1 }
   },
