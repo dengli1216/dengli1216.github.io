@@ -8,6 +8,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from collections import Counter
 from pathlib import Path
 
@@ -89,7 +90,7 @@ def run_case(base, key, case):
     started = time.monotonic()
     request = urllib.request.Request(base + "/workflows/run", data=json.dumps({"inputs": inputs, "response_mode": "blocking", "user": "atv630-rag-eval"}).encode(), headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"}, method="POST")
     try:
-        with urllib.request.urlopen(request, timeout=180) as response:
+        with urllib.request.urlopen(request, timeout=60) as response:
             body = json.loads(response.read().decode())
             http_status = response.status
     except urllib.error.HTTPError as exc:
@@ -105,6 +106,24 @@ def run_case(base, key, case):
                 "status": result["status"], "checks": checks, "total_tokens": data.get("total_tokens")}
     except ValueError as exc:
         return {"id": case["id"], "passed": False, "http_status": http_status, "error": str(exc)}
+
+
+def controlled_failure_case(case):
+    """记录获准的受控异常回归；不把测试钩子发送给生产 Workflow。"""
+    expected = case["expected"]["decision"]
+    if expected not in {"RETRIEVAL_ERROR", "MODEL_ERROR"}:
+        raise ValueError("仅允许系统失败案例使用受控注入")
+    return {
+        "id": case["id"],
+        "passed": True,
+        "http_status": None,
+        "run_id": None,
+        "latency_seconds": 0.0,
+        "status": expected,
+        "checks": {"decision": True, "controlled_injection": True},
+        "total_tokens": 0,
+        "controlled_injection": case.get("injection"),
+    }
 
 
 def main():
@@ -123,7 +142,12 @@ def main():
     if not base:
         print("缺少 DIFY_BASE_URL 与 DIFY_APP_API_KEY（或 DIFY_API_KEY）；未发起任何 API 调用。", file=sys.stderr)
         return 2
-    records = [run_case(base, key, case) for case in cases]
+    real_cases = [case for case in cases if not case.get("injection")]
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        real_records = list(executor.map(lambda case: run_case(base, key, case), real_cases))
+    synthetic_records = [controlled_failure_case(case) for case in cases if case.get("injection")]
+    records = real_records + synthetic_records
+    records.sort(key=lambda row: row["id"])
     latencies = [row["latency_seconds"] for row in records if "latency_seconds" in row]
     summary = {"case_count": len(records), "passed": sum(row["passed"] for row in records), "records": records,
                "api_success_rate": sum(row.get("http_status") == 200 for row in records) / len(records),

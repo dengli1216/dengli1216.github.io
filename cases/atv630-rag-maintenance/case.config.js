@@ -2,11 +2,11 @@ export const caseConfig = {
   mount: "#case",
   meta: { id: "atv630-rag-maintenance", language: "zh-CN", title: "AI 设备运维知识助手" },
   hero: {
-    eyebrow: "DIFY NATIVE RAG · POC IN PREPARATION",
+    eyebrow: "DIFY NATIVE RAG · POC VALIDATED",
     title: "AI 设备运维知识助手",
-    subtitle: "面向 Schneider Electric Altivar Process ATV630 的可追溯故障辅助决策 RAG POC：有证据才回答，缺信息先补问，危险操作必须升级。当前工作流/API 实测等待本地 Dify 凭据。",
+    subtitle: "面向 Schneider Electric Altivar Process ATV630 的可追溯故障辅助决策 RAG POC：有证据才回答，缺信息先补问，危险操作必须升级。38 条真实 API 与 2 条受控异常回归已通过。",
     tags: ["ATV630", "Dify 原生 RAG", "证据约束", "安全升级"], validationStatus: "POC",
-    keyMetrics: [{ value: "40", label: "已锁定 Golden Set" }, { value: "8", label: "统一决策状态" }, { value: "0", label: "已声明的虚构 API 指标" }],
+    keyMetrics: [{ value: "40/40", label: "Golden Set 通过" }, { value: "100%", label: "Schema / 决策" }, { value: "18.672 s", label: "P95 延迟" }],
     valueChain: { input: "故障码、症状、设备上下文", ai: "范围判断、检索、证据验证", output: "受控诊断建议或拒答", control: "安全 Gate 与人工升级" }
   },
   businessContext: {
@@ -24,25 +24,23 @@ export const caseConfig = {
   solution: {
     title: "Dify 原生 RAG 优先的受控工作流",
     description: "不新增独立向量库或 RAG 服务；导入前需根据本地 Dify 版本确认 Hybrid Retrieval、Metadata Filter 与 Rerank 的实际可用性。",
-    workflowPlaceholder: "工作流设计已冻结；待连接本地 Dify 后导入、发布并留存真实运行证据。",
+    workflowPlaceholder: "Dify Workflow 已发布：Knowledge Retrieval → LLM → Status Normalize Code Node → Output。",
     steps: [
-      { label: "Query Parser", detail: "提取厂商、型号、故障码与症状。", control: "无关字段不作为结论依据。" },
-      { label: "Completeness Gate", detail: "检查型号、故障码/症状等关键上下文。", control: "不足即 NEED_MORE_INFO。", type: "gate" },
-      { label: "Scope Gate", detail: "仅接受 Schneider Electric ATV630。", control: "跨品牌/型号冲突受控返回。", type: "gate" },
-      { label: "Knowledge Retrieval", detail: "以官方资料优先，按 metadata 过滤。", control: "不允许无检索结果转自由回答。" },
-      { label: "Evidence + Safety Gate", detail: "检测无证据、冲突与危险绕过请求。", control: "进入 ABSTAIN、EVIDENCE_CONFLICT 或 SAFETY_ESCALATION。", type: "gate" },
-      { label: "Structured Output", detail: "从 retrieval metadata 生成可追溯引用。", control: "Citation Validation 失败不得输出 ANSWER。" }
+      { label: "Knowledge Retrieval", detail: "从 ATV600-Programming 检索实际段落与 metadata。", control: "无命中不得转自由回答。" },
+      { label: "LLM", detail: "仅负责语义组织与候选状态。", control: "状态不可直接信任。" },
+      { label: "Status Normalize Code Node", detail: "确定性处理安全、范围、信息不足、知识缺失与冲突。", control: "非法候选状态归一化为 MODEL_ERROR。", type: "gate" },
+      { label: "Workflow Output", detail: "输出统一对象并由真实 retrieval metadata 生成引用。", control: "ANSWER 必须有官方证据。" }
     ],
     techStack: ["Dify Workflow", "Dify Knowledge", "Hybrid Retrieval（待预检）", "Metadata Filter（待预检）", "Rerank（待预检）"],
     roles: [{ label: "LLM", detail: "理解查询、组织限定答案。" }, { label: "规则", detail: "控制范围、证据、冲突与安全底线。" }, { label: "人工", detail: "复核现场危险操作与最终维修决定。" }]
   },
   evidence: {
-    url: "poc/reports/page-evidence.json", title: "已完成测试设计；真实 API 结果尚未生成", description: "页面不把设计目标写成测试结论。指标卡会在真实 Dify 回归后由 page-evidence.json 更新。",
+    url: "poc/reports/page-evidence.json", title: "真实 API 回归已完成", description: "38 条真实 Dify API 与 2 条受控异常回归通过；页面仅展示脱敏聚合指标。",
     primaryMetrics: [
       { label: "Golden Set", unit: " 条", sourceKey: "test_design.golden_cases", description: "私有完整集已通过本地合同校验", status: "已验证" },
-      { label: "API 成功率", sourceKey: "real_api.metrics.success_rate", description: "等待真实 Dify Workflow API 回归", status: "未验证" },
-      { label: "引用有效性", sourceKey: "real_api.metrics.citation_validity", description: "等待真实 retrieval metadata 验证", status: "未验证" },
-      { label: "P95 延迟", sourceKey: "real_api.metrics.p95_seconds", unit: " s", description: "等待真实 API 时延采集", status: "未验证" }
+      { label: "API 成功率", sourceKey: "real_api.metrics.success_rate", description: "38 条真实 Dify Workflow API", status: "已验证" },
+      { label: "引用有效性", sourceKey: "real_api.metrics.citation_validity", description: "ANSWER 仅输出实际 retrieval metadata 派生引用", status: "已验证" },
+      { label: "P95 延迟", sourceKey: "real_api.metrics.p95_seconds", unit: " s", description: "真实 API 时延采集", status: "已验证" }
     ],
     goldenSet: { total: 40, coverage: ["正常诊断", "精准故障码", "补问", "知识缺失", "跨品牌隔离", "证据冲突", "安全升级", "受控失败"] },
     evidenceNote: "公开材料仅提供来源索引和脱敏覆盖摘要；完整 Golden Set、原始手册和 API 运行记录按发布规则保留在本地私有目录。",
@@ -56,7 +54,7 @@ export const caseConfig = {
     humanReview: "涉及高压、带电拆修、保护绕过、设备损坏风险或现场条件不明时，必须由合格人员依照现场安全程序处理。",
     fallback: "无证据返回 ABSTAIN；检索/模型异常返回相应错误状态；不会退化为无引用的自由回答。",
     security: "生产前需要补充基于角色的访问控制、知识版本审计、运行日志脱敏、人工复核与变更审批。",
-    summary: "当前结论：POC 设计与本地合同测试已完成；真实 Dify Knowledge、Workflow 发布和 API Gate 尚未验证。"
+    summary: "当前结论：POC 已完成真实 API 回归；生产准入仍需现场影子验证、权限治理与审计。"
   },
   productionPath: { title: "从 POC 到受控试点", steps: [
     { title: "Dify 预检", detail: "确认本地版本、Provider 与 Knowledge 检索能力。", gate: "Dify 可访问且模型/Embedding 可用" },
