@@ -316,29 +316,29 @@ const more = [
       "An interactive presales prototype for 3D product exploration and value explanation.",
     ],
   },
-  {
-    slug: "rag-knowledge-ui",
-    detailPath: "cases/rag-knowledge-ui/",
-    s: "developed",
-    zh: [
-      "RAG 知识库界面",
-      "知识检索体验",
-      "展示企业知识检索、引用与内容溯源的界面原型。",
-    ],
-    en: [
-      "RAG Knowledge UI",
-      "Knowledge retrieval experience",
-      "A UI prototype for enterprise knowledge retrieval, citations, and traceability.",
-    ],
-  },
+  // {
+  //   slug: "rag-knowledge-ui",
+  //   detailPath: "cases/rag-knowledge-ui/",
+  //   s: "developed",
+  //   zh: [
+  //     "RAG 知识库界面",
+  //     "知识检索体验",
+  //     "展示企业知识检索、引用与内容溯源的界面原型。",
+  //   ],
+  //   en: [
+  //     "RAG Knowledge UI",
+  //     "Knowledge retrieval experience",
+  //     "A UI prototype for enterprise knowledge retrieval, citations, and traceability.",
+  //   ],
+  // },
   {
     slug: "ai-agent-workflow",
     detailPath: "cases/ai-agent-workflow/",
     s: "developed",
     zh: [
-      "智学平台 Agent",
-      "Agent 工作流",
-      "将复杂任务的拆解、执行状态与工具链路可视化。",
+      "AI 智学管理平台全栈开发",
+      "AI 落地应用",
+      "通过AI coding 落地的全栈开发案例，展示复杂任务分解、执行状态与工具路径的可视化。",
     ],
     en: [
       "Learning Platform Agent",
