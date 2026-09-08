@@ -1,0 +1,9 @@
+case:
+  id: gesture-ai-product-explorer
+  name: Gesture AI Industrial Product Explorer
+  type: demo
+  profile: vision-interaction
+  routing_note: This is a visual interaction/product exploration demo, not an industrial visual inspection POC.
+  capabilities:
+    browser_camera: optional
+    fallback: static_3d_demo_with_mouse_or_touch

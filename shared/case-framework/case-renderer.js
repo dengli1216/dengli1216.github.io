@@ -88,7 +88,6 @@ function renderEvidence(evidenceConfig = {}, evidence) {
     ${secondary ? `<div class="secondary-kpis">${secondary}</div>` : ""}
     ${evidenceConfig.evidenceNote ? `<p class="result-note">${escapeHtml(evidenceConfig.evidenceNote)}</p>` : ""}
     ${evidenceConfig.datasetSummary ? `<p class="result-note">数据集：${escapeHtml(evidenceConfig.datasetSummary)}</p>` : ""}
-    ${evidenceConfig.evidenceSource ? `<p class="result-note">Evidence source：${escapeHtml(evidenceConfig.evidenceSource)}</p>` : ""}
     ${loadError}
   </section>`;
 }
@@ -125,8 +124,8 @@ function renderProductionPath(path = {}) {
 
 function renderRoleDeliverables(role = {}) {
   const links = [
-    role.reportLink && `<a href="${escapeAttr(role.reportLink)}">查看最终 POC 报告</a>`,
-    role.workflowLink && `<a href="${escapeAttr(role.workflowLink)}">查看 Workflow</a>`,
+    // role.reportLink && `<a href="${escapeAttr(role.reportLink)}">查看最终 POC 报告</a>`,
+    // role.workflowLink && `<a href="${escapeAttr(role.workflowLink)}">查看 Workflow</a>`,
     role.repoLink && `<a href="${escapeAttr(role.repoLink)}">查看 Repo</a>`
   ].filter(Boolean).join("");
   return `<section class="section shell contribution" aria-labelledby="contribution-title">

@@ -1,0 +1,1143 @@
+{
+  "generated_at": "2026-09-05T14:41:41Z",
+  "case_id": "industrial-visual-inspection",
+  "case_spec_version": "0.4",
+  "golden_set_version": "v1",
+  "rule_version": "v1",
+  "adapter": {
+    "name": "fixture-offline-adapter",
+    "version": "v1",
+    "provider": "fixture",
+    "model": "not_applicable",
+    "prompt_version": "not_applicable",
+    "type": "fixture_mock_offline"
+  },
+  "evaluation_scope": "pipeline_validation",
+  "model_accuracy": "not_evaluated",
+  "samples": [
+    {
+      "sample_id": "VIS-001",
+      "category": "happy",
+      "critical_case": "normal",
+      "critical": false,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-001.svg",
+      "image_sha256": "b550459bb601eeb2917c68d7ae65aa059c4452c90946c37bcf36aea5de594f5a",
+      "equipment_id": "PUMP-101",
+      "equipment_type": "pump",
+      "inspection_rule_id": "pressure-normal-band",
+      "visual_observation": {
+        "reading_or_state": 4.5,
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "reading",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-001",
+          "fixture_image": "VIS-001.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "PUMP-101",
+        "inspection_rule_id": "pressure-normal-band",
+        "reading_or_state": 4.5,
+        "anomaly": false,
+        "confidence": null,
+        "review_required": false,
+        "recommended_action": "continue routine inspection",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-001",
+          "fixture_image": "VIS-001.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": 4.5,
+        "anomaly": false,
+        "confidence": null,
+        "review_required": false,
+        "recommended_action": "continue routine inspection"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": 4.5,
+          "actual": 4.5,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        "review_required": {
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "continue routine inspection",
+          "actual": "continue routine inspection",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.019792,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-002",
+      "category": "happy",
+      "critical_case": "abnormal",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-002.svg",
+      "image_sha256": "3c3c06c193beffb6bc3ad852083296fd179c254cc2d75c834c495dbedfc94f4e",
+      "equipment_id": "MOTOR-202",
+      "equipment_type": "motor",
+      "inspection_rule_id": "temperature-upper-limit",
+      "visual_observation": {
+        "reading_or_state": 95,
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "reading",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-002",
+          "fixture_image": "VIS-002.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 95
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "MOTOR-202",
+        "inspection_rule_id": "temperature-upper-limit",
+        "reading_or_state": 95,
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "create maintenance review suggestion",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-002",
+          "fixture_image": "VIS-002.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 95
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": 95,
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "create maintenance review suggestion"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": 95,
+          "actual": 95,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "create maintenance review suggestion",
+          "actual": "create maintenance review suggestion",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.010042,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-003",
+      "category": "critical",
+      "critical_case": "abnormal",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-003.svg",
+      "image_sha256": "67d2e511cafe6b7435ac785a3cf5ef2df39cd10270845b1b1a7a49ba867c3fde",
+      "equipment_id": "VALVE-303",
+      "equipment_type": "valve",
+      "inspection_rule_id": "pressure-lower-limit",
+      "visual_observation": {
+        "reading_or_state": 1,
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "reading",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-003",
+          "fixture_image": "VIS-003.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 1
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "VALVE-303",
+        "inspection_rule_id": "pressure-lower-limit",
+        "reading_or_state": 1,
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "recommend operator verification",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-003",
+          "fixture_image": "VIS-003.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 1
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": 1,
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "recommend operator verification"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "recommend operator verification",
+          "actual": "recommend operator verification",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.007042,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-004",
+      "category": "human-review",
+      "critical_case": "unreadable",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-004.svg",
+      "image_sha256": "cdd013d826cb0f23af0efc68dc3da2af85829645b4afe1f526a03658f8b5f2c9",
+      "equipment_id": "PUMP-101",
+      "equipment_type": "pump",
+      "inspection_rule_id": "pressure-normal-band",
+      "visual_observation": {
+        "reading_or_state": null,
+        "confidence": null,
+        "visual_status": "unreadable",
+        "observations": [
+          "blurred image"
+        ],
+        "observation_kind": "unreadable",
+        "uncertainty_action": "request a clearer image",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-004",
+          "fixture_image": "VIS-004.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "blurred image",
+            "recommended_action": "request a clearer image"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "PUMP-101",
+        "inspection_rule_id": "pressure-normal-band",
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request a clearer image",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-004",
+          "fixture_image": "VIS-004.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "blurred image",
+            "recommended_action": "request a clearer image"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request a clearer image"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request a clearer image",
+          "actual": "request a clearer image",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "unreadable",
+          "actual": "unreadable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.005458,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-005",
+      "category": "boundary",
+      "critical_case": "ambiguous",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-005.svg",
+      "image_sha256": "1251aaab1b9017d0e4b7ee37d9a03b7de42621e4128cd3ac343eba20f22be5b9",
+      "equipment_id": "MOTOR-202",
+      "equipment_type": "motor",
+      "inspection_rule_id": "temperature-upper-limit",
+      "visual_observation": {
+        "reading_or_state": 80,
+        "confidence": null,
+        "visual_status": "ambiguous",
+        "observations": [
+          "needle near threshold"
+        ],
+        "observation_kind": "ambiguous",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-005",
+          "fixture_image": "VIS-005.svg",
+          "fixture_observation": {
+            "kind": "ambiguous",
+            "value": 80,
+            "reason": "needle near threshold"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "MOTOR-202",
+        "inspection_rule_id": "temperature-upper-limit",
+        "reading_or_state": 80,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request manual reading confirmation",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-005",
+          "fixture_image": "VIS-005.svg",
+          "fixture_observation": {
+            "kind": "ambiguous",
+            "value": 80,
+            "reason": "needle near threshold"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": 80,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request manual reading confirmation"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": 80,
+          "actual": 80,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request manual reading confirmation",
+          "actual": "request manual reading confirmation",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.005667,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-006",
+      "category": "invalid",
+      "critical_case": "missing_context",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-006.svg",
+      "image_sha256": "25d25e588bb436f759cf56268e94230b73eb5b4199b6481c00f378638cb0e3ce",
+      "equipment_id": "",
+      "equipment_type": "pump",
+      "inspection_rule_id": "pressure-normal-band",
+      "visual_observation": {
+        "reading_or_state": 4.5,
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "reading",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-006",
+          "fixture_image": "VIS-006.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "unknown",
+        "inspection_rule_id": "pressure-normal-band",
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request equipment_id before assessment",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-006",
+          "fixture_image": "VIS-006.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request equipment_id before assessment"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request equipment_id before assessment",
+          "actual": "request equipment_id before assessment",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.005291,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-007",
+      "category": "invalid",
+      "critical_case": "missing_context",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-007.svg",
+      "image_sha256": "f22fe845d085e46c557c55aa0cfd965badf18cdd74f05aa32f50b68ab9e4d81b",
+      "equipment_id": "PUMP-101",
+      "equipment_type": "pump",
+      "inspection_rule_id": "",
+      "visual_observation": {
+        "reading_or_state": 4.5,
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "reading",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-007",
+          "fixture_image": "VIS-007.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "PUMP-101",
+        "inspection_rule_id": "unknown",
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request inspection_rule before assessment",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-007",
+          "fixture_image": "VIS-007.svg",
+          "fixture_observation": {
+            "kind": "reading",
+            "value": 4.5
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request inspection_rule before assessment"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request inspection_rule before assessment",
+          "actual": "request inspection_rule before assessment",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.004917,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-008",
+      "category": "happy",
+      "critical_case": "normal",
+      "critical": false,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-008.svg",
+      "image_sha256": "3232b0b6f336bbff1f7bd8a3b6fda7d2c8cbaa893152def35f1eab4cec8d7e02",
+      "equipment_id": "FAN-404",
+      "equipment_type": "fan",
+      "inspection_rule_id": "status-normal",
+      "visual_observation": {
+        "reading_or_state": "RUNNING",
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "state",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-008",
+          "fixture_image": "VIS-008.svg",
+          "fixture_observation": {
+            "kind": "state",
+            "value": "RUNNING"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "FAN-404",
+        "inspection_rule_id": "status-normal",
+        "reading_or_state": "RUNNING",
+        "anomaly": false,
+        "confidence": null,
+        "review_required": false,
+        "recommended_action": "continue routine inspection",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-008",
+          "fixture_image": "VIS-008.svg",
+          "fixture_observation": {
+            "kind": "state",
+            "value": "RUNNING"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": "RUNNING",
+        "anomaly": false,
+        "confidence": null,
+        "review_required": false,
+        "recommended_action": "continue routine inspection"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": "RUNNING",
+          "actual": "RUNNING",
+          "passed": true
+        },
+        "anomaly": {
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        "review_required": {
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "continue routine inspection",
+          "actual": "continue routine inspection",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.00475,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-009",
+      "category": "boundary",
+      "critical_case": "ambiguous",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-009.svg",
+      "image_sha256": "8bd3fe7c5abccd9bb032cc9cf0d0dd1d170adb71b22ad344f3e3aa1700712c38",
+      "equipment_id": "FAN-404",
+      "equipment_type": "fan",
+      "inspection_rule_id": "vibration-limit",
+      "visual_observation": {
+        "reading_or_state": 5.0,
+        "confidence": null,
+        "visual_status": "ambiguous",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "at_threshold",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-009",
+          "fixture_image": "VIS-009.svg",
+          "fixture_observation": {
+            "kind": "at_threshold",
+            "value": 5.0
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "FAN-404",
+        "inspection_rule_id": "vibration-limit",
+        "reading_or_state": 5.0,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "apply approved threshold policy after human review",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-009",
+          "fixture_image": "VIS-009.svg",
+          "fixture_observation": {
+            "kind": "at_threshold",
+            "value": 5.0
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": 5.0,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "apply approved threshold policy after human review"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": 5.0,
+          "actual": 5.0,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "apply approved threshold policy after human review",
+          "actual": "apply approved threshold policy after human review",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.004375,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-010",
+      "category": "invalid",
+      "critical_case": "unreadable",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-010.svg",
+      "image_sha256": "6ff59030e3ad02665138e433e52d72060573215190a37c38cf23d9b3fa041162",
+      "equipment_id": "PUMP-101",
+      "equipment_type": "pump",
+      "inspection_rule_id": "pressure-normal-band",
+      "visual_observation": {
+        "reading_or_state": null,
+        "confidence": null,
+        "visual_status": "unreadable",
+        "observations": [
+          "fixture simulates unsupported or corrupted input"
+        ],
+        "observation_kind": "unreadable",
+        "uncertainty_action": "request a supported image file",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-010",
+          "fixture_image": "VIS-010.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "fixture simulates unsupported or corrupted input",
+            "recommended_action": "request a supported image file"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "PUMP-101",
+        "inspection_rule_id": "pressure-normal-band",
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request a supported image file",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-010",
+          "fixture_image": "VIS-010.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "fixture simulates unsupported or corrupted input",
+            "recommended_action": "request a supported image file"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request a supported image file"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request a supported image file",
+          "actual": "request a supported image file",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "unreadable",
+          "actual": "unreadable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.008375,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-011",
+      "category": "human-review",
+      "critical_case": "unreadable",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-011.svg",
+      "image_sha256": "00e006e81c20a93fa50cf3eba6e55826ac6cfd3b3fe7a7fcf66624f6a8b76f70",
+      "equipment_id": "VALVE-303",
+      "equipment_type": "valve",
+      "inspection_rule_id": "pressure-lower-limit",
+      "visual_observation": {
+        "reading_or_state": null,
+        "confidence": null,
+        "visual_status": "unreadable",
+        "observations": [
+          "critical scale occluded"
+        ],
+        "observation_kind": "unreadable",
+        "uncertainty_action": "request an unobstructed image",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-011",
+          "fixture_image": "VIS-011.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "critical scale occluded",
+            "recommended_action": "request an unobstructed image"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "VALVE-303",
+        "inspection_rule_id": "pressure-lower-limit",
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request an unobstructed image",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-011",
+          "fixture_image": "VIS-011.svg",
+          "fixture_observation": {
+            "kind": "unreadable",
+            "reason": "critical scale occluded",
+            "recommended_action": "request an unobstructed image"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": null,
+        "anomaly": null,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "request an unobstructed image"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "anomaly": {
+          "expected": null,
+          "actual": null,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "request an unobstructed image",
+          "actual": "request an unobstructed image",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "unreadable",
+          "actual": "unreadable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.005417,
+      "passed": true
+    },
+    {
+      "sample_id": "VIS-012",
+      "category": "critical",
+      "critical_case": "abnormal",
+      "critical": true,
+      "data_source": "synthetic_test_fixture",
+      "approval_status": "synthetic_fixture_not_approved_real_baseline",
+      "input_reference": "fixtures/images/VIS-012.svg",
+      "image_sha256": "c89a1d1f9a6290bd27f1b7dc987d1a2811ab7d0237bac482e4d034a4a36b66a0",
+      "equipment_id": "MOTOR-202",
+      "equipment_type": "motor",
+      "inspection_rule_id": "alarm-light-state",
+      "visual_observation": {
+        "reading_or_state": "ALARM",
+        "confidence": null,
+        "visual_status": "readable",
+        "observations": [
+          "fixture observation"
+        ],
+        "observation_kind": "state",
+        "uncertainty_action": null,
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-012",
+          "fixture_image": "VIS-012.svg",
+          "fixture_observation": {
+            "kind": "state",
+            "value": "ALARM"
+          }
+        },
+        "usage": "not_available"
+      },
+      "normalized_output": {
+        "equipment_id": "MOTOR-202",
+        "inspection_rule_id": "alarm-light-state",
+        "reading_or_state": "ALARM",
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "recommend on-site inspection and work-order review",
+        "model_raw": {
+          "adapter": "fixture-offline-adapter",
+          "adapter_version": "v1",
+          "fixture_case_id": "VIS-012",
+          "fixture_image": "VIS-012.svg",
+          "fixture_observation": {
+            "kind": "state",
+            "value": "ALARM"
+          }
+        }
+      },
+      "expected": {
+        "reading_or_state": "ALARM",
+        "anomaly": true,
+        "confidence": null,
+        "review_required": true,
+        "recommended_action": "recommend on-site inspection and work-order review"
+      },
+      "assertions": {
+        "reading_or_state": {
+          "expected": "ALARM",
+          "actual": "ALARM",
+          "passed": true
+        },
+        "anomaly": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "review_required": {
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        "recommended_action": {
+          "expected": "recommend on-site inspection and work-order review",
+          "actual": "recommend on-site inspection and work-order review",
+          "passed": true
+        },
+        "visual_status": {
+          "expected": "readable",
+          "actual": "readable",
+          "passed": true
+        }
+      },
+      "adapter_error": null,
+      "failure_reason": null,
+      "schema_errors": [],
+      "usage": "not_available",
+      "latency_ms": 0.005291,
+      "passed": true
+    }
+  ]
+}

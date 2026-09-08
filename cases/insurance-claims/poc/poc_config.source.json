@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "caseId": "CASE-INS-001",
+  "phase": "POC_DESIGN",
+  "positioning": "Public-data-backed Enterprise POC Simulation",
+  "hypothesisZh": "确定性欺诈信号与受约束 LLM 摘要能够提高高风险案件优先识别能力，并将低风险案件送入快速人工复核队列，而不把赔付、拒赔或调查决定交给 AI。",
+  "p0": {
+    "data": "7 个 SIMULATED JSON 正向与负向样例",
+    "purpose": "验证严格输入合同、确定性评分、审计包、结构化解释、故障降级与路由闭环",
+    "tests": [
+      {"id": "P0-LOW", "input": "test_data/low_risk_claim.json", "expectedRoute": "FAST_TRACK_REVIEW"},
+      {"id": "P0-MEDIUM", "input": "test_data/medium_risk_claim.json", "expectedRoute": "ADJUSTER_REVIEW"},
+      {"id": "P0-HIGH", "input": "test_data/high_risk_claim.json", "expectedRoute": "FRAUD_INVESTIGATION"},
+      {"id": "P0-INVALID", "input": "test_data/invalid_claim.json", "expectedRoute": "MANUAL_REVIEW"},
+      {"id": "P0-INVALID-SCHEMA", "input": "test_data/invalid_schema_claim.json", "expectedRoute": "MANUAL_REVIEW"},
+      {"id": "P0-OUTSIDE-COVERAGE", "input": "test_data/outside_coverage_claim.json", "expectedRoute": "MANUAL_REVIEW"},
+      {"id": "P0-UNKNOWN-FIELD", "input": "test_data/unknown_field_claim.json", "expectedRoute": "MANUAL_REVIEW"}
+    ],
+    "technicalAcceptance": [
+      "7/7 路由与输入合同检查通过",
+      "相同输入生成稳定 decision_id 与 input_hash",
+      "LLM 风险字段篡改被阻断",
+      "LLM 调用失败和非法输出均返回安全降级结果",
+      "所有输出保留 human_review_required=true"
+    ]
+  },
+  "p1": {
+    "dependency": "ai-case-data-lab",
+    "data": "Public Fraud Dataset + Synthetic Enterprise Extension",
+    "purpose": "批量 Fraud Benchmark 与完整业务流程模拟",
+    "entryCriteria": [
+      "客户确认 Ground Truth 定义与数据使用授权",
+      "样本量和欺诈基率由客户数据/统计负责人确认",
+      "至少一个只读 Sandbox Adapter 可用",
+      "现行业务 Baseline 可量化"
+    ]
+  },
+  "primaryMetrics": [
+    {"metricId": "METRIC-FRAUD-RECALL", "name": "Fraud Recall", "priority": 1, "baseline": "TO_MEASURE", "target": ">= 0.85", "targetType": "POC_ACCEPTANCE_CRITERION"},
+    {"metricId": "METRIC-HIGH-RISK-FNR", "name": "High-risk False Negative Rate", "priority": 2, "baseline": "TO_MEASURE", "target": "<= 0.15", "targetType": "POC_ACCEPTANCE_CRITERION"},
+    {"metricId": "METRIC-FRAUD-PRECISION", "name": "Fraud Precision", "priority": 3, "baseline": "TO_MEASURE", "target": ">= 0.70", "targetType": "POC_ACCEPTANCE_CRITERION"},
+    {"metricId": "METRIC-ROUTING-ACCURACY", "name": "Claim Routing Accuracy", "priority": 4, "baseline": "TO_MEASURE", "target": ">= 0.90", "targetType": "POC_ACCEPTANCE_CRITERION"},
+    {"metricId": "METRIC-SUMMARY-FACT", "name": "Claim Summary Fact Accuracy", "priority": 5, "baseline": "TO_MEASURE", "target": ">= 0.95", "targetType": "POC_ACCEPTANCE_CRITERION"}
+  ],
+  "operationalMeasures": [
+    {"name": "Human Intervention Rate", "target": "TO_MEASURE"},
+    {"name": "Processing Time", "target": "TO_MEASURE"},
+    {"name": "Cost per Claim", "target": "TO_MEASURE"}
+  ],
+  "metricPriorityRule": "Fraud Recall > General Accuracy",
+  "humanReviewRequired": true,
+  "acceptanceDisclaimerZh": "目标值仅为本案例 POC Acceptance Criteria，不是保险行业 Benchmark、生产承诺或真实客户效果。",
+  "exitDecision": {
+    "GO": "核心风险指标达标，摘要事实准确且人工流程可用",
+    "REDESIGN": "高风险漏检、数据代表性或规则可解释性不足",
+    "STOP": "无法获得合法代表性数据、业务不接受人工最终控制或无法建立可靠 Ground Truth"
+  }
+}

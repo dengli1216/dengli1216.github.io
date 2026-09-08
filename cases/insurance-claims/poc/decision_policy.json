@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "caseId": "CASE-INS-001",
+  "ruleSetVersion": "INS-FRAUD-RULESET/1.1.0",
+  "status": "POC_SIMULATION_POLICY",
+  "dataClassification": "SIMULATED",
+  "scoreCap": 100,
+  "riskThresholds": [
+    {"riskLevel": "HIGH", "minimumScore": 60, "route": "FRAUD_INVESTIGATION"},
+    {"riskLevel": "MEDIUM", "minimumScore": 20, "maximumScore": 59, "route": "ADJUSTER_REVIEW"},
+    {"riskLevel": "LOW", "minimumScore": 0, "maximumScore": 19, "route": "FAST_TRACK_REVIEW"}
+  ],
+  "signals": [
+    {"code": "EARLY_HIGH_VALUE_CLAIM", "points": 40, "condition": "policy_tenure_days <= 30 AND claim_to_limit_ratio >= 0.5"},
+    {"code": "SHORT_TERM_REPEAT_CLAIMS", "points": 30, "condition": "previous_claim_count >= 2 AND claim_history.length >= 2"},
+    {"code": "PRIOR_CLAIM_ACTIVITY", "points": 10, "condition": "previous_claim_count == 1"},
+    {"code": "HISTORY_DESCRIPTION_CONTRADICTION", "points": 30, "condition": "history_description_consistent == false"},
+    {"code": "AMOUNT_QUOTE_MISMATCH", "points": 25, "condition": "repair_quote > 0 AND claim_amount > repair_quote * 1.5"},
+    {"code": "HIGH_CLAIM_TO_LIMIT_RATIO", "points": 25, "condition": "claim_to_limit_ratio >= 0.7"},
+    {"code": "ELEVATED_CLAIM_AMOUNT", "points": 15, "condition": "0.4 <= claim_to_limit_ratio < 0.7"}
+  ],
+  "controlRules": [
+    "LLM 不得生成或修改 risk_score、risk_level、fraud_signals 或 recommended_route",
+    "输入无效时路由 MANUAL_REVIEW，不调用 LLM",
+    "LLM 调用失败或输出校验失败时保留确定性规则结果并强制人工复核",
+    "相同 request_id、claim_id、输入内容和 ruleSetVersion 必须生成相同 decision_id",
+    "所有赔付、拒赔、欺诈成立和调查决定均由人工作出"
+  ],
+  "changeControl": {
+    "owner": "TO_DEFINE_WITH_CLIENT",
+    "approvers": ["CLAIMS_OWNER", "FRAUD_RISK_OWNER", "MODEL_RISK_OR_COMPLIANCE"],
+    "requiredEvidence": ["CHANGE_REASON", "BACKTEST_RESULT", "REGRESSION_RESULT", "APPROVAL_RECORD"],
+    "rollback": "保留上一稳定 ruleSetVersion；生产切换机制不在当前案例范围内"
+  },
+  "disclaimerZh": "阈值和分值是案例 POC 假设，必须以合法、代表性、带 Ground Truth 的客户数据回测和审批后才能用于真实业务。"
+}

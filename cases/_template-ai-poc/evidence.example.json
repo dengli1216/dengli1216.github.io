@@ -1,0 +1,26 @@
+{
+  "case_id": "replace-with-case-id",
+  "case_type": "poc",
+  "language": "zh-CN",
+  "status": "POC",
+  "dataset": {
+    "type": "synthetic_or_real_or_mixed",
+    "sample_count": 0,
+    "production_accuracy_claim": false
+  },
+  "final_regression": {
+    "schema_compliance": "not_measured",
+    "critical_recall": "not_measured",
+    "review_gate": "not_measured",
+    "latency_ms": {
+      "p95": null
+    },
+    "cost": "not_available"
+  },
+  "verified_capabilities": [],
+  "not_proven": [],
+  "limitations": [
+    "Do not present synthetic, mock, or estimated data as production evidence."
+  ],
+  "public_report": "report.example.md"
+}

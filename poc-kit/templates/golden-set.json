@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "case_id": "",
+  "source_policy": "",
+  "expected_output_schema": "",
+  "items": [
+    {
+      "id": "",
+      "source": "",
+      "input_refs": [],
+      "expected_output_ref": "",
+      "status": "pending",
+      "notes": ""
+    }
+  ]
+}

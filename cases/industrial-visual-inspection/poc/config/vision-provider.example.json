@@ -1,0 +1,8 @@
+{
+  "provider": "qwen",
+  "model_env": "VISION_MODEL",
+  "endpoint_env": "VISION_ENDPOINT",
+  "api_key_env": "DASHSCOPE_API_KEY",
+  "prompt": "../prompts/vision-recognition.v1.md",
+  "adapter": "qwen-vision-adapter"
+}

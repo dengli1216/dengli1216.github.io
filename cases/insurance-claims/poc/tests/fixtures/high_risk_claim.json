@@ -1,0 +1,45 @@
+{
+  "schema_version": "insurance-claim-input/1.0.0",
+  "data_classification": "SIMULATED",
+  "request_id": "REQ-HIGH-001",
+  "claim_id": "CLM-HIGH-001",
+  "policy": {
+    "policy_id": "POL-HIGH-001",
+    "effective_date": "2026-06-01",
+    "expiry_date": "2027-05-31",
+    "coverage_type": "COMPREHENSIVE_MOTOR",
+    "coverage_limit": 100000,
+    "deductible": 2000
+  },
+  "customer": {
+    "customer_id": "CUS-HIGH-001",
+    "previous_claim_count": 3
+  },
+  "claim": {
+    "claim_date": "2026-06-13",
+    "accident_date": "2026-06-12",
+    "claim_amount": 90000,
+    "accident_type": "TOTAL_LOSS_COLLISION",
+    "accident_description": "夜间单车事故，申报车辆严重损毁。"
+  },
+  "claim_history": [
+    {
+      "claim_id": "CLM-HIST-201",
+      "claim_date": "2026-03-20",
+      "claim_amount": 26000,
+      "status": "PAID"
+    },
+    {
+      "claim_id": "CLM-HIST-202",
+      "claim_date": "2026-05-05",
+      "claim_amount": 31000,
+      "status": "UNDER_REVIEW"
+    }
+  ],
+  "evidence": {
+    "documents_complete": true,
+    "missing_documents": [],
+    "repair_quote": 40000,
+    "history_description_consistent": false
+  }
+}

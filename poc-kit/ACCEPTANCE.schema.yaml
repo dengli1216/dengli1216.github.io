@@ -1,0 +1,38 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: POC Acceptance Schema
+type: object
+required:
+  - schema_version
+  - case_id
+  - case_type
+  - profile
+  - decision
+  - checks
+properties:
+  schema_version:
+    type: string
+  case_id:
+    type: string
+  case_type:
+    type: string
+    enum: [poc, agent, rag, fullstack, demo]
+  profile:
+    type: string
+  decision:
+    type: string
+    enum: [pass, conditional_pass, fail, pending]
+  checks:
+    type: array
+    items:
+      type: object
+      required: [id, status, evidence]
+      properties:
+        id: {type: string}
+        status:
+          type: string
+          enum: [pass, fail, pending, not_applicable]
+        evidence: {type: string}
+        notes: {type: string}
+  unresolved_risks:
+    type: array
+    items: {type: string}

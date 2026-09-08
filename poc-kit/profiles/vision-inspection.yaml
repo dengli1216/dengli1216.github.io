@@ -1,0 +1,48 @@
+profile:
+  id: vision-inspection
+  name: Industrial Vision Inspection
+  applies_to: 静态设备或仪表图片的读数/状态识别、规则判断与人工复核辅助 POC
+stage_focus:
+  S1:
+    - 明确设备状态/读数规则、误报/漏报业务代价和人工复核职责。
+  S2:
+    - 确认静态图像来源、设备标识、规则上下文、标注状态与使用边界。
+    - 浏览器摄像头、实时视频流和边缘设备不是本 Profile 的前置依赖。
+  S3:
+    - 流程至少可表达 image -> recognition -> rule -> anomaly/confidence -> review -> action suggestion。
+  S4:
+    - Golden Set 至少覆盖 normal、abnormal、unreadable、ambiguous、missing_context。
+    - 每个样例需声明来源与 expected schema；placeholder 不得冒充模型结果。
+  S5:
+    - 评估需区分读数/状态能力、异常召回、误报、人工复核和流程可用性。
+inputs:
+  - image
+  - equipment_id
+  - inspection_rule
+outputs:
+  - reading_or_state
+  - anomaly
+  - confidence
+  - review_required
+  - recommended_action
+profile_metrics:
+  verified_candidate:
+    - workflow_success
+    - schema_compliance
+    - critical_case_accuracy
+    - p50_latency
+    - p95_latency
+    - repeatability
+    - reading_accuracy
+    - anomaly_recall
+    - false_positive_rate
+    - human_review_rate
+  pending_by_default:
+    - threshold: TBD
+    - baseline: baseline_required
+critical_tests:
+  - normal、abnormal、unreadable、ambiguous、missing_context 都必须有明确预期处理。
+  - 无标注集或未执行运行记录不得声明读数准确率、异常召回或误报率。
+  - unreadable、ambiguous、missing_context 必须触发人工复核，不得给出确定性自动处置。
+  - 高风险漏检场景必须定义人工复核或抽检策略。
+  - 输出需能定位到原始图片样例、设备标识与规则版本。

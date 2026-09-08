@@ -1,0 +1,26 @@
+profile:
+  id: document-decision
+  name: Document Decision
+  applies_to: 文档理解、条款抽取、风险判断、人工复核建议类 POC
+stage_focus:
+  S1:
+    - 决策建议必须说明业务含义与人工责任边界。
+  S3:
+    - 流程需包含文档输入、结构化抽取、规则/风险分析、报告生成。
+  S4:
+    - Golden Set 至少包含输入文档、响应材料和期望输出样例。
+  S5:
+    - 区分结构化输出有效性、证据可追溯性和结论准确性。
+profile_metrics:
+  verified_candidate:
+    - output_schema_validity
+    - evidence_traceability
+    - manual_review_queue_presence
+  pending_by_default:
+    - extraction_accuracy
+    - decision_precision
+    - reviewer_time_saved
+critical_tests:
+  - 缺失证据不得判定满足。
+  - 高风险/合规/金额/日期类结论必须进入人工复核。
+  - 输出必须能回溯到输入文本或样例文件。

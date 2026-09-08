@@ -1,47 +1,122 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="面向业务场景的 AI 应用案例作品集。" />
-    <title>AI 应用案例作品集</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="site-glow glow-one"></div><div class="site-glow glow-two"></div>
-    <header class="site-header container">
-      <a class="brand" href="./" aria-label="AI 应用案例作品集首页"><span class="brand-mark">AI</span><span data-i18n="brand">应用案例作品集</span></a>
-      <nav aria-label="主导航" data-language-nav><a href="#cases" data-i18n="nav.cases">案例</a><a href="#approach" data-i18n="nav.approach">定位</a><a href="https://github.com/dengli1216/dengli1216.github.io" target="_blank" rel="noreferrer" data-i18n="nav.github">代码仓库 ↗</a></nav>
-    </header>
-    <main>
-      <section class="hero container" aria-labelledby="hero-title">
-        <p class="eyebrow" data-i18n="hero.eyebrow">面向真实业务场景的 AI 解决方案与应用案例</p>
-        <h1 id="hero-title" data-i18n="hero.title">AI 应用案例作品集</h1>
-        <p class="hero-lead" data-i18n="hero.lead">从业务需求出发，设计并验证可落地的 AI 解决方案。</p>
-        <p class="hero-cn" data-i18n="hero.copy">聚焦需求分析、工作流设计、RAG / Agent 应用、POC 验证与业务价值评估，展示 AI 能力如何转化为可体验、可验证、可实施的业务应用。</p>
-        <div class="hero-actions"><a class="button button-primary" href="#cases" data-i18n="hero.cases">查看案例 ↓</a><a class="button button-quiet" href="#approach" data-i18n="hero.approach">作品集定位</a></div>
-        <div class="signal-map" aria-hidden="true"><span></span><span></span><span></span><i></i><b></b></div>
-      </section>
-      <section class="container section category-section" aria-labelledby="categories-title">
-        <div class="section-heading"><p class="eyebrow" data-i18n="categories.eyebrow">能力地图</p><h2 id="categories-title" data-i18n="categories.title">四类可落地的 AI 方向。</h2></div>
-        <div class="category-grid">
-          <article class="category"><span class="category-no">01</span><h3 data-i18n="cat.1.title">行业解决方案</h3><p data-i18n="cat.1.copy">围绕保险、教育、销售与售前等真实业务，设计可验证的 AI 应用原型。</p><span data-i18n="cat.1.tags">保险 · 教育 · 销售</span></article>
-          <article class="category"><span class="category-no">02</span><h3 data-i18n="cat.2.title">RAG 知识库</h3><p data-i18n="cat.2.copy">覆盖文档上传、内容切分、检索问答、引用溯源及知识库界面的完整体验设计。</p><span data-i18n="cat.2.tags">知识库问答界面</span></article>
-          <article class="category"><span class="category-no">03</span><h3 data-i18n="cat.3.title">AI 智能体工作流</h3><p data-i18n="cat.3.copy">展示任务拆解、工具调用、流程编排、状态流转与执行链路可视化。</p><span data-i18n="cat.3.tags">智能体工作流可视化</span></article>
-          <article class="category"><span class="category-no">04</span><h3 data-i18n="cat.4.title">AI 视觉交互</h3><p data-i18n="cat.4.copy">MediaPipe、摄像头、Canvas 与 WebGL 驱动的手势、姿态及无接触交互原型。</p><span data-i18n="cat.4.tags">手势导购 · 工业产品交互</span></article>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="从真实业务问题出发，设计、验证并推动可落地的 AI 解决方案。" />
+  <title>AI 解决方案作品集</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="top">
+  <header class="site-header container"><a class="brand" href="./" aria-label="AI 解决方案作品集首页"><span
+        class="brand-mark">AI</span><span data-i18n="brand">解决方案作品集</span></a>
+    <nav aria-label="主导航" data-language-nav><a href="#featured-cases" data-i18n="nav.cases">旗舰案例</a><a
+        href="#validation" data-i18n="nav.validation">验证证据</a><a href="#ai-playbook" data-i18n="nav.playbook">落地手册</a><a
+        href="https://github.com/dengli1216/dengli1216.github.io" target="_blank" rel="noreferrer"
+        data-i18n="nav.github">代码仓库 ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <p class="eyebrow" data-i18n="hero.eyebrow">BUSINESS-FIRST APPLIED AI</p>
+      <h1 id="hero-title" data-i18n="hero.title">AI 解决方案作品集</h1>
+      <p class="hero-lead" data-i18n="hero.lead">从真实业务问题出发，设计、验证并推动可落地的 AI 解决方案。</p>
+      <p class="hero-copy" data-i18n="hero.copy">聚焦业务需求分析、方案设计、POC 验证、RAG / Agent / VLM 应用与生产化判断。</p>
+      <p class="hero-delivery" data-i18n="hero.delivery">从业务需求、方案设计，到 POC 验证与商务交付。</p>
+      <div class="hero-actions"><a class="button button-primary" href="#featured-cases"
+          data-i18n="hero.featured">查看旗舰案例</a><a class="button" href="#ai-playbook"
+          data-i18n="hero.playbook">查看解决方案手册</a><a class="button button-text" href="#validation"
+          data-i18n="hero.validation">查看 POC 验证结果 →</a></div>
+    </section>
+    <section id="featured-cases" class="container section featured-section" aria-labelledby="featured-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="featured.eyebrow">FEATURED CASES</p>
+        <h2 id="featured-title" data-i18n="featured.title">旗舰商业案例</h2>
+        <p data-i18n="featured.copy">优先展示已验证、业务价值高、能够证明完整 AI 解决方案能力的案例。</p>
+      </div>
+      <div id="featured-grid" class="featured-grid" aria-live="polite"></div>
+    </section>
+    <section id="validation" class="container section" aria-labelledby="validation-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="validation.eyebrow">VALIDATION EVIDENCE</p>
+        <h2 id="validation-title" data-i18n="validation.title">POC 验证与工程证据</h2>
+        <p data-i18n="validation.copy">以下均来自案例已有的 POC 文档、测试集或评估报告；不将合成数据外推为生产结果。</p>
+      </div>
+      <div id="evidence-grid" class="evidence-grid" aria-live="polite"></div>
+    </section>
+    <section id="ai-playbook" class="container section playbook-section" aria-labelledby="playbook-title">
+      <div class="playbook-layout">
+        <div class="playbook-samples-wrap">
+          <div id="playbook-samples" class="playbook-samples" aria-live="polite"></div>
         </div>
-      </section>
-      <section id="cases" class="container section case-section" aria-labelledby="cases-title">
-        <div class="section-heading section-heading-row"><div><p class="eyebrow" data-i18n="cases.eyebrow">精选案例</p><h2 id="cases-title" data-i18n="cases.title">从技术能力到业务价值。</h2></div><p data-i18n="cases.copy">每个案例均从场景、体验、技术实现与商业价值四个维度组织。</p></div>
-        <div id="case-grid" class="case-grid" aria-live="polite"></div>
-      </section>
-      <section id="approach" class="container section approach" aria-labelledby="approach-title">
-        <div><p class="eyebrow" data-i18n="approach.eyebrow">作品集定位</p><h2 id="approach-title" data-i18n="approach.title">从业务需求，到 AI 解决方案落地</h2></div>
-        <div class="approach-copy"><p data-i18n="approach.copy">聚焦真实业务场景，将需求分析、AI 能力设计、工作流、POC 验证与业务价值评估串联成完整解决方案，并探索全流程落地应用。</p><ul><li data-i18n="approach.1">业务理解：识别值得 AI 介入的核心问题、业务目标与关键约束</li><li data-i18n="approach.2">方案设计：将模型能力嵌入真实业务流程，设计人机协作、系统边界与输入输出链路</li><li data-i18n="approach.3">POC验证：通过工作流、测试数据与关键指标验证技术及业务可行性</li><li data-i18n="approach.4">应用落地：围绕 RAG、Agent、API 与业务系统集成，设计可实现的技术架构、调用链路与工程方案</li><li data-i18n="approach.5">价值评估：从效率、质量、风险、成本与 ROI 判断方案的投入价值</li></ul></div>
-      </section>
-    </main>
-    <footer class="container site-footer"><span>© <span id="year"></span> <span data-i18n="footer">AI 应用案例作品集</span></span><a href="#top" data-i18n="backTop">返回顶部 ↑</a></footer>
-    <script src="i18n.js"></script><script src="main.js?v=case-interaction-i18n-1"></script>
-  </body>
+        <div class="playbook-content">
+          <div class="playbook-title-row">
+            <p class="eyebrow" data-i18n="playbook.eyebrow">售前交付资产</p><span class="delivery-status"
+              data-i18n="playbook.status">售前交付模板 · 已完成</span>
+          </div>
+          <h2 id="playbook-title" data-i18n="playbook.title">企业 AI 落地解决方案手册</h2>
+          <p class="playbook-lead" data-i18n="playbook.lead">将业务问题、AI 方案、POC 验证、ROI 与落地路径，整理为可直接用于客户沟通和方案汇报的标准化售前资产。</p>
+          <!-- <p class="playbook-copy" data-i18n="playbook.copy">面向企业老板、业务负责人和数字化负责人，将复杂 AI 技术转换为业务可理解、可评估、可推进的解决方案文档。</p> -->
+          <ul id="playbook-tags" class="playbook-tags"></ul>
+          <p class="playbook-value" data-i18n="playbook.value">一套可快速复用的企业 AI 售前方案手册模板。</p>
+          <ul id="playbook-points" class="playbook-points"></ul>
+          <div class="playbook-use"><span data-i18n="playbook.use">适用于</span>
+            <ul id="playbook-scenarios"></ul>
+          </div><button id="open-playbook-modal" class="button button-primary" type="button"
+            data-i18n="playbook.action">查看手册样张</button>
+          <p class="playbook-config"><strong data-i18n="playbook.config.label">可配置：</strong><span
+              data-i18n="playbook.config">企业品牌 · 行业场景 · AI 模块 · POC 指标 · ROI</span></p>
+        </div>
+      </div>
+    </section>
+    <section id="more-solutions" class="container section" aria-labelledby="more-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="more.eyebrow">MORE SOLUTIONS</p>
+        <h2 id="more-title" data-i18n="more.title">更多解决方案与案例</h2>
+        <p data-i18n="more.copy">建设中的高价值方向，与已开发的补充案例并列呈现。</p>
+      </div>
+      <div id="more-grid" class="more-grid" aria-live="polite"></div>
+    </section>
+    <section class="container section" aria-labelledby="capabilities-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="capabilities.eyebrow">SOLUTION CAPABILITIES</p>
+        <h2 id="capabilities-title" data-i18n="capabilities.title">AI 解决方案能力</h2>
+      </div>
+      <ol id="capabilities-grid" class="capabilities-grid"></ol>
+    </section>
+    <section id="production" class="container section" aria-labelledby="production-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="production.eyebrow">FROM POC TO PRODUCTION</p>
+        <h2 id="production-title" data-i18n="production.title">从 POC 到生产落地</h2>
+        <p data-i18n="production.copy">用可验证的阶段边界管理从概念验证到生产化的决策。</p>
+      </div>
+      <ol id="production-path" class="production-path"></ol>
+    </section>
+    <section id="positioning" class="container section positioning" aria-labelledby="positioning-title">
+      <div>
+        <p class="eyebrow" data-i18n="positioning.eyebrow">POSITIONING</p>
+        <h2 id="positioning-title" data-i18n="positioning.title">作品集定位</h2>
+      </div>
+      <p data-i18n="positioning.copy">从业务问题出发，设计 AI 解决方案，以 POC 验证关键假设，并连接工程集成与商业价值评估。</p>
+    </section>
+  </main>
+  <footer class="container site-footer"><span>© <span id="year"></span> <span data-i18n="footer">AI
+        解决方案作品集</span></span><a href="#top" data-i18n="backTop">返回顶部 ↑</a></footer>
+  <dialog id="playbook-modal" class="playbook-modal" aria-labelledby="playbook-modal-title">
+    <div class="modal-toolbar">
+      <p id="playbook-modal-title" data-i18n="playbook.modal.title">手册样张预览</p><button id="close-playbook-modal"
+        type="button" data-i18n-aria-label="playbook.modal.close" aria-label="关闭预览">×</button>
+    </div>
+    <div class="modal-stage"><button id="playbook-prev" class="modal-nav" type="button"
+        data-i18n-aria-label="playbook.modal.prev" aria-label="上一张">←</button><img id="playbook-modal-image"
+        alt="企业 AI 落地解决方案手册样张" /><button id="playbook-next" class="modal-nav" type="button"
+        data-i18n-aria-label="playbook.modal.next" aria-label="下一张">→</button></div>
+    <p id="playbook-modal-caption" class="modal-caption"></p>
+  </dialog>
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

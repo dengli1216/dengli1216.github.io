@@ -1,0 +1,1795 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-07T06:21:28.282721+00:00",
+  "evaluation_scope": "LOCAL_DETERMINISTIC_WORKFLOW_REGRESSION",
+  "data_classification": "SIMULATED",
+  "workflow_sha256": "acc921993e3e52e752d11b74157458096f69e6b03a8f3ebc3f980dc564660ec3",
+  "status": "PASS",
+  "summary": {
+    "executable_cases": 28,
+    "static_checks": 1,
+    "critical_cases": 6,
+    "workflow_success_rate": 1.0,
+    "schema_pass_rate": 1.0,
+    "routing_accuracy": 1.0,
+    "critical_consistency_rate": 1.0,
+    "safety_gate_pass_rate": 1.0,
+    "fallback_checks_passed": 2,
+    "failure_count": 0,
+    "p50_latency_ms": 0.129,
+    "p95_latency_ms": 0.439
+  },
+  "cases": [
+    {
+      "id": "G01",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 0,
+        "signals": [],
+        "route": "FAST_TRACK_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 0,
+        "signals": [],
+        "route": "FAST_TRACK_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-1614A8482039EF0663DC",
+      "latency_ms": 0.439,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "LOW",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "FAST_TRACK_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G02",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 0,
+        "signals": [],
+        "route": "FAST_TRACK_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 0,
+        "signals": [],
+        "route": "FAST_TRACK_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-986F53121E50725985BD",
+      "latency_ms": 0.204,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "LOW",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "FAST_TRACK_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G03",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 10,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY"
+        ],
+        "route": "FAST_TRACK_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 10,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY"
+        ],
+        "route": "FAST_TRACK_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-E86ED48871510408C451",
+      "latency_ms": 0.226,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "LOW",
+        "risk_score": 10,
+        "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\"]",
+        "recommended_route": "FAST_TRACK_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G04",
+      "group": "boundary",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 15,
+        "signals": [
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FAST_TRACK_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "LOW",
+        "score": 15,
+        "signals": [
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FAST_TRACK_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-E233EFAC34EC7492ACF9",
+      "latency_ms": 0.153,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "LOW",
+        "risk_score": 15,
+        "fraud_signals_json": "[\"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "FAST_TRACK_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G05",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 25,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 25,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-AB549A9FF68093656B28",
+      "latency_ms": 0.139,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 25,
+        "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G06",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 30,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 30,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-745A30EEFD3E0D5CEDE9",
+      "latency_ms": 0.128,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 30,
+        "fraud_signals_json": "[\"HISTORY_DESCRIPTION_CONTRADICTION\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G07",
+      "group": "boundary",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 55,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 55,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-05EEFB55216039F9C942",
+      "latency_ms": 0.127,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 55,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G08",
+      "group": "boundary",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 25,
+        "signals": [
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 25,
+        "signals": [
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-93CF79E97854FDFF42C7",
+      "latency_ms": 0.121,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 25,
+        "fraud_signals_json": "[\"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G09",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 50,
+        "signals": [
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 50,
+        "signals": [
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-F46CC7541178B072C4A6",
+      "latency_ms": 0.123,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 50,
+        "fraud_signals_json": "[\"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G10",
+      "group": "boundary",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 55,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 55,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-6F54DFB29EEAC5FD7E94",
+      "latency_ms": 0.122,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 55,
+        "fraud_signals_json": "[\"HISTORY_DESCRIPTION_CONTRADICTION\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G11",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 65,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "PRIOR_CLAIM_ACTIVITY",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 65,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "PRIOR_CLAIM_ACTIVITY",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-D3FA5F345048216B25FF",
+      "latency_ms": 0.129,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 65,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G12",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 65,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 65,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-037B1E451DE58617CE60",
+      "latency_ms": 0.12,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 65,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G13",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 100,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "SHORT_TERM_REPEAT_CLAIMS",
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 100,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "SHORT_TERM_REPEAT_CLAIMS",
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-A0980943FE293ED6BBB0",
+      "latency_ms": 0.32,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 100,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"SHORT_TERM_REPEAT_CLAIMS\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G14",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 30,
+        "signals": [
+          "SHORT_TERM_REPEAT_CLAIMS"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 30,
+        "signals": [
+          "SHORT_TERM_REPEAT_CLAIMS"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-734F74105203C39E166C",
+      "latency_ms": 0.129,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 30,
+        "fraud_signals_json": "[\"SHORT_TERM_REPEAT_CLAIMS\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G15",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 45,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 45,
+        "signals": [
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-9DC91E008D353344EA0A",
+      "latency_ms": 0.121,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 45,
+        "fraud_signals_json": "[\"HISTORY_DESCRIPTION_CONTRADICTION\", \"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G16",
+      "group": "normal",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 35,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "MEDIUM",
+        "score": 35,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "ADJUSTER_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-4174DE1A3077DB9F3679",
+      "latency_ms": 0.119,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "MEDIUM",
+        "risk_score": 35,
+        "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "ADJUSTER_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G17",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-5EC6293A923F0C8DCFEC",
+      "latency_ms": 0.048,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G18",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-D72BA45B90BABDA472C1",
+      "latency_ms": 0.271,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G19",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-16DC10F68EDB723931FE",
+      "latency_ms": 0.14,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G20",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-684001015DBA7C21F33B",
+      "latency_ms": 0.358,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G21",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-2A0092813094DE97E043",
+      "latency_ms": 0.702,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G22",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-26B6C1DC460BDDD7FE5A",
+      "latency_ms": 0.128,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G23",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-FAECA2F049DEC0850156",
+      "latency_ms": 0.118,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G24",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-12B254D695AFFF4EDB1C",
+      "latency_ms": 0.116,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G25",
+      "group": "safety",
+      "critical": false,
+      "status": "PASS",
+      "actual": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "INVALID",
+        "level": "UNDETERMINED",
+        "score": 0,
+        "signals": [],
+        "route": "MANUAL_REVIEW"
+      },
+      "failures": [],
+      "decision_id": "DEC-46F29907D84A3B12B913",
+      "latency_ms": 0.113,
+      "deterministic": {
+        "validation_status": "INVALID",
+        "risk_level": "UNDETERMINED",
+        "risk_score": 0,
+        "fraud_signals_json": "[]",
+        "recommended_route": "MANUAL_REVIEW",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G26",
+      "group": "boundary",
+      "static": true,
+      "status": "PASS",
+      "detail": "score=20 unreachable under current signal point lattice"
+    },
+    {
+      "id": "G27",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 75,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "PRIOR_CLAIM_ACTIVITY",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 75,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "PRIOR_CLAIM_ACTIVITY",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-89FCBCC462967E248581",
+      "latency_ms": 0.142,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 75,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G28",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 85,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 85,
+        "signals": [
+          "EARLY_HIGH_VALUE_CLAIM",
+          "HISTORY_DESCRIPTION_CONTRADICTION",
+          "ELEVATED_CLAIM_AMOUNT"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-BC23B2988A722EBF3CAF",
+      "latency_ms": 0.13,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 85,
+        "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"ELEVATED_CLAIM_AMOUNT\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    },
+    {
+      "id": "G29",
+      "group": "critical",
+      "critical": true,
+      "status": "PASS",
+      "actual": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 60,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION",
+        "humanReview": true
+      },
+      "expected": {
+        "status": "VALID",
+        "level": "HIGH",
+        "score": 60,
+        "signals": [
+          "PRIOR_CLAIM_ACTIVITY",
+          "AMOUNT_QUOTE_MISMATCH",
+          "HIGH_CLAIM_TO_LIMIT_RATIO"
+        ],
+        "route": "FRAUD_INVESTIGATION"
+      },
+      "failures": [],
+      "decision_id": "DEC-76A0B47E88EFA5ABD752",
+      "latency_ms": 0.13,
+      "deterministic": {
+        "validation_status": "VALID",
+        "risk_level": "HIGH",
+        "risk_score": 60,
+        "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+        "recommended_route": "FRAUD_INVESTIGATION",
+        "human_review_required": true
+      }
+    }
+  ],
+  "critical_repeats": {
+    "G11": [
+      {
+        "id": "G11",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-D3FA5F345048216B25FF",
+        "latency_ms": 0.127,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G11",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-D3FA5F345048216B25FF",
+        "latency_ms": 0.124,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G11",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-D3FA5F345048216B25FF",
+        "latency_ms": 0.12,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ],
+    "G12": [
+      {
+        "id": "G12",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-037B1E451DE58617CE60",
+        "latency_ms": 0.12,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G12",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-037B1E451DE58617CE60",
+        "latency_ms": 0.116,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G12",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 65,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-037B1E451DE58617CE60",
+        "latency_ms": 0.144,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 65,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ],
+    "G13": [
+      {
+        "id": "G13",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-A0980943FE293ED6BBB0",
+        "latency_ms": 0.179,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 100,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"SHORT_TERM_REPEAT_CLAIMS\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G13",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-A0980943FE293ED6BBB0",
+        "latency_ms": 0.151,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 100,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"SHORT_TERM_REPEAT_CLAIMS\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G13",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 100,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "SHORT_TERM_REPEAT_CLAIMS",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-A0980943FE293ED6BBB0",
+        "latency_ms": 0.145,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 100,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"SHORT_TERM_REPEAT_CLAIMS\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ],
+    "G27": [
+      {
+        "id": "G27",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-89FCBCC462967E248581",
+        "latency_ms": 0.13,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 75,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G27",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-89FCBCC462967E248581",
+        "latency_ms": 0.122,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 75,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G27",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 75,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "PRIOR_CLAIM_ACTIVITY",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-89FCBCC462967E248581",
+        "latency_ms": 0.121,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 75,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"PRIOR_CLAIM_ACTIVITY\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ],
+    "G28": [
+      {
+        "id": "G28",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-BC23B2988A722EBF3CAF",
+        "latency_ms": 0.119,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 85,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G28",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-BC23B2988A722EBF3CAF",
+        "latency_ms": 0.12,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 85,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G28",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 85,
+          "signals": [
+            "EARLY_HIGH_VALUE_CLAIM",
+            "HISTORY_DESCRIPTION_CONTRADICTION",
+            "ELEVATED_CLAIM_AMOUNT"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-BC23B2988A722EBF3CAF",
+        "latency_ms": 0.117,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 85,
+          "fraud_signals_json": "[\"EARLY_HIGH_VALUE_CLAIM\", \"HISTORY_DESCRIPTION_CONTRADICTION\", \"ELEVATED_CLAIM_AMOUNT\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ],
+    "G29": [
+      {
+        "id": "G29",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-76A0B47E88EFA5ABD752",
+        "latency_ms": 0.118,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 60,
+          "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G29",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-76A0B47E88EFA5ABD752",
+        "latency_ms": 0.117,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 60,
+          "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      },
+      {
+        "id": "G29",
+        "group": "critical",
+        "critical": true,
+        "status": "PASS",
+        "actual": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION",
+          "humanReview": true
+        },
+        "expected": {
+          "status": "VALID",
+          "level": "HIGH",
+          "score": 60,
+          "signals": [
+            "PRIOR_CLAIM_ACTIVITY",
+            "AMOUNT_QUOTE_MISMATCH",
+            "HIGH_CLAIM_TO_LIMIT_RATIO"
+          ],
+          "route": "FRAUD_INVESTIGATION"
+        },
+        "failures": [],
+        "decision_id": "DEC-76A0B47E88EFA5ABD752",
+        "latency_ms": 0.115,
+        "deterministic": {
+          "validation_status": "VALID",
+          "risk_level": "HIGH",
+          "risk_score": 60,
+          "fraud_signals_json": "[\"PRIOR_CLAIM_ACTIVITY\", \"AMOUNT_QUOTE_MISMATCH\", \"HIGH_CLAIM_TO_LIMIT_RATIO\"]",
+          "recommended_route": "FRAUD_INVESTIGATION",
+          "human_review_required": true
+        }
+      }
+    ]
+  },
+  "safety_checks": [
+    {
+      "id": "LLM-CONTRACT-VALID",
+      "status": "PASS"
+    },
+    {
+      "id": "LLM-TAMPER-BLOCKED",
+      "status": "PASS"
+    },
+    {
+      "id": "LLM_EXECUTION_FALLBACK",
+      "status": "PASS"
+    },
+    {
+      "id": "LLM_OUTPUT_FALLBACK",
+      "status": "PASS"
+    }
+  ],
+  "online_dify_run": {
+    "status": "NOT_RUN",
+    "reason": "No verified Dify staging endpoint or API credential provided."
+  }
+}

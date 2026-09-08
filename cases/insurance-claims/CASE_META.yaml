@@ -1,0 +1,6 @@
+case:
+  id: insurance-claims
+  name: AI 保险理赔智能助手
+  type: poc
+  profile: document-decision
+  sop: ../../poc-kit/POC_SOP.md

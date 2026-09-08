@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="面向存量工业设备的非侵入式 AI 视觉巡检 POC：多模态视觉理解、不确定性分流与人工复核。">
+    <title>工业视觉巡检 POC · AI Solution Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#case">跳至案例正文</a>
+    <header class="site-header">
+      <a class="brand" href="../../index.html" aria-label="返回 AI 案例作品集">DengLi / AI CASES</a>
+      <nav aria-label="案例导航">
+        <a href="#workflow">Workflow</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#limits">Limitations</a>
+      </nav>
+    </header>
+
+    <main id="case">
+      <section class="hero shell" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">INDUSTRIAL VISUAL INSPECTION · POC_VALIDATED</p>
+          <h1 id="page-title">面向存量工业设备的非侵入式 AI 视觉巡检 POC</h1>
+          <p class="lead">不改造设备，通过巡检图像和设备元数据完成视觉理解、规则判断与人审分流；不确定时主动停止自动判断。</p>
+          <div class="hero-points" aria-label="方案定位">
+            <span>无需改造设备</span>
+            <span>多模态视觉理解</span>
+            <span>不确定时人工复核</span>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img src="poc/data/golden/contact-sheet.jpg" width="1600" height="1000" alt="工业视觉巡检 POC 的 12 张合成测试图拼图。">
+          <figcaption>synthetic_generated POC 集</figcaption>
+        </figure>
+      </section>
+
+      <section class="section shell quick-read" aria-labelledby="quick-title">
+        <header class="section-heading">
+          <div><p class="section-number">00 / 30 秒看懂</p><h2 id="quick-title">AI 的价值不是“自动读表”，而是可控地分流风险。</h2></div>
+          <p>VLM 提取视觉观察，规则引擎做确定性判断；高风险、不确定、目标不匹配的样本进入人工复核。</p>
+        </header>
+        <div class="quick-grid">
+          <article><span>业务问题</span><strong>巡检图片复杂且目标不稳定</strong><p>同一画面可能有仪表、状态灯、铭牌、反光和遮挡。</p></article>
+          <article><span>AI 价值</span><strong>先理解，再分流</strong><p>读取可见状态，识别不确定性，避免把不可靠读数直接变成业务结论。</p></article>
+          <article><span>POC 结果</span><strong>POC_VALIDATED</strong><p>Pipeline、schema、review gate 和安全 abstention 已完成验证。</p></article>
+        </div>
+      </section>
+
+      <section id="workflow" class="section architecture" aria-labelledby="workflow-title">
+        <div class="shell">
+          <header class="section-heading inverse">
+            <div><p class="section-number">01 / SOLUTION WORKFLOW</p><h2 id="workflow-title">五段式受控判断链路</h2></div>
+            <p>模型负责语义观察，规则负责业务判断，人工负责高风险确认。</p>
+          </header>
+          <div class="flow" aria-label="工业视觉巡检工作流">
+            <article><span>01</span><strong>Image + Metadata</strong><p>巡检图片、设备 ID、目标和规则上下文。</p></article>
+            <b aria-hidden="true">→</b>
+            <article><span>02</span><strong>Gemini VLM</strong><p>目标/场景理解、reading/state、uncertainty。</p></article>
+            <b aria-hidden="true">→</b>
+            <article class="flow-gate"><span>03</span><strong>Uncertainty Gate</strong><p>多目标、低光、规则不匹配时 abstain。</p></article>
+            <b aria-hidden="true">→</b>
+            <article><span>04</span><strong>Rule Engine</strong><p>确定性阈值、异常和建议动作。</p></article>
+            <b aria-hidden="true">→</b>
+            <article><span>05</span><strong>Human Review</strong><p>复核异常、不确定和关键样本。</p></article>
+          </div>
+          <div class="role-grid">
+            <article><h3>VLM</h3><p>识别目标、可读性、读数/状态和 uncertainty；不直接拥有最终业务授权。</p></article>
+            <article><h3>Rule Engine</h3><p>把视觉观察与巡检规则匹配，输出 anomaly、review_required 和 action。</p></article>
+            <article><h3>Human Review</h3><p>处理高风险、目标歧义、规则不匹配和现场复核。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell poc-design" aria-labelledby="design-title">
+        <header class="section-heading">
+          <div><p class="section-number">02 / POC DESIGN</p><h2 id="design-title">用小样本验证决策链</h2></div>
+          <p>12 张合成图覆盖 模拟仪表、数字显示、控制面板/状态、低光、反光、遮挡和多目标。</p>
+        </header>
+        <div class="design-grid">
+          <div><span>Golden Set</span><strong>12 synthetic images</strong><p>Ground Truth 已完成人工审查，confirmed=3，corrected=9，pending=0。</p></div>
+          <div><span>固定资产</span><strong>Prompt / Rules / Schema frozen</strong><p>最终回归未修改 Golden、manifest、business rules 或 Prompt。</p></div>
+          <div><span>评估目标</span><strong>稳定性 + 安全分流</strong><p>重点检查 schema、review gate、uncertainty、unsafe guess 和关键样本。</p></div>
+        </div>
+      </section>
+
+      <section id="evidence" class="section evidence" aria-labelledby="evidence-title">
+        <div class="shell">
+          <header class="section-heading">
+            <div><p class="section-number">03 / FINAL EVIDENCE</p><h2 id="evidence-title">公开 KPI：稳定链路优先于漂亮准确率。</h2></div>
+            <p>指标来自 `portfolio-evidence.json` 与最终 POC 报告。</p>
+          </header>
+          <div id="kpi-grid" class="kpi-grid" aria-live="polite"></div>
+          <p id="evidence-caption" class="evidence-caption">正在读取公开 evidence…</p>
+        </div>
+      </section>
+
+      <section class="section shell model-challenge" aria-labelledby="model-title">
+        <header class="section-heading">
+          <div><p class="section-number">04 / MODEL CHALLENGE</p><h2 id="model-title">选择 Gemini，不是因为它“全胜”，而是更适合安全巡检路由。</h2></div>
+          <p>Qwen 与 Gemini 的比较重点是 uncertainty、abstention 和 unsafe guess。</p>
+        </header>
+        <div class="challenge-grid">
+          <article><span>Qwen v3 targeted</span><strong>unsafe guess 4</strong><p>reading 6/12，critical 3/10，uncertainty 6/12。</p></article>
+          <article class="selected"><span>Gemini 3.7 Flash targeted</span><strong>correct abstention 6</strong><p>reading 8/12，unsafe guess 1，uncertainty 10/12。</p></article>
+          <article><span>最终取舍</span><strong>Semantic VLM</strong><p>Gemini 作为语义视觉模型；业务结论仍由 Rule Engine 和人审门控约束。</p></article>
+        </div>
+      </section>
+
+      <section class="section decision" aria-labelledby="decision-title">
+        <div class="shell">
+          <header class="section-heading inverse">
+            <div><p class="section-number">05 / ARCHITECTURE DECISION</p><h2 id="decision-title">冻结默认路径，暂不接入未证明模块。</h2></div>
+            <p>ROI/OCR/Analog reader 有研究价值，但当前不进入 POC 默认架构。</p>
+          </header>
+          <div class="decision-columns">
+            <article><h3>Verified</h3><ul id="verified-list"></ul></article>
+            <article><h3>Not Proven</h3><ul id="not-proven-list"></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="limits" class="section shell limits" aria-labelledby="limits-title">
+        <header class="section-heading">
+          <div><p class="section-number">06 / LIMITATIONS</p><h2 id="limits-title">边界清楚，才适合进入下一阶段。</h2></div>
+          <p>本页不声明生产级准确率，也不把未通过 gate 的 OCR/ROI 能力写成已验证能力。</p>
+        </header>
+        <div class="limit-grid">
+          <article><strong>12 synthetic images</strong><p>当前数据只用于 POC 验证，不能代表现场泛化能力。</p></article>
+          <article><strong>Critical pass 4/10</strong><p>困难样本仍需要人工复核或专用视觉能力。</p></article>
+          <article><strong>Analog precision reading</strong><p>需要 dial/needle/scale 标注和专用 CV 路线。</p></article>
+          <article><strong>Real-site validation</strong><p>需补充光照、角度、污损、遮挡、设备型号和采集规范。</p></article>
+        </div>
+      </section>
+
+      <section class="section shell roadmap" aria-labelledby="roadmap-title">
+        <header class="section-heading">
+          <div><p class="section-number">07 / PRODUCTION ROADMAP</p><h2 id="roadmap-title">生产化下一步只保留三件事。</h2></div>
+        </header>
+        <ol class="roadmap-list">
+          <li><span>01</span><strong>Real-site dataset</strong><p>采集真实巡检图，建立专家复核 Golden Set。</p></li>
+          <li><span>02</span><strong>Specialist reader / calibration where justified</strong><p>只有 direct gate 达标时才接入数字读数器或 analog CV。</p></li>
+          <li><span>03</span><strong>Shadow deployment + human review</strong><p>先影子运行，保留人工审核和安全回归。</p></li>
+        </ol>
+        <footer class="case-footer">
+          <span>工业视觉巡检 POC · AI Solution Portfolio</span>
+          <!-- <a href="poc/reports/poc-final-report.md">查看最终 POC 报告</a> -->
+        </footer>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

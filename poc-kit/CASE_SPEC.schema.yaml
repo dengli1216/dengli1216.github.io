@@ -1,0 +1,84 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Case Spec Schema
+type: object
+required:
+  - schema_version
+  - case
+  - profile
+  - sop_stages
+  - validation
+properties:
+  schema_version:
+    type: string
+  case:
+    type: object
+    required: [id, name, type, directory, business_problem, boundary]
+    properties:
+      id: {type: string}
+      name: {type: string}
+      type:
+        type: string
+        enum: [poc, agent, rag, fullstack, demo]
+      directory: {type: string}
+      business_problem: {type: string}
+      boundary:
+        type: array
+        items: {type: string}
+  profile:
+    type: object
+    required: [id, path]
+    properties:
+      id: {type: string}
+      path: {type: string}
+  assets:
+    type: object
+    properties:
+      inputs:
+        type: array
+        items: {type: string}
+      workflow:
+        type: array
+        items: {type: string}
+      schemas:
+        type: array
+        items: {type: string}
+      outputs:
+        type: array
+        items: {type: string}
+      reports:
+        type: array
+        items: {type: string}
+      golden_set:
+        type: array
+        items: {type: string}
+  sop_stages:
+    type: object
+    additionalProperties:
+      type: object
+      required: [status, evidence]
+      properties:
+        status:
+          type: string
+          enum: [verified, partial, pending, not_applicable]
+        evidence:
+          type: array
+          items: {type: string}
+        notes: {type: string}
+  validation:
+    type: object
+    required: [verified_metrics, assumptions, pending_metrics]
+    properties:
+      verified_metrics:
+        type: array
+        items:
+          type: object
+          required: [name, evidence]
+          properties:
+            name: {type: string}
+            evidence: {type: string}
+      assumptions:
+        type: array
+        items: {type: string}
+      pending_metrics:
+        type: array
+        items: {type: string}

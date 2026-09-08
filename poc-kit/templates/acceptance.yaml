@@ -1,0 +1,11 @@
+schema_version: "0.1"
+case_id: ""
+case_type: poc
+profile: ""
+decision: pending
+checks:
+  - id: case_meta_type_gate
+    status: pending
+    evidence: ""
+    notes: ""
+unresolved_risks: []

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Industrial Visual Inspection Output",
+  "type": "object",
+  "required": [
+    "equipment_id",
+    "inspection_rule_id",
+    "reading_or_state",
+    "anomaly",
+    "confidence",
+    "uncertainty",
+    "target_status",
+    "review_required",
+    "recommended_action",
+    "model_raw"
+  ],
+  "properties": {
+    "equipment_id": {"type": "string", "minLength": 1},
+    "inspection_rule_id": {"type": "string", "minLength": 1},
+    "reading_or_state": {"type": ["string", "number", "null"]},
+    "anomaly": {"type": ["boolean", "null"]},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "uncertainty": {"type": "string", "enum": ["low", "medium", "high"]},
+    "target_status": {"type": "string", "enum": ["identified", "ambiguous", "invalid", "mismatch"]},
+    "review_required": {"type": "boolean"},
+    "recommended_action": {"type": "string", "minLength": 1},
+    "model_raw": {"type": "object"},
+    "evidence_ref": {"type": ["string", "null"]},
+    "reason": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

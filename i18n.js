@@ -3,7 +3,7 @@
   const supported = ["zh", "en"];
   const queryLang = new URLSearchParams(location.search).get("lang");
   let lang = supported.includes(queryLang) ? queryLang : localStorage.getItem(storageKey);
-  if (!supported.includes(lang)) lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "zh";
+  if (!supported.includes(lang)) lang = "zh";
 
   window.translations = window.translations || { zh: {}, en: {} };
   window.portfolioLanguage = () => lang;
@@ -24,6 +24,7 @@
     lang = supported.includes(next) ? next : "zh";
     document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
     document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = window.t(node.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-html]').forEach((node) => { node.innerHTML = window.t(node.dataset.i18nHtml); });
     document.querySelectorAll('[data-i18n-aria-label]').forEach((node) => { node.setAttribute('aria-label', window.t(node.dataset.i18nAriaLabel)); });
     const toggle = document.querySelector('#language-toggle');
     if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';

@@ -1,0 +1,34 @@
+schema_version: "0.4"
+case_id: industrial-visual-inspection
+case_type: poc
+profile: vision-inspection
+decision: conditional_pass
+checks:
+  - id: case_meta_type_gate
+    status: pass
+    evidence: ../../CASE_META.yaml
+    notes: case.type is poc and profile is vision-inspection.
+  - id: golden_set_design
+    status: pass
+    evidence: tests/golden-set.json
+    notes: 12 synthetic_test_fixture cases each bind an image, rule ID and expected output.
+  - id: output_contract
+    status: pass
+    evidence: schemas/inspection-output.schema.json
+    notes: Required decision fields are defined.
+  - id: model_evaluation
+    status: not_applicable
+    evidence: reports/evaluation-summary.json
+    notes: This run uses a fixture/mock adapter. Real vision-model evaluation remains baseline_required.
+  - id: fixture_pipeline_evaluation
+    status: pass
+    evidence: reports/evaluation-summary.json
+    notes: 12/12 executed; Schema 12/12; critical-case pipeline gate 10/10.
+  - id: qwen_real_model_baseline
+    status: pending
+    evidence: ../../../poc-kit/POC_V0.4_PREFLIGHT.md
+    notes: Blocked by missing approved static images and Qwen environment configuration; no request was sent.
+unresolved_risks:
+  - No approved production image source, annotation baseline, or real vision model.
+  - Real reading accuracy, anomaly recall, false positive rate, latency, and repeatability remain baseline_required.
+  - Any anomaly action remains a suggestion subject to human review.

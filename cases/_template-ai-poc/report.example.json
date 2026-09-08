@@ -1,0 +1,12 @@
+{
+  "summary": "POC report readable layer example. Keep engineering evidence in markdown/json/golden set.",
+  "business_problem": "",
+  "poc_scope": "",
+  "architecture": [],
+  "dataset_or_golden_set": "",
+  "evaluation_metrics": [],
+  "verified": [],
+  "limitations": [],
+  "production_recommendation": "",
+  "next_steps": []
+}

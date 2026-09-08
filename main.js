@@ -1,45 +1,499 @@
 window.translations = {
   zh: {
-    brand: '应用案例作品集', 'nav.cases': '案例', 'nav.approach': '定位', 'nav.github': '代码仓库 ↗',
-    'hero.eyebrow': '面向真实业务场景的 AI 解决方案与应用案例', 'hero.title': 'AI 应用\n案例作品集', 'hero.lead': '从业务需求出发，设计并验证可落地的 AI 解决方案。', 'hero.copy': '聚焦需求分析、工作流设计、RAG / Agent 应用、POC 验证与业务价值评估，展示 AI 能力如何转化为可体验、可验证、可实施的业务应用。', 'hero.cases': '查看案例 ↓', 'hero.approach': '作品集定位',
-    'categories.eyebrow': '能力地图', 'categories.title': '四类可落地的 AI 方向。', 'cases.eyebrow': '精选案例', 'cases.title': '从技术能力到业务价值。', 'cases.copy': '每个案例均从场景、体验、技术实现与商业价值四个维度组织。', 'approach.eyebrow': '作品集定位', 'approach.title': '从业务需求，到 AI 解决方案落地', 'approach.copy': '聚焦真实业务场景，将需求分析、AI 能力设计、工作流、POC 验证与业务价值评估串联成完整解决方案，并探索全流程落地应用。', 'cat.1.title': '行业解决方案', 'cat.1.copy': '围绕保险、教育、销售与售前等真实业务，设计可验证的 AI 应用原型。', 'cat.1.tags': '保险 · 教育 · 销售', 'cat.2.title': 'RAG 知识库', 'cat.2.copy': '覆盖文档上传、内容切分、检索问答、引用溯源及知识库界面的完整体验设计。', 'cat.2.tags': '知识库问答界面', 'cat.3.title': 'AI 智能体工作流', 'cat.3.copy': '展示任务拆解、工具调用、流程编排、状态流转与执行链路可视化。', 'cat.3.tags': '智能体工作流可视化', 'cat.4.title': 'AI 视觉交互', 'cat.4.copy': 'MediaPipe、摄像头、Canvas 与 WebGL 驱动的手势、姿态及无接触交互原型。', 'cat.4.tags': '手势导购 · 工业产品交互', 'approach.1': '业务理解：识别值得 AI 介入的核心问题、业务目标与关键约束', 'approach.2': '方案设计：将模型能力嵌入真实业务流程，设计人机协作、系统边界与输入输出链路', 'approach.3': 'POC 验证：通过工作流、测试数据与关键指标验证技术及业务可行性', 'approach.4': '应用落地：围绕 RAG、Agent、API 与业务系统集成，设计可实现的技术架构、调用链路与工程方案', 'approach.5': '价值评估：从效率、质量、风险、成本与 ROI 判断方案的投入价值', footer: 'AI 应用案例作品集', backTop: '返回顶部 ↑', 'card.view': '在线体验', 'card.detail': '查看详情', 'status.live': '已上线', 'status.progress': '开发中'
+    brand: "解决方案作品集",
+    "nav.cases": "旗舰案例",
+    "nav.validation": "验证证据",
+    "nav.playbook": "落地手册",
+    "nav.github": "代码仓库 ↗",
+    "hero.eyebrow": "BUSINESS-FIRST APPLIED AI",
+    "hero.title": "AI 解决方案作品集",
+    "hero.lead": "从真实业务问题出发，设计、验证并推动可落地的 AI 解决方案。",
+    "hero.copy":
+      "聚焦业务需求分析、方案设计、POC 验证、RAG / Agent / VLM 应用与生产化判断。",
+    "hero.delivery": "从业务需求、方案设计，到 POC 验证与商务交付。",
+    "hero.featured": "查看旗舰案例",
+    "hero.playbook": "查看解决方案手册",
+    "hero.validation": "查看 POC 验证结果 →",
+    "featured.eyebrow": "FEATURED CASES",
+    "featured.title": "旗舰商业案例",
+    "featured.copy":
+      "优先展示已验证、业务价值高、能够证明完整 AI 解决方案能力的案例。",
+    "validation.eyebrow": "VALIDATION EVIDENCE",
+    "validation.title": "POC 验证与工程证据",
+    "validation.copy":
+      "以下均来自案例已有的 POC 文档、测试集或评估报告；不将合成数据外推为生产结果。",
+    "more.eyebrow": "MORE SOLUTIONS",
+    "more.title": "更多解决方案与案例",
+    "more.copy": "建设中的高价值方向，与已开发的补充案例并列呈现。",
+    "capabilities.eyebrow": "SOLUTION CAPABILITIES",
+    "capabilities.title": "AI 解决方案能力",
+    "playbook.eyebrow": "售前交付资产",
+    "playbook.title": "企业 AI 落地解决方案手册",
+    "playbook.lead": "将业务问题、AI 方案、POC 验证、ROI 与落地路径，整理为可直接用于客户沟通和方案汇报的标准化售前资产。",
+    // "playbook.copy": "面向企业老板、业务负责人和数字化负责人，将复杂 AI 技术转换为业务可理解、可评估、可推进的解决方案文档。",
+    "playbook.status": "售前交付模板 · 已完成",
+    "playbook.value": "一套可快速复用的企业 AI 售前方案手册模板。",
+    "playbook.use": "适用于",
+    "playbook.action": "查看手册样张",
+    "playbook.config.label": "可配置：",
+    "playbook.config": "企业品牌 · 行业场景 · AI 模块 · POC 指标 · ROI",
+    "playbook.modal.title": "手册样张预览",
+    "playbook.modal.close": "关闭预览",
+    "playbook.modal.prev": "上一张样张",
+    "playbook.modal.next": "下一张样张",
+    "production.eyebrow": "FROM POC TO PRODUCTION",
+    "production.title": "从 POC 到生产落地",
+    "production.copy": "用可验证的阶段边界管理从概念验证到生产化的决策。",
+    "production.note":
+      "案例状态按“已验证 / 部分验证 / 待生产验证”呈现，不暗示全部生产可用。",
+    "positioning.eyebrow": "POSITIONING",
+    "positioning.title": "作品集定位",
+    "positioning.copy":
+      "从业务问题出发，设计 AI 解决方案，以 POC 验证关键假设，并连接工程集成与商业价值评估。",
+    footer: "AI 解决方案作品集",
+    backTop: "返回顶部 ↑",
+    "card.open": "查看案例",
+    "card.planning": "查看规划",
+    "status.verified": "已验证",
+    "status.partial": "部分验证",
+    "status.developed": "开发中",
+    "status.prototype": "原型",
+    "status.planning": "规划中",
+    "evidence.source": "证据来源",
   },
   en: {
-    brand: 'CASE PORTFOLIO', 'nav.cases': 'Cases', 'nav.approach': 'Approach', 'nav.github': 'GitHub ↗',
-    'hero.eyebrow': 'BUSINESS-FIRST AI SOLUTIONS & CASES', 'hero.title': 'AI Application Case Portfolio', 'hero.lead': 'Designing and validating practical AI solutions from real business needs.', 'hero.copy': 'Focused on discovery, workflow design, RAG and agent applications, POC validation, and business-value assessment—turning AI capabilities into testable applications.', 'hero.cases': 'Explore cases ↓', 'hero.approach': 'Portfolio approach',
-    'categories.eyebrow': 'CAPABILITY MAP', 'categories.title': 'Four practical AI directions.', 'cases.eyebrow': 'SELECTED WORK', 'cases.title': 'From capability to business value.', 'cases.copy': 'Each case connects the scenario, experience, implementation, and business value.', 'approach.eyebrow': 'PORTFOLIO APPROACH', 'approach.title': 'From business needs to practical AI solutions', 'approach.copy': 'Connecting discovery, AI capability design, workflows, POC validation, and business-value assessment into complete, implementable solutions.', 'cat.1.title': 'Industry Solutions', 'cat.1.copy': 'Designing testable AI prototypes for real insurance, education, sales, and presales workflows.', 'cat.1.tags': 'Insurance · Education · Sales', 'cat.2.title': 'RAG Knowledge Base', 'cat.2.copy': 'End-to-end experience design for document intake, retrieval, cited answers, and knowledge interfaces.', 'cat.2.tags': 'Knowledge-answer UI', 'cat.3.title': 'AI Agent Workflows', 'cat.3.copy': 'Visualizing task decomposition, tool calls, orchestration, state changes, and execution paths.', 'cat.3.tags': 'Agent workflow visualization', 'cat.4.title': 'AI Visual Interaction', 'cat.4.copy': 'Gesture, pose, and touch-free interaction prototypes powered by MediaPipe, cameras, Canvas, and WebGL.', 'cat.4.tags': 'Gesture retail · Industrial product explorer', 'approach.1': 'Business understanding: identify the core problem, outcomes, and constraints where AI can help.', 'approach.2': 'Solution design: embed model capabilities in real workflows with clear human and system boundaries.', 'approach.3': 'POC validation: test technical and business feasibility with workflows, test data, and key metrics.', 'approach.4': 'Implementation: design practical architectures, integration paths, and engineering plans across RAG, agents, APIs, and business systems.', 'approach.5': 'Value assessment: evaluate efficiency, quality, risk, cost, and ROI.', footer: 'AI Application Case Portfolio', backTop: 'Back to top ↑', 'card.view': 'Live demo', 'card.detail': 'View details', 'status.live': 'Live', 'status.progress': 'In Progress'
-  }
+    brand: "SOLUTION PORTFOLIO",
+    "nav.cases": "Featured Cases",
+    "nav.validation": "Evidence",
+    "nav.playbook": "Playbook",
+    "nav.github": "GitHub ↗",
+    "hero.eyebrow": "BUSINESS-FIRST APPLIED AI",
+    "hero.title": "AI Solution Portfolio",
+    "hero.lead":
+      "Designing, validating, and advancing practical AI solutions from real business problems.",
+    "hero.copy":
+      "Focused on business discovery, solution design, POC validation, RAG / Agent / VLM applications, and production-readiness decisions.",
+    "hero.delivery": "From business discovery and solution design to POC validation and commercial delivery.",
+    "hero.featured": "View featured cases",
+    "hero.playbook": "View solution playbook",
+    "hero.validation": "View POC results →",
+    "featured.eyebrow": "FEATURED CASES",
+    "featured.title": "Featured Business Cases",
+    "featured.copy":
+      "Validated, high-value cases that demonstrate end-to-end AI solution capability.",
+    "validation.eyebrow": "VALIDATION EVIDENCE",
+    "validation.title": "POC Validation & Engineering Evidence",
+    "validation.copy":
+      "All evidence comes from existing POC documents, test sets, or evaluation reports; synthetic data is not extrapolated as production results.",
+    "more.eyebrow": "MORE SOLUTIONS",
+    "more.title": "More Solutions",
+    "more.copy":
+      "High-value directions in development alongside completed supporting cases.",
+    "capabilities.eyebrow": "SOLUTION CAPABILITIES",
+    "capabilities.title": "AI Solution Capabilities",
+    "playbook.eyebrow": "PRESALES DELIVERY ASSET",
+    "playbook.title": "Enterprise AI Solution Playbook",
+    "playbook.lead": "A standardized presales asset that turns business problems, AI solutions, POC validation, ROI, and implementation paths into client-ready discussions and proposal narratives.",
+    "playbook.copy":
+      "For business owners, functional leaders, and digital leaders—translating complex AI into solution documents that are clear to assess and practical to advance.",
+    "playbook.status": "DELIVERY READY",
+    "playbook.value": "A reusable enterprise AI presales solution template.",
+    "playbook.use": "Best for",
+    "playbook.action": "Preview Sample Pages",
+    "playbook.config.label": "Configurable:",
+    "playbook.config": "Brand · Industry context · AI modules · POC metrics · ROI",
+    "playbook.modal.title": "Sample Page Preview",
+    "playbook.modal.close": "Close preview",
+    "playbook.modal.prev": "Previous sample page",
+    "playbook.modal.next": "Next sample page",
+    "production.eyebrow": "FROM POC TO PRODUCTION",
+    "production.title": "From POC to Production",
+    "production.copy":
+      "Use verifiable phase boundaries to manage decisions from proof of concept to production.",
+    "production.note":
+      "Case states distinguish validated, partially validated, and production validation pending; none imply universal production readiness.",
+    "positioning.eyebrow": "POSITIONING",
+    "positioning.title": "Portfolio Positioning",
+    "positioning.copy":
+      "Start with business problems, design AI solutions, validate key assumptions through POCs, and connect engineering integration with commercial-value assessment.",
+    footer: "AI Solution Portfolio",
+    backTop: "Back to top ↑",
+    "card.open": "View case",
+    "card.planning": "View plan",
+    "status.verified": "Validated",
+    "status.partial": "Partially validated",
+    "status.developed": "Developed",
+    "status.prototype": "Prototype",
+    "status.planning": "In planning",
+    "evidence.source": "Evidence source",
+  },
 };
-
-const cases = [
-  { href: 'cases/ai-tender-evaluator/', live: true, zh: ['AI 招投标方案评审助手', '行业解决方案', '将冗长招标文件转为结构化要求、响应风险与可执行补强建议。', ['招投标评审', 'Dify 工作流', '结构化输出']], en: ['AI Tender Proposal Evaluator', 'Industry Solutions', 'Turn tender documents into structured requirements, risks, and action items.', ['Tender Review', 'Dify Workflow', 'Structured Output']] },
-  { href: 'cases/ai-solution-copilot/', live: true, zh: ['AI 需求解决方案分析助手', 'AI 解决方案工作流', '以证据契约、阶段 Gate 与人工复核，将 Intake 转为可审计的方案分析候选。', ['Dify Workflow', 'Decision Contract', 'POC 证据']], en: ['AI Solution Copilot', 'AI Solution Workflow', 'Turn Intake into auditable solution-analysis candidates with gates and human review.', ['Dify Workflow', 'Decision Contract', 'POC Evidence']] },
-  { href: 'cases/industrial-visual-inspection/', detailHref: 'cases/industrial-visual-inspection/index-v2.html', live: true, visual: true, zh: ['工业视觉巡检 POC', 'AI 视觉巡检', '面向存量工业设备的非侵入式视觉巡检链路：多模态理解、不确定性分流与人工复核。', ['Gemini VLM', 'Rule Engine', 'POC_VALIDATED']], en: ['Industrial Visual Inspection POC', 'AI Visual Inspection', 'A non-invasive inspection workflow for existing industrial equipment with multimodal understanding, uncertainty routing, and human review.', ['Gemini VLM', 'Rule Engine', 'POC_VALIDATED']] },
-  { href: 'cases/gesture-ai-product-explorer/', demoHref: 'cases/gesture-ai-product-explorer/demo.html', live: true, visual: true, zh: ['AI 手势工业产品交互', 'AI 手势工业产品交互', '基于视觉 AI 和手势识别，实现工业产品 3D 拆解、旋转、缩放和价值展示的交互式售前原型。', ['Vision AI', 'MediaPipe', 'Three.js']], en: ['Gesture AI Industrial Product Explorer', 'AI Visual Interaction', 'A visual-AI prototype for exploring industrial products through 3D explode, rotation, zoom, and value stories.', ['Vision AI', 'MediaPipe', 'Three.js']] },
-  { href: 'cases/rag-knowledge-ui/', zh: ['RAG 知识库界面', 'RAG 知识库', '让企业知识检索、答案引用与内容溯源变得清晰可用。', ['RAG', '界面原型', '引用溯源']], en: ['RAG Knowledge UI', 'RAG Knowledge Base', 'Knowledge retrieval with citations and traceability.', ['RAG', 'UX Prototype', 'Citations']] },
-  { href: 'cases/ai-agent-workflow/', zh: ['AI 智能体工作流', 'AI 智能体工作流', '将复杂任务的分解、执行状态与工具链路可视化。', ['AI 智能体', '工作流', '状态界面']], en: ['AI Agent Workflow', 'AI Agent Workflow', 'Visualize task state and tool execution paths.', ['AI Agent', 'Workflow', 'State UI']] },
-  { href: 'cases/hand-gesture-store/', visual: true, zh: ['手势互动导购', 'AI 视觉交互', '将手势识别转化为无接触商品浏览与互动导购体验。', ['MediaPipe', '摄像头', 'Canvas']], en: ['Hand Gesture Store', 'AI Visual Interaction', 'Touch-free product browsing and interactive guidance.', ['MediaPipe', 'Web Camera', 'Canvas']] },
+const featured = [
+  {
+    slug: "insurance-claims",
+    s: "verified",
+    zh: [
+      "AI 保险理赔智能助手",
+      "理赔初筛需要整合分散信号，并让高风险案件优先进入专业审核。",
+      "确定性风险路由、受约束 LLM 解释与强制人工复核。",
+      "28/28 真实 API 运行；6 条 Critical Case 三次一致。",
+      "将理赔风险分流变成可追溯的审核决策支持。",
+    ],
+    en: [
+      "AI Claims Triage Assistant",
+      "Claims intake needs consolidated signals and priority handling for higher-risk cases.",
+      "Deterministic routing, constrained LLM explanation, and mandatory human review.",
+      "28/28 real API runs; 6 critical cases stable across three runs.",
+      "Make claims-risk triage traceable decision support for reviewers.",
+    ],
+  },
+  {
+    slug: "ai-tender-evaluator", live: true, detailPath: "cases/ai-tender-evaluator/",
+    s: "verified",
+    zh: [
+      "AI 招投标风险决策",
+      "招标要求与响应材料冗长且难以逐条核对。",
+      "结构化条款匹配、风险识别与 Bid / Conditional Bid / No-Bid 建议。",
+      "30 条合成 Golden Set；30/30 API runs；关键 Gate 三次一致。",
+      "让投标评审从信息整理转向可追溯的风险决策辅助。",
+    ],
+    en: [
+      "AI Tender Risk Decision",
+      "Tender requirements and proposal materials are difficult to review clause by clause.",
+      "Structure matches, identify risks, and propose Bid / Conditional Bid / No-Bid.",
+      "30 synthetic Golden Set cases; 30/30 API runs; critical gates consistent across three runs.",
+      "Shift bid review from information assembly to traceable risk-decision support.",
+    ],
+  },
+  {
+    slug: "industrial-visual-inspection", live: true, detailPath: "cases/industrial-visual-inspection/",
+    s: "verified",
+    zh: [
+      "AI工业视觉巡检",
+      "存量设备巡检缺少非侵入式、可复核的最小闭环。",
+      "图像理解、规则归一化、异常提示与人工复核建议。",
+      "12/12 fixture pipeline；Schema 12/12；Critical Gate 10/10。",
+      "在不改造设备控制系统的前提下验证巡检链路。",
+    ],
+    en: [
+      "AI Industrial Visual Inspection",
+      "Existing equipment inspections need a non-invasive, reviewable minimum loop.",
+      "Image understanding, rule normalization, anomaly prompts, and human-review suggestions.",
+      "12/12 fixture pipeline; Schema 12/12; Critical Gate 10/10.",
+      "Validate an inspection workflow without changing equipment control systems.",
+    ],
+  },
+  {
+    slug: "ai-solution-copilot", live: true, detailPath: "cases/ai-solution-copilot/",
+    s: "verified",
+    zh: [
+      "AI 需求与方案分析",
+      "业务 Intake 难以稳定转化为带证据、可审计的方案候选。",
+      "以阶段 Gate、证据契约与人工复核生成分析报告候选。",
+      "20 次真实 API 调用；52/52 分支断言；4/4 三次一致。",
+      "缩短方案分析准备，并保留关键决策边界。",
+    ],
+    en: [
+      "AI Solution Copilot",
+      "Business intake is difficult to turn consistently into evidence-backed, auditable solution candidates.",
+      "Generate analysis-report candidates through staged gates, evidence contracts, and human review.",
+      "20 real API calls; 52/52 branch assertions; 4/4 consistent across three runs.",
+      "Shorten solution-analysis preparation while preserving decision boundaries.",
+    ],
+  },
 ];
-const grid = document.querySelector('#case-grid');
-function renderCases() {
-  const lang = window.portfolioLanguage();
-  grid.innerHTML = cases.map((item) => {
-    const [title, category, summary, tags] = item[lang];
-    const status = item.live ? window.t('status.live') : window.t('status.progress');
-    const action = item.demoHref
-      ? `<a class="case-view-hint" href="${item.demoHref}" aria-label="${title}：${window.t('card.view')}">${window.t('card.view')} →</a>`
-      : item.detailHref
-        ? `<a class="case-view-hint" href="${item.detailHref}" target="_blank" rel="noreferrer" aria-label="${title}：${window.t('card.detail')}">${window.t('card.detail')} →</a>`
-      : `<span class="case-view-hint">${window.t(item.visual ? 'card.view' : 'card.detail')} →</span>`;
-    return `<article class="case-card" data-case-link="${item.href}" tabindex="0" role="link" aria-label="${title}"><div class="case-top"><span class="case-category">${category}</span><span class="status ${item.live ? 'available' : 'in-progress'}">${status}</span></div><h3>${title}</h3><p>${summary}</p><div class="tags">${tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}</div><div class="case-actions">${action}</div></article>`;
-  }).join('');
-  document.querySelectorAll('[data-case-link]').forEach((card) => {
-    const open = () => { location.href = new URL(card.dataset.caseLink, location.href).pathname + '?lang=' + lang; };
-    card.addEventListener('click', (event) => { if (!event.target.closest('a, button')) open(); });
-    card.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
-  });
+const evidence = [
+  [
+    "Golden Set",
+    "Golden Set",
+    "30 + 12 + 12",
+    "招投标、方案分析与工业巡检的既有合成测试集。",
+    "各案例 poc/tests/",
+    "Existing synthetic test sets for tender, solution analysis, and inspection.",
+    "Each case poc/tests/",
+  ],
+  [
+    "API 调用",
+    "API Calls",
+    "30/30 · 20/20",
+    "招投标 30/30 API runs；方案分析 20 次真实 API 调用。",
+    "两案例 page-evidence / eval-summary",
+    "Tender: 30/30 API runs; solution analysis: 20 real API calls.",
+    "page-evidence / eval-summary",
+  ],
+  [
+    "Regression",
+    "Regression",
+    "52/52",
+    "方案分析工作流的分支断言全部通过。",
+    "ai-solution-copilot/poc/reports/eval-summary.json",
+    "All branch assertions passed for the solution-analysis workflow.",
+    "ai-solution-copilot/poc/reports/eval-summary.json",
+  ],
+  [
+    "Critical Gate",
+    "Critical Gate",
+    "10/10",
+    "工业巡检 fixture pipeline 的关键案例 Gate 已通过。",
+    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
+    "Critical-case gate passed in the inspection fixture pipeline.",
+    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
+  ],
+  [
+    "Human Review",
+    "Human Review",
+    "必需",
+    "旗舰案例均保留人工审批或人工复核边界。",
+    "各案例 case-spec.yaml",
+    "All featured cases retain an approval or human-review boundary.",
+    "Each case case-spec.yaml",
+    "Required",
+  ],
+  [
+    "Schema / Consistency",
+    "Schema / Consistency",
+    "12/12 · 4/4",
+    "工业巡检 Schema 12/12；方案分析关键案例三次一致 4/4。",
+    "各案例 evaluation summary",
+    "Inspection Schema: 12/12; solution-analysis key-case consistency: 4/4.",
+    "Each case evaluation summary",
+  ],
+  [
+    "P50 / P95",
+    "P50 / P95",
+    "0.005 / 0.014 ms",
+    "工业巡检 fixture adapter 基线；非真实 VLM 延迟。",
+    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
+    "Inspection fixture-adapter baseline; not real VLM latency.",
+    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
+  ],
+];
+const more = [
+  // {
+  //   slug: "contract-risk-reviewer",
+  //   s: "planning",
+  //   zh: [
+  //     "Contract Risk Reviewer",
+  //     "合同风险审查",
+  //     "面向条款抽取、风险提示与法务复核的规划方向。",
+  //   ],
+  //   en: [
+  //     "Contract Risk Reviewer",
+  //     "Contract risk review",
+  //     "A planned direction for clause extraction, risk prompts, and legal review.",
+  //   ],
+  // },
+  {
+    slug: "gesture-ai-product-explorer",
+    detailPath: "cases/gesture-ai-product-explorer/",
+    s: "verified",
+    zh: [
+      "AI 手势工业产品交互",
+      "视觉交互原型",
+      "工业产品 3D 拆解、旋转、缩放与价值讲解的交互式售前原型。",
+    ],
+    en: [
+      "Gesture AI Industrial Product Explorer",
+      "Visual interaction prototype",
+      "An interactive presales prototype for 3D product exploration and value explanation.",
+    ],
+  },
+  {
+    slug: "rag-knowledge-ui",
+    detailPath: "cases/rag-knowledge-ui/",
+    s: "developed",
+    zh: [
+      "RAG 知识库界面",
+      "知识检索体验",
+      "展示企业知识检索、引用与内容溯源的界面原型。",
+    ],
+    en: [
+      "RAG Knowledge UI",
+      "Knowledge retrieval experience",
+      "A UI prototype for enterprise knowledge retrieval, citations, and traceability.",
+    ],
+  },
+  {
+    slug: "ai-agent-workflow",
+    detailPath: "cases/ai-agent-workflow/",
+    s: "developed",
+    zh: [
+      "智学平台 Agent",
+      "Agent 工作流",
+      "将复杂任务的拆解、执行状态与工具链路可视化。",
+    ],
+    en: [
+      "Learning Platform Agent",
+      "Agent workflow",
+      "Visualize complex task decomposition, execution state, and tool paths.",
+    ],
+  },
+];
+const capabilities = [
+    ["业务需求识别", "Business Discovery"],
+    ["AI 方案设计", "Solution Architecture"],
+    ["POC 与效果验证", "POC & Evaluation"],
+    ["AI 应用工程", "RAG / Agent / VLM / Workflow / API"],
+    ["商业价值与风险判断", "ROI / TCO / Risk / Human Review"],
+  ],
+  playbook = [
+    "AI 机会识别",
+    "业务需求拆解",
+    "Solution Architecture",
+    "POC Design",
+    "Golden Set & Evaluation",
+    "Human Review / Risk",
+    "ROI / TCO",
+    "Production Readiness",
+  ],
+  playbookEn = [
+    "AI Opportunity Discovery",
+    "Business Requirement Decomposition",
+    "Solution Architecture",
+    "POC Design",
+    "Golden Set & Evaluation",
+    "Human Review / Risk",
+    "ROI / TCO",
+    "Production Readiness",
+  ],
+  pathZh = [
+    "需求痛点分析",
+    "AI 机会判断",
+    "风险评估 / 解决方案设计",
+    "黄金数据集测试 / POC验证",
+    "ROI评估",
+    "人工审核",
+    "API / 系统集成",
+    "观测与日志监控",
+    "生产化准备",
+  ],
+  pathEn = [
+    "Business problem",
+    "AI opportunity assessment",
+    "Prototype",
+    "Golden Set",
+    "POC Validation",
+    "Guardrails / Human Review",
+    "API / System Integration",
+    "Observability",
+    "Production Readiness",
+  ];
+const playbookAsset = {
+  pages: [
+    { src: "assets/covers/example_cover.png", zh: "方案手册封面", en: "Playbook cover" },
+    { src: "assets/covers/example_catalogue.png", zh: "目录与方案框架", en: "Contents and solution framework" },
+    { src: "assets/covers/example_conten t.png", zh: "方案核心内容", en: "Core solution content" },
+    { src: "assets/covers/example_value.png", zh: "业务价值与落地路径", en: "Business value and implementation path" },
+  ],
+  tags: {
+    zh: ["售前方案设计", "商务文档交付", "可配置模板"],
+    en: ["Presales Solution Design", "Business Document Delivery", "Configurable Template"],
+  },
+  points: {
+    zh: [["业务需求结构化", "将模糊需求整理为业务问题、目标、约束与 AI 机会。"], ["方案商业化表达", "将 RAG / Agent / Workflow / 模型能力转换为业务流程、方案架构和决策价值。"], ["POC 与 ROI 设计", "明确验证指标、成本、业务收益及 Go / No-Go 判断依据。"], ["标准化商务交付", "支持企业品牌、行业场景和方案模块快速配置，降低重复方案制作成本。"]],
+    en: [["Structured business discovery", "Turn ambiguous needs into business problems, goals, constraints, and AI opportunities."], ["Commercial solution narrative", "Translate RAG / Agent / Workflow / model capabilities into business flows, solution architecture, and decision value."], ["POC and ROI design", "Define validation metrics, cost, business outcomes, and Go / No-Go criteria."], ["Standardized commercial delivery", "Configure brand, industry context, and solution modules quickly to reduce repeated proposal-production effort."]],
+  },
+  scenarios: {
+    zh: ["客户首次方案沟通", "售前需求澄清", "管理层方案评审", "企业 AI 转型沟通"],
+    en: ["Initial client solution discussions", "Presales requirement clarification", "Leadership solution reviews", "Enterprise AI transformation discussions"],
+  },
+};
+let activePlaybookPage = 0;
+const esc = (v) =>
+  String(v).replace(
+    /[&<>"']/g,
+    (c) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      })[c],
+  );
+function resolveCaseHref(caseItem) {
+  const target = caseItem.detailPath || `cases/${encodeURIComponent(caseItem.slug)}`;
+  return `${target}${target.includes("?") ? "&" : "?"}lang=${window.portfolioLanguage()}`;
 }
-renderCases();
-window.addEventListener('portfolio-language-changed', renderCases);
-const year = document.querySelector('#year');
-if (year) year.textContent = new Date().getFullYear();
+const card = (body, href, cls) =>
+  href
+    ? `<a class="${cls}" href="${href}">${body}</a>`
+    : `<article class="${cls}">${body}</article>`;
+function renderPlaybook() {
+  const l = window.portfolioLanguage();
+  document.querySelector("#playbook-samples").innerHTML = playbookAsset.pages
+    .map((page, index) => `<button class="playbook-page page-${index + 1}" type="button" data-page-index="${index}" aria-label="${esc(l === "zh" ? `预览：${page.zh}` : `Preview: ${page.en}`)}"><img src="${page.src}" alt="${esc(l === "zh" ? page.zh : page.en)}" loading="lazy" /></button>`)
+    .join("");
+  document.querySelector("#playbook-tags").innerHTML = playbookAsset.tags[l].map((tag) => `<li>${esc(tag)}</li>`).join("");
+  document.querySelector("#playbook-points").innerHTML = playbookAsset.points[l].map(([title, copy]) => `<li><strong>${esc(title)}</strong><span>${esc(copy)}</span></li>`).join("");
+  document.querySelector("#playbook-scenarios").innerHTML = playbookAsset.scenarios[l].map((item) => `<li>${esc(item)}</li>`).join("");
+  document.querySelectorAll("[data-page-index]").forEach((button) => button.addEventListener("click", () => openPlaybookModal(Number(button.dataset.pageIndex))));
+}
+function updatePlaybookModal() {
+  const l = window.portfolioLanguage();
+  const page = playbookAsset.pages[activePlaybookPage];
+  const image = document.querySelector("#playbook-modal-image");
+  image.src = page.src;
+  image.alt = l === "zh" ? page.zh : page.en;
+  document.querySelector("#playbook-modal-caption").textContent = `${activePlaybookPage + 1} / ${playbookAsset.pages.length} · ${l === "zh" ? page.zh : page.en}`;
+}
+function openPlaybookModal(index = 0) {
+  activePlaybookPage = index;
+  updatePlaybookModal();
+  document.querySelector("#playbook-modal").showModal();
+}
+function render() {
+  const l = window.portfolioLanguage(),
+    t = window.t;
+  document.querySelector("#featured-grid").innerHTML = featured
+    .map((x) => {
+      const [title, problem, role, result, value] = x[l];
+      const action = t(x.detailPath ? "card.open" : "card.planning");
+      return card(
+        `<div class="card-meta"><span>${t("status." + x.s)}</span><span>${action} →</span></div><h3>${esc(title)}</h3><dl><div><dt>${l === "zh" ? "业务问题" : "Business problem"}</dt><dd>${esc(problem)}</dd></div><div><dt>${l === "zh" ? "AI 作用" : "AI role"}</dt><dd>${esc(role)}</dd></div><div><dt>${l === "zh" ? "验证结果" : "Validation"}</dt><dd>${esc(result)}</dd></div><div><dt>${l === "zh" ? "商业价值" : "Business value"}</dt><dd>${esc(value)}</dd></div></dl>`,
+        resolveCaseHref(x),
+        "featured-card",
+      );
+    })
+    .join("");
+  document.querySelector("#evidence-grid").innerHTML = evidence
+    .map(
+      (x) =>
+        `<article class="evidence-card"><span>${l === "zh" ? x[0] : x[1]}</span><strong>${l === "zh" ? x[2] : x[7] || x[2]}</strong><p>${l === "zh" ? x[3] : x[5]}</p><small>${t("evidence.source")}：${l === "zh" ? x[4] : x[6]}</small></article>`,
+    )
+    .join("");
+  document.querySelector("#more-grid").innerHTML = more
+    .map((x) => {
+      const [title, type, copy] = x[l];
+      const action = t(x.detailPath ? "card.open" : "card.planning");
+      return card(
+        `<div class="card-meta"><span>${t("status." + x.s)}</span><span>${action} →</span></div><h3>${esc(title)}</h3><p class="more-type">${esc(type)}</p><p>${esc(copy)}</p>`,
+        resolveCaseHref(x),
+        "more-card",
+      );
+    })
+    .join("");
+  document.querySelector("#capabilities-grid").innerHTML = capabilities
+    .map(
+      (x, i) =>
+        `<li><span>0${i + 1}</span><strong>${l === "zh" ? x[0] : x[1]}</strong><small>${l === "zh" ? x[1] : x[0]}</small></li>`,
+    )
+    .join("");
+  renderPlaybook();
+  document.querySelector("#production-path").innerHTML = pathZh
+    .map(
+      (x, i) =>
+        `<li><span>${String(i + 1).padStart(2, "0")}</span>${l === "zh" ? x : pathEn[i]}</li>`,
+    )
+    .join("");
+}
+render();
+window.addEventListener("portfolio-language-changed", render);
+document.querySelector("#year").textContent = new Date().getFullYear();
+const playbookModal = document.querySelector("#playbook-modal");
+document.querySelector("#open-playbook-modal").addEventListener("click", () => openPlaybookModal());
+document.querySelector("#close-playbook-modal").addEventListener("click", () => playbookModal.close());
+document.querySelector("#playbook-prev").addEventListener("click", () => { activePlaybookPage = (activePlaybookPage + playbookAsset.pages.length - 1) % playbookAsset.pages.length; updatePlaybookModal(); });
+document.querySelector("#playbook-next").addEventListener("click", () => { activePlaybookPage = (activePlaybookPage + 1) % playbookAsset.pages.length; updatePlaybookModal(); });
+playbookModal.addEventListener("click", (event) => { if (event.target === playbookModal) playbookModal.close(); });
+window.addEventListener("portfolio-language-changed", () => { if (playbookModal.open) updatePlaybookModal(); });

@@ -1,0 +1,89 @@
+schema_version: "0.4"
+case:
+  id: industrial-visual-inspection
+  name: Industrial Visual Inspection
+  type: poc
+  directory: cases/industrial-visual-inspection
+  business_problem: 在不改造既有设备控制系统的前提下，验证静态设备或仪表图片能否形成读数/状态识别、规则判断、异常提示、人工复核建议与处置建议的最小闭环。
+  boundary:
+    - 仅覆盖静态设备或仪表图片，不覆盖实时摄像头或视频流。
+    - 不接入 PLC、MES、CMMS、真实工单系统或边缘设备。
+    - anomaly 与 recommended_action 仅为人工复核建议，不执行设备控制或真实工单创建。
+    - Golden Set 当前仅使用 synthetic_test_fixture；真实模型运行仅在获批静态图片与环境变量到位后允许执行。
+profile:
+  id: vision-inspection
+  path: ../../../poc-kit/profiles/vision-inspection.yaml
+assets:
+  inputs:
+    - poc/tests/golden-set.json
+    - poc/fixtures/images/
+  workflow:
+    - poc/adapters/fixture_offline_adapter.py
+    - poc/adapters/qwen_vision_adapter.py
+    - poc/inspection_decision.py
+    - poc/tests/run_eval.py
+    - poc/rules/inspection-rules.v1.yaml
+  schemas:
+    - poc/schemas/inspection-output.schema.json
+  outputs:
+    - poc/reports/evaluation-details.json
+    - poc/reports/evaluation-summary.json
+    - ../../../poc-kit/POC_V0.4_PREFLIGHT.md
+  reports:
+    - poc/acceptance.yaml
+    - poc/reports/evaluation-summary.json
+  golden_set:
+    - poc/tests/golden-set.json
+sop_stages:
+  S0:
+    status: verified
+    evidence: [CASE_META.yaml, README.md, poc/case-spec.yaml]
+    notes: Case type, profile, target and non-goals are explicitly defined.
+  S1:
+    status: partial
+    evidence: [README.md, poc/case-spec.yaml]
+    notes: Business objective and human responsibility boundary are defined; no stakeholder-approved success threshold exists.
+  S2:
+    status: partial
+    evidence: [poc/tests/golden-set.json, poc/schemas/inspection-output.schema.json]
+    notes: Twelve synthetic static images, rule v1, output contract and a fixture adapter are available. No approved field-image source or real vision model exists.
+  S3:
+    status: verified
+    evidence: [README.md, poc/schemas/inspection-output.schema.json]
+    notes: The same runner executes image -> selected VisionAdapter -> rule v1 normalization -> human review/action suggestion. Qwen is blocked until approved images and environment configuration exist.
+  S4:
+    status: verified
+    evidence: [poc/tests/golden-set.json]
+    notes: Twelve stable IDs each bind one synthetic static image, rule ID and expected normalized output.
+  S5:
+    status: verified
+    evidence: [poc/tests/run_eval.py, poc/reports/evaluation-summary.json, poc/reports/evaluation-details.json]
+    notes: Fixture pipeline evaluation executed 12/12 with Schema 12/12 and critical pipeline gate 10/10. Qwen POC baseline remains pending; no real visual model request has been sent.
+  S6:
+    status: verified
+    evidence: [poc/reports/evaluation-summary.json, poc/reports/evaluation-details.json, poc/acceptance.yaml]
+    notes: Fixture evidence is recorded. Real-model evidence will be written only after an actual Qwen run, with provider/model/prompt/usage and image hash fields.
+  S7:
+    status: pending
+    evidence: []
+    notes: No portfolio page is added in v0.3.
+validation:
+  verified_metrics:
+    - name: golden_set_design_coverage
+      evidence: "poc/tests/golden-set.json: 12 synthetic_test_fixture cases across happy, boundary, critical, invalid, and human-review categories."
+    - name: required_output_contract_defined
+      evidence: poc/schemas/inspection-output.schema.json
+    - name: fixture_pipeline_execution
+      evidence: "poc/reports/evaluation-summary.json: 12/12 executed, workflow success 12/12, schema compliance 12/12."
+    - name: critical_case_pipeline_gate
+      evidence: "poc/reports/evaluation-summary.json: 10/10 passed, failed_ids empty."
+  assumptions:
+    - A future recognizer can replace the fixture adapter while retaining the normalized output contract.
+    - Human review remains mandatory for unreadable, ambiguous, and missing-context inputs.
+  pending_metrics:
+    - model_accuracy: not_evaluated
+    - qwen_poc_baseline: blocked_by_approved_images_and_environment
+    - reading_accuracy: baseline_required
+    - anomaly_recall: baseline_required
+    - false_positive_rate: baseline_required
+    - human_review_rate: baseline_required

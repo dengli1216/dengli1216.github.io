@@ -1,0 +1,6 @@
+case:
+  id: ai-solution-copilot
+  name: AI Solution Copilot
+  type: poc
+  profile: llm-workflow
+  sop: ../../poc-kit/POC_SOP.md

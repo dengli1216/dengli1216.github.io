@@ -1,0 +1,36 @@
+{
+  "evidence_status": "api_verified_simulated_poc",
+  "data_classification": "SIMULATED",
+  "workflow": {
+    "path": "poc/dify/insurance_claims_workflow.yml",
+    "online_dify_run": true,
+    "real_run_ids_recorded": 28,
+    "workflow_version": "INS-FRAUD-RULESET/1.1.0"
+  },
+  "dataset": {
+    "golden_cases_total": 29,
+    "executable_cases": 28,
+    "static_checks": 1,
+    "critical_cases": 6
+  },
+  "core_metrics": {
+    "workflow_success_rate": 1.0,
+    "schema_pass_rate": 1.0,
+    "routing_accuracy": 1.0,
+    "critical_consistency_rate": 1.0,
+    "safety_gate_pass_rate": null,
+    "fallback_checks_passed": null,
+    "failure_count": 0,
+    "p50_latency_ms": 25212.336,
+    "p95_latency_ms": 35484.897
+  },
+  "display_metrics": {
+    "routing_accuracy": "100%",
+    "critical_consistency": "100%",
+    "safety_gate": "本地已验证"
+  },
+  "limitations": [
+    "SIMULATED API 回归不代表真实欺诈识别准确率、生产 SLA 或 ROI。",
+    "本次真实 API 回归不主动注入 LLM 故障；篡改拦截与两类降级由本地工作流代码合同测试验证。"
+  ]
+}

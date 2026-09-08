@@ -1,0 +1,31 @@
+schema_version: "0.1"
+case:
+  id: ""
+  name: ""
+  type: poc
+  directory: ""
+  business_problem: ""
+  boundary: []
+profile:
+  id: ""
+  path: ""
+assets:
+  inputs: []
+  workflow: []
+  schemas: []
+  outputs: []
+  reports: []
+  golden_set: []
+sop_stages:
+  S0: {status: pending, evidence: [], notes: ""}
+  S1: {status: pending, evidence: [], notes: ""}
+  S2: {status: pending, evidence: [], notes: ""}
+  S3: {status: pending, evidence: [], notes: ""}
+  S4: {status: pending, evidence: [], notes: ""}
+  S5: {status: pending, evidence: [], notes: ""}
+  S6: {status: pending, evidence: [], notes: ""}
+  S7: {status: pending, evidence: [], notes: ""}
+validation:
+  verified_metrics: []
+  assumptions: []
+  pending_metrics: []

@@ -1,0 +1,12 @@
+profile:
+  id: vision-interaction
+  name: Vision Interaction
+  applies_to: 浏览器端视觉输入驱动的展示、手势或产品交互 Demo
+scope:
+  - 只作为案例分类与能力边界占位，不加载 POC SOP。
+  - 不定义工业巡检指标、Golden Set 或生产验收规则。
+capabilities:
+  - browser_camera_optional
+  - static_demo_fallback
+fallback:
+  camera_unavailable: 保持静态 3D 产品浏览与鼠标/触控交互；不声明视觉识别可用。

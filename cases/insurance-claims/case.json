@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "caseId": "CASE-INS-001",
+  "slug": "insurance-claims",
+  "nameZh": "车险理赔分流与欺诈风险情报",
+  "summaryZh": "使用确定性规则和欺诈信号评分完成车险理赔风险分流，再由受约束 LLM 生成摘要与证据说明，所有最终决定均保留人工审核。",
+  "domain": "insurance",
+  "businessFunction": "claims",
+  "lifecycleLevel": "DIFY_DEMO",
+  "status": "DEMO_READY",
+  "dataClassification": "SIMULATED",
+  "capabilities": {
+    "assessment": true,
+    "difyDemo": true,
+    "engineeringPoc": false,
+    "clientPilot": false
+  },
+  "contextPath": "cases/insurance-claims/CASE_CONTEXT.md",
+  "assets": {
+    "assessment": [
+      "cases/insurance-claims/poc/poc_config.json",
+      "cases/insurance-claims/poc/decision_policy.json",
+      "cases/insurance-claims/poc/POC_READINESS.md",
+      "cases/insurance-claims/poc/run_poc_evaluation.py",
+      "cases/insurance-claims/poc/evidence/p0_evaluation_report.json",
+      "cases/insurance-claims/roi/roi_assumptions.json"
+    ],
+    "difyWorkflows": [
+      "cases/insurance-claims/dify/insurance_claims_workflow.yml"
+    ],
+    "sampleData": [
+      "cases/insurance-claims/test_data/low_risk_claim.json",
+      "cases/insurance-claims/test_data/medium_risk_claim.json",
+      "cases/insurance-claims/test_data/high_risk_claim.json",
+      "cases/insurance-claims/test_data/invalid_claim.json",
+      "cases/insurance-claims/test_data/invalid_schema_claim.json",
+      "cases/insurance-claims/test_data/outside_coverage_claim.json",
+      "cases/insurance-claims/test_data/unknown_field_claim.json"
+    ],
+    "expectedResults": [
+      "cases/insurance-claims/test_data/expected_results.json",
+      "cases/insurance-claims/poc/evidence/p0_evaluation_report.json"
+    ]
+  },
+  "claimsAllowed": [
+    "可以说明保险理赔分流、确定性欺诈信号和人工控制的案例边界已经完成设计",
+    "可以演示 28 条可执行 SIMULATED 黄金集的严格输入、确定性风险路由和受约束 LLM 摘要合同",
+    "可以说明规则版本、稳定决策 ID、审计包、篡改拦截和 LLM 安全降级已经完成本地确定性验证",
+    "可以说明 POC Acceptance Criteria、升级 Gate 与 Scenario-based ROI 模板已经建立"
+  ],
+  "claimsProhibited": [
+    "不得宣称已经达到生产欺诈识别准确率或真实保险企业效果",
+    "不得宣称已经连接真实保单、理赔历史、欺诈系统或自动赔付系统"
+  ],
+  "dependencies": [
+    {
+      "name": "ai-case-data-lab APIs",
+      "purposeZh": "未来提供 Policy、Claims History 和 Fraud API",
+      "required": false,
+      "status": "TO_VALIDATE",
+      "fallbackZh": "当前使用仓库内 SIMULATED JSON"
+    },
+    {
+      "name": "Dify Workflow",
+      "purposeZh": "编排可选 L1 交互演示",
+      "required": false,
+      "status": "AVAILABLE",
+      "fallbackZh": "仅交付确定性路由测试、POC 与 ROI 配置"
+    }
+  ]
+}

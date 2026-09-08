@@ -1,0 +1,904 @@
+version: 0.7.0
+kind: app
+app:
+  name: CASE｜车险理赔分流与欺诈风险情报 L1
+  description: 使用 SIMULATED Claim JSON 执行确定性校验和欺诈风险评分，由 LLM 生成受约束摘要并路由至人工复核队列。
+  icon: 🚗
+  icon_type: emoji
+  icon_background: '#DBEAFE'
+  mode: workflow
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.59@fc19490989d886a5f24d21df56be95fd972e474e35a4aac93c29805bfaf089f1
+    version: null
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload: {enabled: false}
+    opening_statement: ''
+    retriever_resource: {enabled: false}
+    sensitive_word_avoidance: {enabled: false}
+    speech_to_text: {enabled: false}
+    suggested_questions: []
+    suggested_questions_after_answer: {enabled: false}
+    text_to_speech: {enabled: false}
+  graph:
+    nodes:
+    - id: start
+      type: custom
+      data:
+        type: start
+        title: 输入 SIMULATED Claim JSON
+        desc: 仅接受符合 insurance-claim-input/1.0.0 的案例包合成数据；不上传真实保单、客户或理赔资料。
+        variables:
+        - label: Claim JSON
+          variable: claim_json
+          type: paragraph
+          required: true
+          max_length: 30000
+          placeholder: 粘贴 test_data 下任一 Claim JSON；测试期望值不属于业务输入。
+        - label: 输出语言
+          variable: report_language
+          type: select
+          required: true
+          options: [中文, English]
+      position: {x: 40, y: 320}
+      positionAbsolute: {x: 40, y: 320}
+      sourcePosition: right
+      targetPosition: left
+      width: 300
+      height: 210
+    - id: evaluate_claim
+      type: custom
+      data:
+        type: code
+        title: Claim 校验与确定性 Fraud 评分
+        desc: 当前读取 Mock JSON；未来替换为 policy_api、claims_history_api、fraud_api。LLM 不参与评分。
+        code_language: python3
+        code: |
+          import hashlib
+          import json
+
+          INPUT_SCHEMA_VERSION = "insurance-claim-input/1.0.0"
+          OUTPUT_SCHEMA_VERSION = "insurance-claim-decision/1.0.0"
+          RULE_SET_VERSION = "INS-FRAUD-RULESET/1.1.0"
+          ALLOWED_TOP_LEVEL_FIELDS = {
+              "schema_version", "data_classification", "request_id", "claim_id",
+              "policy", "customer", "claim", "claim_history", "evidence"
+          }
+
+          def _is_leap(year):
+              return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+          def _parse_date(value, field, errors):
+              if not isinstance(value, str) or not value:
+                  errors.append(f"{field} is required")
+                  return None
+              try:
+                  parts = value.split("-")
+                  if len(parts) != 3 or any(len(part) != size for part, size in zip(parts, (4, 2, 2))):
+                      raise ValueError
+                  year, month, day = (int(part) for part in parts)
+                  month_days = [31, 29 if _is_leap(year) else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                  if year < 1 or not 1 <= month <= 12 or not 1 <= day <= month_days[month - 1]:
+                      raise ValueError
+                  days_before_year = 365 * (year - 1) + (year - 1) // 4 - (year - 1) // 100 + (year - 1) // 400
+                  return days_before_year + sum(month_days[:month - 1]) + day
+              except (ValueError, TypeError):
+                  errors.append(f"{field} must use YYYY-MM-DD")
+                  return None
+
+          def _number(value, field, errors, positive=False):
+              if not isinstance(value, (int, float)) or isinstance(value, bool):
+                  errors.append(f"{field} must be numeric")
+                  return 0.0
+              number = float(value)
+              if number < 0 or (positive and number <= 0):
+                  errors.append(f"{field} has invalid range")
+              return number
+
+          def _decision_id(request_id, claim_id, input_hash):
+              raw = f"{request_id}|{claim_id}|{RULE_SET_VERSION}|{input_hash}"
+              return "DEC-" + hashlib.sha256(raw.encode("utf-8")).hexdigest()[:20].upper()
+
+          def _invalid(claim_id, errors, request_id="UNKNOWN", input_hash="UNAVAILABLE"):
+              decision_id = _decision_id(request_id, claim_id or "UNKNOWN", input_hash)
+              audit = {
+                  "output_schema_version": OUTPUT_SCHEMA_VERSION,
+                  "input_schema_version": INPUT_SCHEMA_VERSION,
+                  "rule_set_version": RULE_SET_VERSION,
+                  "request_id": request_id,
+                  "decision_id": decision_id,
+                  "input_hash_sha256": input_hash,
+                  "decision_origin": "DETERMINISTIC_RULES",
+                  "explanation_status": "NOT_REQUESTED_INVALID_INPUT",
+                  "data_classification": "SIMULATED",
+                  "final_decision_owner": "HUMAN"
+              }
+              result = {
+                  "schema_version": OUTPUT_SCHEMA_VERSION,
+                  "request_id": request_id,
+                  "decision_id": decision_id,
+                  "claim_id": claim_id or "UNKNOWN",
+                  "validation_status": "INVALID",
+                  "risk_level": "UNDETERMINED",
+                  "risk_score": 0,
+                  "fraud_signals": [],
+                  "missing_information": errors,
+                  "evidence": [],
+                  "recommended_route": "MANUAL_REVIEW",
+                  "human_review_required": True,
+                  "audit": audit,
+                  "adapter_boundary": {
+                      "policy_api": "MOCK_NOT_CALLED",
+                      "claims_history_api": "MOCK_NOT_CALLED",
+                      "fraud_api": "LOCAL_RULES_ONLY"
+                  }
+              }
+              return {
+                  "validation_status": "INVALID",
+                  "risk_level": "UNDETERMINED",
+                  "risk_score": 0,
+                  "recommended_route": "MANUAL_REVIEW",
+                  "fraud_signals_json": "[]",
+                  "missing_information_json": json.dumps(errors, ensure_ascii=False),
+                  "analysis_payload": json.dumps(result, ensure_ascii=False, separators=(",", ":")),
+                  "error_json": json.dumps({"claim_id": claim_id or "UNKNOWN", "errors": errors}, ensure_ascii=False),
+                  "human_review_required": True,
+                  "decision_id": decision_id,
+                  "rule_set_version": RULE_SET_VERSION,
+                  "input_hash": input_hash,
+                  "audit_json": json.dumps(audit, ensure_ascii=False, separators=(",", ":"))
+              }
+
+          def main(claim_json: str) -> dict:
+              if not isinstance(claim_json, str) or not claim_json.strip():
+                  return _invalid("UNKNOWN", ["claim_json is required"])
+              raw_input_hash = hashlib.sha256(claim_json.encode("utf-8")).hexdigest()
+              try:
+                  payload = json.loads(claim_json)
+              except json.JSONDecodeError as exc:
+                  return _invalid("UNKNOWN", [f"invalid JSON: {exc.msg}"], input_hash=raw_input_hash)
+              if not isinstance(payload, dict):
+                  return _invalid("UNKNOWN", ["input must be a JSON object"], input_hash=raw_input_hash)
+
+              canonical_input = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+              input_hash = hashlib.sha256(canonical_input.encode("utf-8")).hexdigest()
+
+              claim_id = payload.get("claim_id")
+              request_id = payload.get("request_id")
+              errors = []
+              if payload.get("schema_version") != INPUT_SCHEMA_VERSION:
+                  errors.append(f"schema_version must equal {INPUT_SCHEMA_VERSION}")
+              if payload.get("data_classification") != "SIMULATED":
+                  errors.append("L1 demo accepts SIMULATED data only")
+              if not isinstance(request_id, str) or not request_id.strip():
+                  errors.append("request_id is required")
+                  request_id = "UNKNOWN"
+              if not isinstance(claim_id, str) or not claim_id:
+                  errors.append("claim_id is required")
+              unknown_fields = sorted(set(payload) - ALLOWED_TOP_LEVEL_FIELDS)
+              if unknown_fields:
+                  errors.append("unknown top-level fields: " + ", ".join(unknown_fields))
+              policy = payload.get("policy")
+              customer = payload.get("customer")
+              claim = payload.get("claim")
+              history = payload.get("claim_history")
+              evidence = payload.get("evidence")
+              if not all(isinstance(value, dict) for value in (policy, customer, claim, evidence)):
+                  return _invalid(claim_id, errors + ["policy, customer, claim, and evidence must be objects"], request_id, input_hash)
+              if not isinstance(history, list):
+                  return _invalid(claim_id, errors + ["claim_history must be an array"], request_id, input_hash)
+              if not isinstance(policy.get("policy_id"), str) or not policy.get("policy_id"):
+                  errors.append("policy.policy_id is required; real existence requires policy_api")
+              if not isinstance(customer.get("customer_id"), str) or not customer.get("customer_id"):
+                  errors.append("customer.customer_id is required")
+              if not isinstance(claim.get("accident_description"), str) or not claim.get("accident_description"):
+                  errors.append("claim.accident_description is required")
+
+              effective = _parse_date(policy.get("effective_date"), "policy.effective_date", errors)
+              expiry = _parse_date(policy.get("expiry_date"), "policy.expiry_date", errors)
+              accident = _parse_date(claim.get("accident_date"), "claim.accident_date", errors)
+              claim_date = _parse_date(claim.get("claim_date"), "claim.claim_date", errors)
+              coverage_limit = _number(policy.get("coverage_limit"), "policy.coverage_limit", errors, positive=True)
+              claim_amount = _number(claim.get("claim_amount"), "claim.claim_amount", errors, positive=True)
+              repair_quote = _number(evidence.get("repair_quote"), "evidence.repair_quote", errors)
+              previous_count = customer.get("previous_claim_count")
+              if not isinstance(previous_count, int) or isinstance(previous_count, bool) or previous_count < 0:
+                  errors.append("customer.previous_claim_count must be a non-negative integer")
+                  previous_count = 0
+              if effective and expiry and effective > expiry:
+                  errors.append("policy coverage dates are invalid")
+              if effective and expiry and accident and not (effective <= accident <= expiry):
+                  errors.append("accident_date is outside policy coverage period")
+              if accident and claim_date and claim_date < accident:
+                  errors.append("claim_date cannot precede accident_date")
+              if errors:
+                  return _invalid(claim_id, errors, request_id, input_hash)
+
+              score = 0
+              signals = []
+              rule_evidence = []
+              ratio = claim_amount / coverage_limit
+              tenure_days = accident - effective
+
+              def add_signal(code, points, detail):
+                  nonlocal score
+                  signals.append(code)
+                  score += points
+                  rule_evidence.append({"signal": code, "points": points, "detail": detail})
+
+              if tenure_days <= 30 and ratio >= 0.5:
+                  add_signal("EARLY_HIGH_VALUE_CLAIM", 40, {"policy_tenure_days": tenure_days, "claim_to_limit_ratio": round(ratio, 4)})
+              if previous_count >= 2 and len(history) >= 2:
+                  add_signal("SHORT_TERM_REPEAT_CLAIMS", 30, {"previous_claim_count": previous_count, "history_records": len(history)})
+              elif previous_count == 1:
+                  add_signal("PRIOR_CLAIM_ACTIVITY", 10, {"previous_claim_count": previous_count})
+              if evidence.get("history_description_consistent") is False:
+                  add_signal("HISTORY_DESCRIPTION_CONTRADICTION", 30, {"history_description_consistent": False})
+              if repair_quote > 0 and claim_amount > repair_quote * 1.5:
+                  add_signal("AMOUNT_QUOTE_MISMATCH", 25, {"claim_amount": claim_amount, "repair_quote": repair_quote})
+              if ratio >= 0.7:
+                  add_signal("HIGH_CLAIM_TO_LIMIT_RATIO", 25, {"claim_to_limit_ratio": round(ratio, 4)})
+              elif ratio >= 0.4:
+                  add_signal("ELEVATED_CLAIM_AMOUNT", 15, {"claim_to_limit_ratio": round(ratio, 4)})
+
+              score = min(score, 100)
+              if score >= 60:
+                  risk_level, route = "HIGH", "FRAUD_INVESTIGATION"
+              elif score >= 20:
+                  risk_level, route = "MEDIUM", "ADJUSTER_REVIEW"
+              else:
+                  risk_level, route = "LOW", "FAST_TRACK_REVIEW"
+              missing = evidence.get("missing_documents", []) if evidence.get("documents_complete") is False else []
+              if not isinstance(missing, list):
+                  missing = ["evidence.missing_documents must be an array"]
+
+              decision_id = _decision_id(request_id, claim_id, input_hash)
+              audit = {
+                  "output_schema_version": OUTPUT_SCHEMA_VERSION,
+                  "input_schema_version": INPUT_SCHEMA_VERSION,
+                  "rule_set_version": RULE_SET_VERSION,
+                  "request_id": request_id,
+                  "decision_id": decision_id,
+                  "input_hash_sha256": input_hash,
+                  "decision_origin": "DETERMINISTIC_RULES",
+                  "explanation_status": "PENDING_LLM_VALIDATION",
+                  "data_classification": "SIMULATED",
+                  "final_decision_owner": "HUMAN"
+              }
+              result = {
+                  "schema_version": OUTPUT_SCHEMA_VERSION,
+                  "request_id": request_id,
+                  "decision_id": decision_id,
+                  "claim_id": claim_id,
+                  "validation_status": "VALID",
+                  "risk_level": risk_level,
+                  "risk_score": score,
+                  "fraud_signals": signals,
+                  "missing_information": missing,
+                  "evidence": rule_evidence,
+                  "recommended_route": route,
+                  "human_review_required": True,
+                  "policy_context": {
+                      "coverage_type": policy.get("coverage_type"),
+                      "coverage_limit": coverage_limit,
+                      "deductible": policy.get("deductible"),
+                      "notice": "Mock policy summary; not a coverage decision"
+                  },
+                  "claim_context": {
+                      "claim_amount": claim_amount,
+                      "accident_type": claim.get("accident_type"),
+                      "accident_description": claim.get("accident_description")
+                  },
+                  "audit": audit,
+                  "adapter_boundary": {
+                      "policy_api": "MOCK_INPUT",
+                      "claims_history_api": "MOCK_INPUT",
+                      "fraud_api": "LOCAL_RULES_ONLY"
+                  }
+              }
+              return {
+                  "validation_status": "VALID",
+                  "risk_level": risk_level,
+                  "risk_score": score,
+                  "recommended_route": route,
+                  "fraud_signals_json": json.dumps(signals, ensure_ascii=False),
+                  "missing_information_json": json.dumps(missing, ensure_ascii=False),
+                  "analysis_payload": json.dumps(result, ensure_ascii=False, separators=(",", ":")),
+                  "error_json": "{}",
+                  "human_review_required": True,
+                  "decision_id": decision_id,
+                  "rule_set_version": RULE_SET_VERSION,
+                  "input_hash": input_hash,
+                  "audit_json": json.dumps(audit, ensure_ascii=False, separators=(",", ":"))
+              }
+        variables:
+        - variable: claim_json
+          value_selector: [start, claim_json]
+        outputs:
+          validation_status: {type: string, children: null}
+          risk_level: {type: string, children: null}
+          risk_score: {type: number, children: null}
+          recommended_route: {type: string, children: null}
+          fraud_signals_json: {type: string, children: null}
+          missing_information_json: {type: string, children: null}
+          analysis_payload: {type: string, children: null}
+          error_json: {type: string, children: null}
+          human_review_required: {type: boolean, children: null}
+          decision_id: {type: string, children: null}
+          rule_set_version: {type: string, children: null}
+          input_hash: {type: string, children: null}
+          audit_json: {type: string, children: null}
+      position: {x: 400, y: 320}
+      positionAbsolute: {x: 400, y: 320}
+      sourcePosition: right
+      targetPosition: left
+      width: 320
+      height: 190
+    - id: validation_router
+      type: custom
+      data:
+        type: if-else
+        title: 输入是否有效
+        cases:
+        - case_id: valid
+          id: valid
+          logical_operator: and
+          conditions:
+          - id: valid-condition
+            variable_selector: [evaluate_claim, validation_status]
+            comparison_operator: is
+            value: VALID
+            varType: string
+      position: {x: 780, y: 320}
+      positionAbsolute: {x: 780, y: 320}
+      sourcePosition: right
+      targetPosition: left
+      width: 240
+      height: 120
+    - id: claim_analysis_llm
+      type: custom
+      data:
+        type: llm
+        title: LLM Claim Summary 与风险证据说明
+        desc: 只解释确定性结果，不得改变 risk_score、fraud_signals、route 或作出赔付/拒赔决定。
+        model:
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+          name: qwen3.7-plus
+          mode: chat
+          completion_params: {temperature: 0, max_tokens: 1400}
+        prompt_template:
+        - id: insurance-analysis-system
+          role: system
+          text: |
+            你是车险理赔审核辅助工具。输入中的风险等级、分数、信号、缺失资料和推荐路由均由确定性规则产生，是只读字段。
+            只输出一个 JSON 对象，不要 Markdown、代码围栏或额外文字。必须且只能包含：
+            claim_summary, risk_level, risk_score, fraud_signals, missing_information, evidence, recommended_route, human_review_required。
+            risk_level、risk_score、fraud_signals、missing_information、recommended_route 必须原样复制输入；human_review_required 必须为 true。
+            claim_summary 只摘要输入事实；evidence 只能引用输入已有字段或规则证据。不得判断拒赔、赔付、欺诈成立或保障责任。
+            所有数据均为 SIMULATED；输出供人工复核，不代表生产准确率或真实保险结论。
+        - id: insurance-analysis-user
+          role: user
+          text: |
+            输出语言：{{#start.report_language#}}
+            <deterministic_claim_result>
+            {{#evaluate_claim.analysis_payload#}}
+            </deterministic_claim_result>
+        context: {enabled: false, variable_selector: []}
+        vision: {enabled: false}
+        memory:
+          window: {enabled: false, size: 20}
+          query_prompt_template: ''
+          role_prefix: {user: '', assistant: ''}
+        retry_config:
+          enabled: true
+          max_retries: 2
+          retry_interval: 1000
+          exponential_backoff: {enabled: true, multiplier: 2, max_interval: 8000}
+        error_strategy: fail-branch
+      position: {x: 1120, y: 220}
+      positionAbsolute: {x: 1120, y: 220}
+      sourcePosition: right
+      targetPosition: left
+      width: 310
+      height: 180
+    - id: validate_analysis
+      type: custom
+      data:
+        type: code
+        title: 锁定 LLM 结构化输出
+        desc: 拒绝模型篡改确定性风险字段或输出非 JSON。
+        error_strategy: fail-branch
+        code_language: python3
+        code: |
+          import json
+
+          REQUIRED = {
+              "claim_summary", "risk_level", "risk_score", "fraud_signals",
+              "missing_information", "evidence", "recommended_route", "human_review_required"
+          }
+
+          def _clean(value):
+              text = value.strip()
+              if text.startswith("```"):
+                  lines = text.splitlines()[1:]
+                  if lines and lines[-1].strip() == "```":
+                      lines = lines[:-1]
+                  text = "\n".join(lines).strip()
+              return json.loads(text)
+
+          def main(candidate_text: str, risk_level: str, risk_score: float,
+                   fraud_signals_json: str, missing_information_json: str,
+                   recommended_route: str) -> dict:
+              if not isinstance(candidate_text, str) or not candidate_text.strip():
+                  raise ValueError("LLM analysis text is empty")
+              candidate = _clean(candidate_text)
+              if not isinstance(candidate, dict) or set(candidate.keys()) != REQUIRED:
+                  raise ValueError("LLM output must contain exactly the required JSON keys")
+              expected_signals = json.loads(fraud_signals_json)
+              expected_missing = json.loads(missing_information_json)
+              if candidate.get("risk_level") != risk_level:
+                  raise ValueError("LLM changed deterministic risk_level")
+              if float(candidate.get("risk_score", -1)) != float(risk_score):
+                  raise ValueError("LLM changed deterministic risk_score")
+              if candidate.get("fraud_signals") != expected_signals:
+                  raise ValueError("LLM changed deterministic fraud_signals")
+              if candidate.get("missing_information") != expected_missing:
+                  raise ValueError("LLM changed deterministic missing_information")
+              if candidate.get("recommended_route") != recommended_route:
+                  raise ValueError("LLM changed deterministic recommended_route")
+              if candidate.get("human_review_required") is not True:
+                  raise ValueError("human_review_required must be true")
+              if not isinstance(candidate.get("claim_summary"), str) or not candidate["claim_summary"].strip():
+                  raise ValueError("claim_summary must be non-empty")
+              if not isinstance(candidate.get("evidence"), list):
+                  raise ValueError("evidence must be an array")
+              return {
+                  "analysis_json": json.dumps(candidate, ensure_ascii=False, separators=(",", ":")),
+                  "risk_level": risk_level,
+                  "recommended_route": recommended_route,
+                  "human_review_required": True
+              }
+        variables:
+        - variable: candidate_text
+          value_selector: [claim_analysis_llm, text]
+        - variable: risk_level
+          value_selector: [evaluate_claim, risk_level]
+        - variable: risk_score
+          value_selector: [evaluate_claim, risk_score]
+        - variable: fraud_signals_json
+          value_selector: [evaluate_claim, fraud_signals_json]
+        - variable: missing_information_json
+          value_selector: [evaluate_claim, missing_information_json]
+        - variable: recommended_route
+          value_selector: [evaluate_claim, recommended_route]
+        outputs:
+          analysis_json: {type: string, children: null}
+          risk_level: {type: string, children: null}
+          recommended_route: {type: string, children: null}
+          human_review_required: {type: boolean, children: null}
+      position: {x: 1500, y: 220}
+      positionAbsolute: {x: 1500, y: 220}
+      sourcePosition: right
+      targetPosition: left
+      width: 290
+      height: 170
+    - id: llm_execution_fallback
+      type: custom
+      data:
+        type: code
+        title: 降级｜LLM 调用失败
+        desc: 保留确定性规则结论，隐藏供应商错误详情并强制人工复核。
+        code_language: python3
+        code: |
+          import json
+
+          def main(analysis_payload: str, decision_id: str, audit_json: str) -> dict:
+              result = json.loads(analysis_payload)
+              audit = json.loads(audit_json)
+              reason = "LLM_EXECUTION_ERROR"
+              audit["explanation_status"] = "FALLBACK_LLM_EXECUTION_FAILED"
+              audit["fallback_reason_code"] = reason
+              audit["provider_error_detail_exposed"] = False
+              fallback = {
+                  "schema_version": result.get("schema_version"),
+                  "request_id": result.get("request_id"),
+                  "decision_id": decision_id,
+                  "claim_summary": "LLM 解释暂不可用；以下仅返回确定性规则结果，需人工复核。",
+                  "risk_level": result.get("risk_level"),
+                  "risk_score": result.get("risk_score"),
+                  "fraud_signals": result.get("fraud_signals", []),
+                  "missing_information": result.get("missing_information", []),
+                  "evidence": result.get("evidence", []),
+                  "recommended_route": result.get("recommended_route"),
+                  "human_review_required": True,
+                  "explanation_status": audit["explanation_status"],
+                  "fallback_reason_code": reason,
+                  "audit": audit
+              }
+              return {
+                  "analysis_json": json.dumps(fallback, ensure_ascii=False, separators=(",", ":")),
+                  "risk_level": result.get("risk_level", "UNDETERMINED"),
+                  "recommended_route": result.get("recommended_route", "MANUAL_REVIEW"),
+                  "human_review_required": True,
+                  "decision_id": decision_id,
+                  "audit_json": json.dumps(audit, ensure_ascii=False, separators=(",", ":")),
+                  "fallback_reason": reason
+              }
+        variables:
+        - variable: analysis_payload
+          value_selector: [evaluate_claim, analysis_payload]
+        - variable: decision_id
+          value_selector: [evaluate_claim, decision_id]
+        - variable: audit_json
+          value_selector: [evaluate_claim, audit_json]
+        outputs:
+          analysis_json: {type: string, children: null}
+          risk_level: {type: string, children: null}
+          recommended_route: {type: string, children: null}
+          human_review_required: {type: boolean, children: null}
+          decision_id: {type: string, children: null}
+          audit_json: {type: string, children: null}
+          fallback_reason: {type: string, children: null}
+      position: {x: 1500, y: 560}
+      positionAbsolute: {x: 1500, y: 560}
+      sourcePosition: right
+      targetPosition: left
+      width: 300
+      height: 180
+    - id: llm_output_fallback
+      type: custom
+      data:
+        type: code
+        title: 降级｜LLM 输出校验失败
+        desc: 模型输出越权或格式错误时，返回确定性规则结果并强制人工复核。
+        code_language: python3
+        code: |
+          import json
+
+          def main(analysis_payload: str, decision_id: str, audit_json: str) -> dict:
+              result = json.loads(analysis_payload)
+              audit = json.loads(audit_json)
+              reason = "LLM_OUTPUT_VALIDATION_ERROR"
+              audit["explanation_status"] = "FALLBACK_LLM_OUTPUT_REJECTED"
+              audit["fallback_reason_code"] = reason
+              audit["provider_error_detail_exposed"] = False
+              fallback = {
+                  "schema_version": result.get("schema_version"),
+                  "request_id": result.get("request_id"),
+                  "decision_id": decision_id,
+                  "claim_summary": "LLM 输出未通过结构或越权校验；以下仅返回确定性规则结果，需人工复核。",
+                  "risk_level": result.get("risk_level"),
+                  "risk_score": result.get("risk_score"),
+                  "fraud_signals": result.get("fraud_signals", []),
+                  "missing_information": result.get("missing_information", []),
+                  "evidence": result.get("evidence", []),
+                  "recommended_route": result.get("recommended_route"),
+                  "human_review_required": True,
+                  "explanation_status": audit["explanation_status"],
+                  "fallback_reason_code": reason,
+                  "audit": audit
+              }
+              return {
+                  "analysis_json": json.dumps(fallback, ensure_ascii=False, separators=(",", ":")),
+                  "risk_level": result.get("risk_level", "UNDETERMINED"),
+                  "recommended_route": result.get("recommended_route", "MANUAL_REVIEW"),
+                  "human_review_required": True,
+                  "decision_id": decision_id,
+                  "audit_json": json.dumps(audit, ensure_ascii=False, separators=(",", ":")),
+                  "fallback_reason": reason
+              }
+        variables:
+        - variable: analysis_payload
+          value_selector: [evaluate_claim, analysis_payload]
+        - variable: decision_id
+          value_selector: [evaluate_claim, decision_id]
+        - variable: audit_json
+          value_selector: [evaluate_claim, audit_json]
+        outputs:
+          analysis_json: {type: string, children: null}
+          risk_level: {type: string, children: null}
+          recommended_route: {type: string, children: null}
+          human_review_required: {type: boolean, children: null}
+          decision_id: {type: string, children: null}
+          audit_json: {type: string, children: null}
+          fallback_reason: {type: string, children: null}
+      position: {x: 1850, y: 700}
+      positionAbsolute: {x: 1850, y: 700}
+      sourcePosition: right
+      targetPosition: left
+      width: 300
+      height: 180
+    - id: risk_router
+      type: custom
+      data:
+        type: if-else
+        title: Risk Routing
+        cases:
+        - case_id: low
+          id: low
+          logical_operator: and
+          conditions:
+          - id: low-condition
+            variable_selector: [validate_analysis, risk_level]
+            comparison_operator: is
+            value: LOW
+            varType: string
+        - case_id: medium
+          id: medium
+          logical_operator: and
+          conditions:
+          - id: medium-condition
+            variable_selector: [validate_analysis, risk_level]
+            comparison_operator: is
+            value: MEDIUM
+            varType: string
+      position: {x: 1850, y: 220}
+      positionAbsolute: {x: 1850, y: 220}
+      sourcePosition: right
+      targetPosition: left
+      width: 250
+      height: 150
+    - id: invalid_end
+      type: custom
+      data:
+        type: end
+        title: 异常｜人工补充或校验
+        outputs:
+        - variable: invalid_status
+          value_selector: [evaluate_claim, validation_status]
+          value_type: string
+        - variable: invalid_error_json
+          value_selector: [evaluate_claim, error_json]
+          value_type: string
+        - variable: invalid_route
+          value_selector: [evaluate_claim, recommended_route]
+          value_type: string
+        - variable: invalid_human_review_required
+          value_selector: [evaluate_claim, human_review_required]
+          value_type: boolean
+        - variable: invalid_decision_id
+          value_selector: [evaluate_claim, decision_id]
+          value_type: string
+        - variable: invalid_audit_json
+          value_selector: [evaluate_claim, audit_json]
+          value_type: string
+      position: {x: 1120, y: 520}
+      positionAbsolute: {x: 1120, y: 520}
+      sourcePosition: right
+      targetPosition: left
+      width: 280
+      height: 150
+    - id: low_end
+      type: custom
+      data:
+        type: end
+        title: LOW｜FAST_TRACK_REVIEW
+        outputs:
+        - variable: low_analysis_json
+          value_selector: [validate_analysis, analysis_json]
+          value_type: string
+        - variable: low_route
+          value_selector: [validate_analysis, recommended_route]
+          value_type: string
+        - variable: low_human_review_required
+          value_selector: [validate_analysis, human_review_required]
+          value_type: boolean
+        - variable: low_decision_id
+          value_selector: [evaluate_claim, decision_id]
+          value_type: string
+        - variable: low_audit_json
+          value_selector: [evaluate_claim, audit_json]
+          value_type: string
+      position: {x: 2200, y: 60}
+      positionAbsolute: {x: 2200, y: 60}
+      sourcePosition: right
+      targetPosition: left
+      width: 280
+      height: 140
+    - id: medium_end
+      type: custom
+      data:
+        type: end
+        title: MEDIUM｜ADJUSTER_REVIEW
+        outputs:
+        - variable: medium_analysis_json
+          value_selector: [validate_analysis, analysis_json]
+          value_type: string
+        - variable: medium_route
+          value_selector: [validate_analysis, recommended_route]
+          value_type: string
+        - variable: medium_human_review_required
+          value_selector: [validate_analysis, human_review_required]
+          value_type: boolean
+        - variable: medium_decision_id
+          value_selector: [evaluate_claim, decision_id]
+          value_type: string
+        - variable: medium_audit_json
+          value_selector: [evaluate_claim, audit_json]
+          value_type: string
+      position: {x: 2200, y: 250}
+      positionAbsolute: {x: 2200, y: 250}
+      sourcePosition: right
+      targetPosition: left
+      width: 280
+      height: 140
+    - id: high_end
+      type: custom
+      data:
+        type: end
+        title: HIGH｜FRAUD_INVESTIGATION
+        outputs:
+        - variable: high_analysis_json
+          value_selector: [validate_analysis, analysis_json]
+          value_type: string
+        - variable: high_route
+          value_selector: [validate_analysis, recommended_route]
+          value_type: string
+        - variable: high_human_review_required
+          value_selector: [validate_analysis, human_review_required]
+          value_type: boolean
+        - variable: high_decision_id
+          value_selector: [evaluate_claim, decision_id]
+          value_type: string
+        - variable: high_audit_json
+          value_selector: [evaluate_claim, audit_json]
+          value_type: string
+      position: {x: 2200, y: 440}
+      positionAbsolute: {x: 2200, y: 440}
+      sourcePosition: right
+      targetPosition: left
+      width: 280
+      height: 140
+    - id: llm_execution_fallback_end
+      type: custom
+      data:
+        type: end
+        title: 降级完成｜LLM 调用失败
+        outputs:
+        - variable: llm_failure_analysis_json
+          value_selector: [llm_execution_fallback, analysis_json]
+          value_type: string
+        - variable: llm_failure_route
+          value_selector: [llm_execution_fallback, recommended_route]
+          value_type: string
+        - variable: llm_failure_human_review_required
+          value_selector: [llm_execution_fallback, human_review_required]
+          value_type: boolean
+        - variable: llm_failure_decision_id
+          value_selector: [llm_execution_fallback, decision_id]
+          value_type: string
+        - variable: llm_failure_audit_json
+          value_selector: [llm_execution_fallback, audit_json]
+          value_type: string
+      position: {x: 2200, y: 650}
+      positionAbsolute: {x: 2200, y: 650}
+      sourcePosition: right
+      targetPosition: left
+      width: 300
+      height: 150
+    - id: llm_output_fallback_end
+      type: custom
+      data:
+        type: end
+        title: 降级完成｜LLM 输出被拒绝
+        outputs:
+        - variable: llm_rejected_analysis_json
+          value_selector: [llm_output_fallback, analysis_json]
+          value_type: string
+        - variable: llm_rejected_route
+          value_selector: [llm_output_fallback, recommended_route]
+          value_type: string
+        - variable: llm_rejected_human_review_required
+          value_selector: [llm_output_fallback, human_review_required]
+          value_type: boolean
+        - variable: llm_rejected_decision_id
+          value_selector: [llm_output_fallback, decision_id]
+          value_type: string
+        - variable: llm_rejected_audit_json
+          value_selector: [llm_output_fallback, audit_json]
+          value_type: string
+      position: {x: 2200, y: 840}
+      positionAbsolute: {x: 2200, y: 840}
+      sourcePosition: right
+      targetPosition: left
+      width: 300
+      height: 150
+    edges:
+    - id: start-to-evaluate
+      source: start
+      sourceHandle: source
+      target: evaluate_claim
+      targetHandle: target
+      type: custom
+      data: {sourceType: start, targetType: code, isInIteration: false, isInLoop: false}
+    - id: evaluate-to-validation
+      source: evaluate_claim
+      sourceHandle: source
+      target: validation_router
+      targetHandle: target
+      type: custom
+      data: {sourceType: code, targetType: if-else, isInIteration: false, isInLoop: false}
+    - id: validation-valid-to-llm
+      source: validation_router
+      sourceHandle: valid
+      target: claim_analysis_llm
+      targetHandle: target
+      type: custom
+      data: {sourceType: if-else, targetType: llm, isInIteration: false, isInLoop: false}
+    - id: validation-invalid-to-end
+      source: validation_router
+      sourceHandle: 'false'
+      target: invalid_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: if-else, targetType: end, isInIteration: false, isInLoop: false}
+    - id: llm-to-gate
+      source: claim_analysis_llm
+      sourceHandle: success-branch
+      target: validate_analysis
+      targetHandle: target
+      type: custom
+      data: {sourceType: llm, targetType: code, isInIteration: false, isInLoop: false}
+    - id: gate-to-risk-router
+      source: validate_analysis
+      sourceHandle: success-branch
+      target: risk_router
+      targetHandle: target
+      type: custom
+      data: {sourceType: code, targetType: if-else, isInIteration: false, isInLoop: false}
+    - id: llm-fail-to-fallback
+      source: claim_analysis_llm
+      sourceHandle: fail-branch
+      target: llm_execution_fallback
+      targetHandle: target
+      type: custom
+      data: {sourceType: llm, targetType: code, isInIteration: false, isInLoop: false}
+    - id: llm-fallback-to-end
+      source: llm_execution_fallback
+      sourceHandle: source
+      target: llm_execution_fallback_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: code, targetType: end, isInIteration: false, isInLoop: false}
+    - id: gate-fail-to-fallback
+      source: validate_analysis
+      sourceHandle: fail-branch
+      target: llm_output_fallback
+      targetHandle: target
+      type: custom
+      data: {sourceType: code, targetType: code, isInIteration: false, isInLoop: false}
+    - id: gate-fallback-to-end
+      source: llm_output_fallback
+      sourceHandle: source
+      target: llm_output_fallback_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: code, targetType: end, isInIteration: false, isInLoop: false}
+    - id: risk-low-to-end
+      source: risk_router
+      sourceHandle: low
+      target: low_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: if-else, targetType: end, isInIteration: false, isInLoop: false}
+    - id: risk-medium-to-end
+      source: risk_router
+      sourceHandle: medium
+      target: medium_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: if-else, targetType: end, isInIteration: false, isInLoop: false}
+    - id: risk-high-to-end
+      source: risk_router
+      sourceHandle: 'false'
+      target: high_end
+      targetHandle: target
+      type: custom
+      data: {sourceType: if-else, targetType: end, isInIteration: false, isInLoop: false}
+  rag_pipeline_variables: []

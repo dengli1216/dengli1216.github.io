@@ -1,0 +1,59 @@
+{
+  "version": "v1",
+  "rules": [
+    {
+      "id": "pressure-normal-band",
+      "equipment_type": "pump",
+      "metric": "pressure",
+      "normal_range": {"min": 3, "max": 6},
+      "critical_range": {"min": 0, "max": 2},
+      "unit": "bar",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "recommend operator verification"}
+    },
+    {
+      "id": "temperature-upper-limit",
+      "equipment_type": "motor",
+      "metric": "temperature",
+      "normal_range": {"min": 0, "max": 80},
+      "critical_range": {"min": 90, "max": 200},
+      "unit": "C",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "create maintenance review suggestion", "near_threshold_action": "request manual reading confirmation"}
+    },
+    {
+      "id": "pressure-lower-limit",
+      "equipment_type": "valve",
+      "metric": "pressure",
+      "normal_range": {"min": 3, "max": 6},
+      "critical_range": {"min": 0, "max": 2},
+      "unit": "bar",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "recommend operator verification"}
+    },
+    {
+      "id": "status-normal",
+      "equipment_type": "fan",
+      "metric": "status",
+      "normal_range": ["RUNNING", "STOPPED"],
+      "critical_range": ["ALARM"],
+      "unit": "state",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "recommend on-site inspection and work-order review"}
+    },
+    {
+      "id": "vibration-limit",
+      "equipment_type": "fan",
+      "metric": "vibration",
+      "normal_range": {"min": 0, "max": 4.9},
+      "critical_range": {"min": 5.1, "max": 20},
+      "unit": "mm/s",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "recommend operator verification", "at_threshold_review_required": true, "at_threshold_action": "apply approved threshold policy after human review"}
+    },
+    {
+      "id": "alarm-light-state",
+      "equipment_type": "motor",
+      "metric": "alarm_light",
+      "normal_range": ["OFF"],
+      "critical_range": ["ALARM"],
+      "unit": "state",
+      "review_policy": {"normal_review_required": false, "abnormal_review_required": true, "normal_action": "continue routine inspection", "abnormal_action": "recommend on-site inspection and work-order review"}
+    }
+  ]
+}

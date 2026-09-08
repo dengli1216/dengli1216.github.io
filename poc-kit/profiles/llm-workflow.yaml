@@ -1,0 +1,26 @@
+profile:
+  id: llm-workflow
+  name: LLM Workflow
+  applies_to: 多步骤 LLM 编排、提示词链路、结构化输出与人工协同类 POC
+stage_focus:
+  S1:
+    - 业务目标需说明人机协同角色和最终责任人。
+  S3:
+    - 每个 LLM 节点需声明输入、输出、失败处理和人工兜底。
+  S4:
+    - Golden Set 需覆盖正常输入、信息缺失、冲突输入。
+  S5:
+    - 评估需覆盖流程完成率、格式稳定性、人工复核触发合理性。
+profile_metrics:
+  verified_candidate:
+    - workflow_completion
+    - structured_output_rate
+    - fallback_path_presence
+  pending_by_default:
+    - hallucination_rate
+    - task_success_rate
+    - human_review_precision
+critical_tests:
+  - LLM 输出不得无证据扩写关键事实。
+  - 失败处理不得吞掉节点错误。
+  - 人工审批或复核边界必须显式存在。

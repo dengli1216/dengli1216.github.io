@@ -1,0 +1,8 @@
+# Approved source images and raw Qwen evidence may contain private operational data.
+poc/fixtures/approved/
+poc/fixtures/private/
+poc/data/private/
+poc/reports/private/
+.env
+.env.*
+!.env.example

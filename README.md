@@ -58,7 +58,7 @@ Save
 
 ## 如何新增 Case
 
-1. 复制 `cases/hand-gesture-store/` 为 `cases/your-case-slug/`。
+1. 复制一个现有案例目录为 `cases/your-case-slug/`。
 2. 修改其中 `index.html` 的分类、价值、场景、技术栈、商业价值和开发计划。
 3. 在根目录 `main.js` 的 `data` 中新增中英文卡片记录，并将 `path` 指向 `cases/your-case-slug/`。
 4. 不创建重复入口；案例仅维护在 `cases/`。

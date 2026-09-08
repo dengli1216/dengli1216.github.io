@@ -1,0 +1,89 @@
+schema_version: "0.1"
+case:
+  id: ai-solution-copilot
+  name: AI Solution Copilot
+  type: poc
+  directory: cases/ai-solution-copilot
+  business_problem: 将 Intake JSON 转换为逐阶段、带证据注册表和前序链路的分析与报告候选，并在最终输出前保留人工复核。
+  boundary:
+    - 不改造 App 01，不建设生产接口。
+    - 不声明准确率、ROI、客户效果、生产可用性或自动批准。
+    - 目标用户、真实业务流程、价值衡量和生产数据边界仍待确认。
+profile:
+  id: llm-workflow
+  path: ../../../poc-kit/profiles/llm-workflow.yaml
+assets:
+  inputs:
+    - poc/tests/golden-set.json
+    - poc/tests/smoke-cases.json
+  workflow:
+    - poc/dify/ai-solution-copilot-02-analysis-report.dify.yml
+    - docs/DECISION_CONTRACT.md
+    - docs/EVIDENCE_CONTRACT.md
+    - docs/WORKFLOW_AUDIT.md
+  schemas: []
+  outputs:
+    - poc/reports/eval-summary.json
+    - poc/reports/smoke-summary.json
+    - poc/reports/page-evidence.json
+  reports:
+    - docs/CASE_BRIEF.md
+    - poc/reports/POC_REPORT.md
+    - poc/reports/EVAL_REPORT.md
+    - poc/reports/SMOKE_REPORT.md
+    - poc/reports/failure-analysis.md
+sop_stages:
+  S0:
+    status: verified
+    evidence: [CASE_META.yaml, docs/CASE_BRIEF.md]
+    notes: 案例定位、业务问题、范围与 blocker 已声明。
+  S1:
+    status: partial
+    evidence: [docs/CASE_BRIEF.md, poc/reports/POC_REPORT.md]
+    notes: 决策链路可验证；目标用户与业务价值衡量仍是 blocker。
+  S2:
+    status: verified
+    evidence: [poc/reports/smoke-summary.json, poc/reports/eval-summary.json]
+    notes: 已有接口、快照 SHA 与真实 Dify API 运行证据。
+  S3:
+    status: verified
+    evidence: [docs/DECISION_CONTRACT.md, poc/dify/ai-solution-copilot-02-analysis-report.dify.yml]
+    notes: INTAKE 到 FINAL_REPORT 阶段链路与 Gate 规则已定义。
+  S4:
+    status: verified
+    evidence: [poc/tests/golden-set.json, poc/tests/TEST_PLAN.md]
+    notes: 12 条 synthetic golden set，覆盖阻断、失败、证据引用与主链。
+  S5:
+    status: verified
+    evidence: [poc/reports/eval-summary.json, poc/reports/EVAL_REPORT.md]
+    notes: 20 次真实 API 调用、52/52 分支断言、4/4 三次一致。
+  S6:
+    status: verified
+    evidence: [poc/reports/POC_REPORT.md, poc/reports/page-evidence.json]
+    notes: 已有证据报告与页面证据包。
+  S7:
+    status: verified
+    evidence: [index.html, poc/reports/page-evidence.json]
+    notes: 页面可消费已验证派生证据。
+validation:
+  verified_metrics:
+    - name: run_id_coverage
+      evidence: "poc/reports/page-evidence.json: 20/20 (100%)"
+    - name: expected_status_and_contract_compliance
+      evidence: "poc/reports/page-evidence.json: 20/20 (100%)"
+    - name: branch_status_assertion_pass_rate
+      evidence: "poc/reports/eval-summary.json: 52/52"
+    - name: evidence_refs_contract_detection_rate
+      evidence: "poc/reports/eval-summary.json: 20/20"
+    - name: key_case_three_run_consistency
+      evidence: "poc/reports/page-evidence.json: 4/4 (100%)"
+  assumptions:
+    - Workflow 机制适合展示证据约束下的方案分析草稿生成与安全降级。
+    - Synthetic Golden Set 不能证明真实业务正确性。
+  pending_metrics:
+    - business_accuracy
+    - citation_truthfulness_on_real_customer_data
+    - human_approval_completion
+    - production_SLA
+    - ROI
+    - cost_conclusion

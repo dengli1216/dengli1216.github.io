@@ -1,0 +1,29 @@
+{
+  "schema_version": "insurance-claim-input/1.0.0",
+  "data_classification": "SIMULATED",
+  "request_id": "REQ-OUTSIDE-COVERAGE-001",
+  "claim_id": "CLM-OUTSIDE-COVERAGE-001",
+  "policy": {
+    "policy_id": "POL-OUTSIDE-COVERAGE-001",
+    "effective_date": "2026-06-01",
+    "expiry_date": "2027-05-31",
+    "coverage_type": "COMPREHENSIVE_MOTOR",
+    "coverage_limit": 100000,
+    "deductible": 1000
+  },
+  "customer": {"customer_id": "CUS-OUTSIDE-COVERAGE-001", "previous_claim_count": 0},
+  "claim": {
+    "claim_date": "2026-05-11",
+    "accident_date": "2026-05-10",
+    "claim_amount": 8000,
+    "accident_type": "MINOR_COLLISION",
+    "accident_description": "用于验证出险日在保单生效前的拒绝路径。"
+  },
+  "claim_history": [],
+  "evidence": {
+    "documents_complete": true,
+    "missing_documents": [],
+    "repair_quote": 7800,
+    "history_description_consistent": true
+  }
+}

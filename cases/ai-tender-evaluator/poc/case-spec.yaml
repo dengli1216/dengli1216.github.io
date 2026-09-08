@@ -1,0 +1,88 @@
+schema_version: "0.1"
+case:
+  id: ai-tender-evaluator
+  name: AI Tender Proposal Evaluator
+  type: poc
+  directory: cases/ai-tender-evaluator
+  business_problem: 将脱敏招标要求与投标响应材料转为可追溯的条款匹配结果、风险清单与 Bid / Conditional Bid / No-Bid 建议。
+  boundary:
+    - Synthetic POC / human_review_pending，不代表生产准确率或客户 ROI。
+    - 不替代法务、资质、日期、金额、报价或最终投标审批。
+profile:
+  id: document-decision
+  path: ../../../poc-kit/profiles/document-decision.yaml
+assets:
+  inputs:
+    - poc/tests/golden/golden_cases.jsonl
+    - poc/samples/test-input.json
+    - poc/samples/smart-campus-tender.md
+    - poc/samples/proposal-response.md
+  workflow:
+    - poc/workflow-spec.md
+    - poc/dify/ai-tender-evaluator-v1.yml
+    - poc/dify/TEST_RESULT.md
+  schemas:
+    - poc/schemas/tender-review-output.schema.json
+    - poc/tests/golden/golden_schema.json
+  outputs:
+    - poc/reports/eval-summary.json
+    - poc/reports/page-evidence.json
+  reports:
+    - poc/reports/POC_REPORT.md
+    - poc/reports/eval-summary.md
+    - poc/reports/failure-analysis.md
+sop_stages:
+  S0:
+    status: verified
+    evidence: [CASE_META.yaml, poc/reports/POC_REPORT.md]
+    notes: 类型、场景、业务问题与边界已声明。
+  S1:
+    status: verified
+    evidence: [poc/reports/POC_REPORT.md, poc/reports/page-evidence.json]
+    notes: 支持投标评审辅助决策，但最终授权归人工。
+  S2:
+    status: verified
+    evidence: [poc/dify/ai-tender-evaluator-v1.yml, poc/reports/eval-summary.json]
+    notes: 现有报告记录 Dify 1.16.1 与 workflow version。
+  S3:
+    status: verified
+    evidence: [poc/workflow-spec.md, poc/dify/ai-tender-evaluator-v1.yml]
+    notes: 已有 LLM + Code Gate 工作流证据。
+  S4:
+    status: verified
+    evidence: [poc/tests/golden/golden_cases.jsonl]
+    notes: 30 条 synthetic / human_review_pending golden cases。
+  S5:
+    status: verified
+    evidence: [poc/reports/eval-summary.json, poc/reports/eval-summary.md]
+    notes: 记录 30/30 API runs 与关键 gate 三次一致。
+  S6:
+    status: verified
+    evidence: [poc/reports/POC_REPORT.md, poc/reports/page-evidence.json]
+    notes: 已有报告与页面证据包。
+  S7:
+    status: verified
+    evidence: [index.html, main.js]
+    notes: 页面读取 page-evidence 展示验证指标与边界。
+validation:
+  verified_metrics:
+    - name: api_cases_completed
+      evidence: "poc/reports/page-evidence.json: 30/30"
+    - name: workflow_success_rate
+      evidence: "poc/reports/page-evidence.json: 1.0"
+    - name: schema_compliance_rate
+      evidence: "poc/reports/page-evidence.json: 1.0"
+    - name: synthetic_golden_consistency_rate
+      evidence: "poc/reports/page-evidence.json: 1.0"
+    - name: decision_accuracy
+      evidence: "poc/reports/page-evidence.json: 1.0"
+    - name: citation_validity_rate
+      evidence: "poc/reports/page-evidence.json: 1.0"
+  assumptions:
+    - Synthetic golden 结果不能外推到真实客户文件。
+    - 页面展示可作为作品集证据，不等于生产验收。
+  pending_metrics:
+    - real_customer_accuracy
+    - production_stability
+    - ROI
+    - token_or_cost_metadata
