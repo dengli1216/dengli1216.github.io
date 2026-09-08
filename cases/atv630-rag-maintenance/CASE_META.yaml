@@ -1,0 +1,9 @@
+case:
+  id: atv630-rag-maintenance
+  name: AI 设备运维知识助手
+  type: poc
+  profile: llm-workflow
+  sop: ../../poc-kit/POC_SOP.md
+  data_classification: public_official_sources_plus_synthetic_work_orders
+  review_status: pending_dify_api_validation
+
