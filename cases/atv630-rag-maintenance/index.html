@@ -3,34 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="面向业务验证与生产化表达的 AI POC 案例模板。">
-    <title>AI POC 案例模板</title>
+    <meta name="description" content="面向 Schneider Electric Altivar Process ATV630 的可追溯故障辅助决策 RAG POC。">
+    <title>AI设备运维知识助手｜ATV630 RAG POC</title>
     <link rel="stylesheet" href="../../shared/case-framework/case-template.css">
+    <link rel="stylesheet" href="case-overrides.css">
   </head>
   <body>
     <a class="skip-link" href="#case">跳至案例正文</a>
     <header class="site-header">
       <a class="brand" href="../../index.html" aria-label="返回 AI 案例作品集">DengLi / AI CASES</a>
       <nav aria-label="案例导航">
-        <a href="#value">业务价值</a>
-        <a href="#solution">解决方案</a>
-        <a href="#result">POC 验证</a>
-        <a href="#roi">ROI 商业价值</a>
-        <a href="#roadmap">生产化</a>
+        <a href="#value">业务价值</a><a href="#solution">工作流</a><a href="#result">POC 证据</a><a href="#roadmap">生产化</a>
       </nav>
     </header>
     <main id="case"></main>
     <footer class="case-page-footer">
-      <a href="../../index.html">← 返回案例库</a
-      ><span
-        ><a href="poc/reports/POC_REPORT.md">查看 POC Report</a
-        >
-
+      <a href="../../index.html">← 返回案例库</a>
+      <span><a href="poc/reports/poc-report.md">查看 POC 报告</a></span>
     </footer>
     <script type="module">
-      import { caseConfig } from "./case.config.example.js";
+      import { caseConfig } from "./case.config.js";
       import { renderCasePage } from "../../shared/case-framework/case-renderer.js";
-
       renderCasePage(caseConfig);
     </script>
   </body>

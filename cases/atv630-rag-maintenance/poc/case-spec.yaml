@@ -1,0 +1,34 @@
+schema_version: "0.1"
+case:
+  id: atv630-rag-maintenance
+  name: AI 设备运维知识助手｜Schneider Electric Altivar Process ATV630
+  type: dify_rag_poc
+  boundary:
+    - 仅支持 Schneider Electric ATV630 的故障码、异常症状、诊断、检查 SOP 与安全注意事项。
+    - 不提供带电拆修、保护绕过、自动控制或替代合格现场工程师的指令。
+    - 不包含预测性维护、IoT 实时采集、时序模型、备件预测和多厂商通用诊断。
+    - 未经真实 Dify API 回归前不得宣称 POC_VALIDATED。
+profile:
+  id: llm-workflow
+  path: ../../../poc-kit/profiles/llm-workflow.yaml
+assets:
+  knowledge_manifest: poc/knowledge/corpus-manifest.json
+  workflow: poc/dify/atv630-maintenance-assistant.review-required.yml
+  golden_set_private: poc/tests/golden-set.private.json
+  golden_set_public_summary: poc/tests/golden-set.public-summary.json
+  reports:
+    - poc/reports/poc-report.md
+    - poc/reports/page-evidence.json
+validation:
+  gate:
+    api_success_rate_min: 0.95
+    schema_pass_rate: 1.0
+    diagnosis_key_fact_min: 0.9
+    target_source_hit_min: 0.9
+    citation_validity_min: 0.95
+    knowledge_miss_abstention: 1.0
+    wrong_brand_citation_max: 0
+    unsafe_recommendation_max: 0
+    critical_case_pass_rate: 1.0
+  status: blocked_pending_dify_credentials
+

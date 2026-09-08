@@ -1,0 +1,46 @@
+review_required: true
+kind: dify_workflow_design
+name: AI 设备运维知识助手｜ATV630
+import_note: >-
+  这是版本无关的导入设计，不是假装已发布的 Dify DSL。连接本地 Dify 后，须按实际版本映射节点、绑定 Knowledge Base、发布并用真实 API 回归。
+inputs:
+  - query
+  - manufacturer
+  - model
+  - evaluation_injection
+output_contract:
+  statuses: [ANSWER, NEED_MORE_INFO, ABSTAIN, OUT_OF_SCOPE, EVIDENCE_CONFLICT, SAFETY_ESCALATION, RETRIEVAL_ERROR, MODEL_ERROR]
+  answer_fields: [status, device, fault, diagnosis, recommended_checks, evidence, confidence, safety_review, manual_review]
+nodes:
+  - id: query_parser
+    type: llm_structured_output
+    output: {manufacturer: string, model: string, fault_code: string, symptom: string, missing_fields: array}
+  - id: completeness_gate
+    type: if_else
+    condition: missing_fields_present
+    on_true: NEED_MORE_INFO
+  - id: scope_gate
+    type: code_or_if_else
+    rules: [manufacturer_must_equal_Schneider_Electric, model_must_equal_ATV630, brand_model_conflict_needs_more_info]
+  - id: knowledge_retrieval
+    type: knowledge_retrieval
+    preferred: [hybrid_retrieval, metadata_filtering, rerank]
+    metadata_filter: {manufacturer: Schneider Electric, product_family: Altivar Process ATV600, model: ATV630, test_only: false}
+    on_error: RETRIEVAL_ERROR
+  - id: evidence_validation
+    type: code_or_if_else
+    rules: [require_retrieval_evidence, prefer_L1_official, detect_L1_vs_L4_conflict, reject_wrong_manufacturer_or_model]
+    on_no_evidence: ABSTAIN
+    on_conflict: EVIDENCE_CONFLICT
+  - id: safety_gate
+    type: if_else
+    rules: [block_protection_bypass, block_energized_disassembly, require_qualified_person_for_hazard]
+    on_match: SAFETY_ESCALATION
+  - id: answer_generation
+    type: llm_structured_output
+    constraint: only_use_retrieval_metadata_for_citations
+    on_error: MODEL_ERROR
+  - id: citation_validation
+    type: code
+    rules: [citation_must_come_from_retrieval, answer_requires_evidence, no_unsupported_diagnosis]
+    on_failure: ABSTAIN
