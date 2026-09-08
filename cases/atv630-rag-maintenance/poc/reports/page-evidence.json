@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "evidence_status": "dify_app_api_verified_pending_knowledge_ingestion_and_real_regression",
+  "evidence_status": "dify_workflow_published_smoke_verified_pending_structured_golden_regression",
   "test_design": { "golden_cases": 40, "offline_contract": "passed", "source_type": "synthetic_grounded_test_set" },
-  "dify_app": { "created": true, "published": false, "api_parameters_http_status": 200, "inputs": ["query", "manufacturer", "model"] },
-  "real_api": { "executed": false, "reason": "已验证 App API Key；待完成官方知识语料导入、Workflow 节点配置与发布后再运行", "metrics": { "success_rate": null, "citation_validity": null, "p95_seconds": null } },
-  "verified_capabilities": ["40 条 Golden Set 的编号、分类与必填查询合同", "知识来源索引与 metadata 字段设计", "Dify Workflow App 已创建，App API 参数端点返回 200", "私有原始语料、完整 Golden Set 与运行日志的发布隔离"],
+  "dify_app": { "created": true, "published": true, "api_parameters_http_status": 200, "inputs": ["query", "manufacturer", "model"] },
+  "real_api": { "executed": true, "scope": "单条真实 Smoke Run", "metrics": { "success_rate": null, "citation_validity": null, "p95_seconds": null }, "smoke": { "http_status": 200, "workflow_status": "succeeded", "run_id_present": true, "output_key": "result" } },
+  "verified_capabilities": ["40 条 Golden Set 的编号、分类与必填查询合同", "知识来源索引与 metadata 字段设计", "Dify Workflow 已发布并绑定 ATV600-Programming", "真实 Smoke Run 返回 200、succeeded 与 Run ID", "私有原始语料、完整 Golden Set 与运行日志的发布隔离"],
   "not_proven": ["Dify Knowledge 实际检索效果", "Workflow API 成功率、引用有效性与延迟", "跨品牌零误引、知识缺失拒答与安全升级的真实运行效果", "生产 SLA、ROI 或现场业务效果"]
 }
