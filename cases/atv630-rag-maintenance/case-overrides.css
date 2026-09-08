@@ -1,0 +1,48 @@
+/* 本案例专用展示增强：不影响共享 ai-poc 模板与其他案例。 */
+.solution .workflow-preview {
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgb(11 33 52 / 16%);
+  overflow: hidden;
+}
+
+.roi-calculator--maintenance .roi-results {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.roi-calculator--maintenance .roi-results article:first-child,
+.roi-calculator--maintenance .roi-results article:nth-child(2) {
+  background: #eef5f7;
+}
+
+.case-footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--case-navy-950);
+  color: var(--case-navy-950);
+}
+
+.case-footer__link--primary {
+  color: #fff !important;
+  background: var(--case-navy-950);
+}
+
+@media (max-width: 760px) {
+  .solution .workflow-preview {
+    overflow-x: auto;
+  }
+
+  .solution .workflow-preview button {
+    min-width: 760px;
+  }
+
+  .solution .workflow-preview img {
+    width: 760px;
+    max-width: none;
+  }
+
+  .roi-calculator--maintenance .roi-results {
+    grid-template-columns: 1fr;
+  }
+}

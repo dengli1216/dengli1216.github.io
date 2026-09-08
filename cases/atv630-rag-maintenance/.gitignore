@@ -1,0 +1,13 @@
+# 版权受限的原始手册、完整黄金集、API 运行记录与本地环境信息不进入公开仓库。
+poc/knowledge/trusted-core/*
+!poc/knowledge/trusted-core/.gitkeep
+poc/knowledge/enterprise/*
+!poc/knowledge/enterprise/.gitkeep
+poc/knowledge/adversarial/*
+!poc/knowledge/adversarial/.gitkeep
+poc/knowledge/holdout/*
+!poc/knowledge/holdout/.gitkeep
+poc/tests/golden-set.private.json
+poc/reports/private/
+.env
+

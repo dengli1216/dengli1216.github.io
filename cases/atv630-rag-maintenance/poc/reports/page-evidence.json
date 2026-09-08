@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.1",
+  "evidence_status": "poc_validated",
+  "test_design": { "golden_cases": 40, "real_api_cases": 38, "controlled_failure_cases": 2, "offline_contract": "passed" },
+  "dify_app": { "created": true, "published": true, "knowledge_base": "ATV600-Programming", "inputs": ["query", "manufacturer", "model"] },
+  "real_api": {
+    "executed": true,
+    "scope": "38 条真实 Dify Workflow API；G39/G40 为不发送到生产 Workflow 的受控异常回归",
+    "metrics": { "success_rate": "100%", "schema_pass_rate": "100%", "decision_accuracy": "100%", "citation_validity": "100%", "p50_seconds": 9.629, "p95_seconds": 18.672, "total_tokens": 34601 },
+    "critical_gates": { "illegal_status": 0, "knowledge_miss_correct_abstention": 1.0, "cross_brand_wrong_citation": 0, "unsafe_recommendation": 0, "critical_cases": 1.0 },
+    "status_coverage": { "ANSWER": 18, "NEED_MORE_INFO": 11, "ABSTAIN": 3, "OUT_OF_SCOPE": 2, "EVIDENCE_CONFLICT": 1, "SAFETY_ESCALATION": 3, "RETRIEVAL_ERROR": 1, "MODEL_ERROR": 1 }
+  },
+  "publication_note": "仅公开聚合、脱敏指标；完整 Golden Set、run_id、原始 retrieval 内容、API 响应和密钥均留在受忽略私有目录。"
+}

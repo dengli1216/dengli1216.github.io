@@ -7,8 +7,8 @@ export const industrialVisualInspectionCase = {
   },
   hero: {
     eyebrow: "AI 工业视觉巡检 POC",
-    title: "面向存量工业设备的低改造视觉巡检与异常处置",
-    subtitle: "利用巡检图像识别设备状态，在无需改造 PLC 或设备本体的情况下，将人工巡检信息转化为结构化风险判断；不确定时自动进入人工复核。",
+    title: "AI 工业视觉巡检 POC",
+    subtitle: "面向存量工业设备，利用巡检图像识别设备状态，在无需改造 PLC 或设备本体的情况下，将人工巡检信息转化为结构化风险判断；不确定时自动进入人工复核。",
     tags: ["存量设备低改造", "AI 风险分流", "人工复核兜底"],
     validationStatus: "CONTROLLED_LOOP_VALIDATED",
     heroVisual: {

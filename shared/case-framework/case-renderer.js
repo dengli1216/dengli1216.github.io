@@ -199,6 +199,7 @@ function renderRoi(roi = {}) {
 }
 
 function renderRoiCalculator(roi = {}) {
+  if (roi.calculatorMode === "maintenance") return renderMaintenanceRoiCalculator(roi);
   const scenarios = roi.scenarios || {};
   const activeKey = scenarios.baseline ? "baseline" : Object.keys(scenarios)[0];
   if (!activeKey) return "";
@@ -216,6 +217,31 @@ function renderRoiCalculator(roi = {}) {
   const inputs = fields.map(([key, label, unit, step]) => `<label>${escapeHtml(label)}<span><input type="number" min="0" step="${step}" data-roi-input="${key}" value="${escapeAttr(active[key] ?? "")}" aria-label="${escapeAttr(label)}">${unit ? `<small>${unit}</small>` : ""}</span></label>`).join("");
   const currency = roi.currency || "¥";
   return `<div class="roi-calculator" data-roi-calculator data-roi-scenarios="${escapeAttr(JSON.stringify(scenarios))}" data-roi-currency="${escapeAttr(currency)}" aria-label="ROI 测算器"><div class="roi-scenarios" role="group" aria-label="测算方案">${buttons}</div><p class="roi-calculator-note">示例测算 / 非真实客户数据</p><div class="roi-inputs">${inputs}</div><div class="roi-results" aria-live="polite"><article><span>人工基线成本</span><strong data-roi-result="baseline">-</strong></article><article><span>AI 后人工成本</span><strong data-roi-result="afterAi">-</strong></article><article><span>月度节省</span><strong data-roi-result="saving">-</strong></article><article><span>净收益</span><strong data-roi-result="net">-</strong></article><article><span>ROI</span><strong data-roi-result="roi">-</strong></article><article><span>回收期</span><strong data-roi-result="payback">-</strong></article></div><p class="roi-review-queue" data-roi-review-queue></p></div>`;
+}
+
+function renderMaintenanceRoiCalculator(roi = {}) {
+  const scenarios = roi.scenarios || {};
+  const activeKey = scenarios.baseline ? "baseline" : Object.keys(scenarios)[0];
+  if (!activeKey) return "";
+  const active = scenarios[activeKey] || {};
+  const labels = { conservative: "保守", baseline: "基准", optimistic: "积极" };
+  const fields = [
+    ["volume", "每月故障 / 技术查询次数", 1],
+    ["currentMinutes", "当前平均单次查询时间（分钟）", 1],
+    ["aiMinutes", "使用 AI 后预计查询时间（分钟）", 1],
+    ["seniorRate", "高级工程师参与比例（%）", 1],
+    ["seniorHourlyCost", "高级工程师人力成本（元 / 小时）", 1],
+    ["generalHourlyCost", "普通工程师人力成本（元 / 小时）", 1],
+    ["coverage", "AI 使用覆盖率（%）", 1]
+  ];
+  const buttons = Object.entries(scenarios).map(([key]) => `<button type="button" data-roi-scenario="${escapeAttr(key)}" class="${key === activeKey ? "is-active" : ""}" aria-pressed="${key === activeKey}">${escapeHtml(labels[key] || key)}</button>`).join("");
+  const inputs = fields.map(([key, label, step]) => `<label>${escapeHtml(label)}<span><input type="number" min="0" step="${step}" data-roi-input="${key}" value="${escapeAttr(active[key] ?? "")}" aria-label="${escapeAttr(label)}">${key === "seniorRate" || key === "coverage" ? "<small>%</small>" : ""}</span></label>`).join("");
+  return `<div class="roi-calculator roi-calculator--maintenance" data-roi-calculator data-roi-mode="maintenance" data-roi-scenarios="${escapeAttr(JSON.stringify(scenarios))}" data-roi-currency="${escapeAttr(roi.currency || "¥")}" aria-label="设备运维知识助手 ROI 估算工具">
+    <div class="roi-scenarios" role="group" aria-label="ROI 估算方案">${buttons}</div>
+    <p class="roi-calculator-note">${escapeHtml(roi.dataDisclaimer || "估算工具，不代表实际生产收益。")}</p>
+    <div class="roi-inputs">${inputs}</div>
+    <div class="roi-results" aria-live="polite"><article><span>每月预计节省工时</span><strong data-roi-result="hoursSaved">-</strong></article><article><span>每月预计人力成本节省</span><strong data-roi-result="monthlySaving">-</strong></article><article><span>年度预计节省</span><strong data-roi-result="annualSaving">-</strong></article><article><span>单次查询时间下降</span><strong data-roi-result="timeReduction">-</strong></article></div>
+  </div>`;
 }
 
 function renderRiskControls(risk = {}, legacy = {}, evidence) {
@@ -240,8 +266,10 @@ function renderProductionPath(path = {}) {
 }
 
 function renderRoleDeliverables(role = {}) {
-  if (!hasContent(role, ["roleItems", "deliverables", "repoLink"])) return "";
-  const links = role.repoLink ? `<a href="${escapeAttr(role.repoLink)}">查看代码仓库</a>` : "";
+  if (!hasContent(role, ["roleItems", "deliverables", "repoLink", "ctaLinks"])) return "";
+  const links = role.ctaLinks?.length
+    ? role.ctaLinks.map((link) => `<a class="case-footer__link${link.variant === "primary" ? " case-footer__link--primary" : ""}" href="${escapeAttr(link.href || "#")}">${escapeHtml(link.label || "查看详情")}</a>`).join("")
+    : role.repoLink ? `<a href="${escapeAttr(role.repoLink)}">查看代码仓库</a>` : "";
   return `<section class="section shell contribution" aria-labelledby="contribution-title">${heading("项目角色与交付物", role.title || "项目角色与交付物", role.description, "contribution-title")}<div class="contribution-grid"><article><h3>负责内容</h3><ul>${list(role.roleItems, (item) => `<li>${escapeHtml(item)}</li>`)}</ul></article><article><h3>交付物</h3><ul>${list(role.deliverables, (item) => `<li>${escapeHtml(item)}</li>`)}</ul></article></div>${links ? `<footer class="case-footer">${links}</footer>` : ""}</section>`;
 }
 
@@ -303,7 +331,18 @@ function bindRoiCalculators(root) {
     const currency = calculator.dataset.roiCurrency || "¥";
     const formatCurrency = (value) => `${currency}${Math.round(value).toLocaleString("zh-CN")}`;
     const read = () => Object.fromEntries(inputs.map((input) => [input.dataset.roiInput, Math.max(0, Number(input.value) || 0)]));
-    const update = () => {
+    const updateMaintenance = () => {
+      const data = read();
+      const coverage = Math.min(data.coverage, 100) / 100;
+      const seniorRate = Math.min(data.seniorRate, 100) / 100;
+      const blendedHourlyCost = data.seniorHourlyCost * seniorRate + data.generalHourlyCost * (1 - seniorRate);
+      const minutesSaved = Math.max(0, data.currentMinutes - data.aiMinutes);
+      const hoursSaved = data.volume * coverage * minutesSaved / 60;
+      const monthlySaving = hoursSaved * blendedHourlyCost;
+      const values = { hoursSaved: `${hoursSaved.toFixed(1)} 小时`, monthlySaving: formatCurrency(monthlySaving), annualSaving: formatCurrency(monthlySaving * 12), timeReduction: data.currentMinutes ? `${(minutesSaved / data.currentMinutes * 100).toFixed(0)}%` : "0%" };
+      Object.entries(values).forEach(([key, value]) => { const output = calculator.querySelector(`[data-roi-result="${key}"]`); if (output) output.textContent = value; });
+    };
+    const updateDefault = () => {
       const data = read();
       const baseline = data.volume * data.minutes / 60 * data.hourlyCost;
       const saving = baseline * Math.min(data.reduction, 100) / 100;
@@ -320,10 +359,10 @@ function bindRoiCalculators(root) {
       const scenario = scenarios[button.dataset.roiScenario] || {};
       inputs.forEach((input) => { input.value = scenario[input.dataset.roiInput] ?? ""; });
       calculator.querySelectorAll("[data-roi-scenario]").forEach((item) => { const active = item === button; item.classList.toggle("is-active", active); item.setAttribute("aria-pressed", String(active)); });
-      update();
+      if (calculator.dataset.roiMode === "maintenance") updateMaintenance(); else updateDefault();
     }));
-    inputs.forEach((input) => input.addEventListener("input", update));
-    update();
+    inputs.forEach((input) => input.addEventListener("input", calculator.dataset.roiMode === "maintenance" ? updateMaintenance : updateDefault));
+    if (calculator.dataset.roiMode === "maintenance") updateMaintenance(); else updateDefault();
   });
 }
 
