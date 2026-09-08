@@ -130,6 +130,24 @@ window.translations = {
 };
 const featured = [
   {
+    slug: "atv630-rag-maintenance", live: true, detailPath: "cases/atv630-rag-maintenance/",
+    s: "partial",
+    zh: [
+      "AI 设备运维知识助手",
+      "ATV630 现场故障排查需要快速定位官方依据，并避免跨品牌、无证据与危险操作建议。",
+      "Dify 原生 RAG 设计：metadata 检索、证据 Gate、安全升级与结构化引用。",
+      "40 条私有 Golden Set 已锁定；真实 Dify API 回归待本地凭据。",
+      "让 AI 不仅能回答，还能知道什么时候不能回答。",
+    ],
+    en: [
+      "AI Maintenance Knowledge Assistant",
+      "ATV630 troubleshooting needs official evidence while avoiding cross-brand, unsupported, and unsafe guidance.",
+      "Dify-native RAG design with metadata retrieval, evidence gates, safety escalation, and structured citations.",
+      "40 private Golden Set cases are locked; real Dify API regression awaits local credentials.",
+      "An assistant that knows when not to answer.",
+    ],
+  },
+  {
     slug: "insurance-claims",
     s: "verified",
     zh: [

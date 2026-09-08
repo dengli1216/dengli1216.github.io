@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "evidence_status": "design_and_offline_contract_verified_pending_real_dify_api",
+  "test_design": { "golden_cases": 40, "offline_contract": "passed", "source_type": "synthetic_grounded_test_set" },
+  "real_api": { "executed": false, "reason": "DIFY_BASE_URL 与 Dify 应用 API Key 在当前环境不可用", "metrics": { "success_rate": null, "citation_validity": null, "p95_seconds": null } },
+  "verified_capabilities": ["40 条 Golden Set 的编号、分类与必填查询合同", "知识来源索引与 metadata 字段设计", "私有原始语料、完整 Golden Set 与运行日志的发布隔离"],
+  "not_proven": ["Dify Knowledge 实际检索效果", "Workflow API 成功率、引用有效性与延迟", "跨品牌零误引、知识缺失拒答与安全升级的真实运行效果", "生产 SLA、ROI 或现场业务效果"]
+}
