@@ -179,7 +179,8 @@ function renderGoldenSet(goldenSet = {}) {
 function renderMetricCards(metrics = [], evidence) {
   return (metrics || []).map((metric) => {
     const rawValue = metric.value ?? readSourceValue(evidence, metric.sourceKey);
-    const display = isNotMeasured(rawValue) ? NOT_MEASURED : `${rawValue}${metric.unit || ""}`;
+    const value = typeof rawValue === "number" && Number.isInteger(metric.precision) ? rawValue.toFixed(metric.precision) : rawValue;
+    const display = isNotMeasured(rawValue) ? NOT_MEASURED : `${value}${metric.unit || ""}`;
     const status = metric.status ? `<small class="metric-status metric-status--${escapeAttr(metric.status)}">${escapeHtml(metric.status)}</small>` : "";
     return `<article class="kpi"><span>${escapeHtml(metric.label)}</span><strong>${escapeHtml(display)}</strong><p>${escapeHtml(metric.description || "")}</p>${status}</article>`;
   }).join("");
@@ -261,7 +262,7 @@ function renderProductionPath(path = {}) {
   if (!hasContent(path, ["title", "steps", "verified", "nextValidation", "gaps"])) return "";
   const readiness = [path.verified?.length && { title: "已验证", items: path.verified }, path.nextValidation?.length && { title: "下一阶段验证", items: path.nextValidation }, path.gaps?.length && { title: "生产前缺口", items: path.gaps }].filter(Boolean);
   return `<section id="roadmap" class="section shell" aria-labelledby="roadmap-title">
-    ${heading("07 / POC 到生产化", path.title || "从 POC 到生产还差什么？", path.description, "roadmap-title")}${path.steps?.length ? `<ol class="roadmap-list">${list(path.steps, (step, index) => `<li><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(step.title)}</strong><p>${escapeHtml(step.detail || "")}</p>${step.gate ? `<small>验收条件：${escapeHtml(step.gate)}</small>` : ""}</li>`)}</ol>` : ""}${readiness.length ? `<div class="readiness-grid">${list(readiness, (group) => `<article><h3>${escapeHtml(group.title)}</h3><ul>${list(group.items, (item) => `<li>${escapeHtml(item)}</li>`)}</ul></article>`)}</div>` : ""}
+    ${heading("07 / POC 到生产化", path.title || "从 POC 到生产还差什么？", path.description, "roadmap-title")}${path.steps?.length ? `<ol class="roadmap-list" style="--roadmap-count:${path.steps.length}">${list(path.steps, (step, index) => `<li><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(step.title)}</strong><p>${escapeHtml(step.detail || "")}</p>${step.gate ? `<small>验收条件：${escapeHtml(step.gate)}</small>` : ""}</li>`)}</ol>` : ""}${readiness.length ? `<div class="readiness-grid">${list(readiness, (group) => `<article><h3>${escapeHtml(group.title)}</h3><ul>${list(group.items, (item) => `<li>${escapeHtml(item)}</li>`)}</ul></article>`)}</div>` : ""}
   </section>`;
 }
 

@@ -44,6 +44,11 @@ test-results/
 **/poc/fixtures/
 **/poc/fixtures/images_*/
 **/poc/data/golden/
+# 公开案例页所需的聚合合成拼图；不包含原始样本、标注或完整 Golden Set。
+!cases/industrial-visual-inspection/poc/data/
+!cases/industrial-visual-inspection/poc/data/golden/
+cases/industrial-visual-inspection/poc/data/golden/*
+!cases/industrial-visual-inspection/poc/data/golden/contact-sheet.jpg
 cases/*/prompts/
 cases/*/poc/prompts/
 cases/*/docs/PROJECT_HANDOFF.md
