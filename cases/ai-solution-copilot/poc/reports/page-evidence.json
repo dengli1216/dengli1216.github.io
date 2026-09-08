@@ -31,16 +31,16 @@
     "interpretation": "分布由快速阻断/失败与包含多阶段 LLM 的长主链共同形成；不是性能优势声明，进一步诊断待确认。"
   },
   "representative_evidence": [
-    {"case_id":"GS-01-BLOCKED-ZH","run_id":"bcbc360d-9fc0-4075-8f92-d7b6da9b05bf","result":"Intake 阻断字段通过"},
-    {"case_id":"GS-04-INVALID-SCHEMA","run_id":"467b2678-51c3-49dc-addb-d0455e31f539","result":"schemaVersion 安全失败通过"},
-    {"case_id":"GS-05-EVIDENCE-NULL","run_id":"0f051489-e6f6-4ce6-be33-f6fd24ce241c","result":"null evidenceRefs 拒绝通过"},
-    {"case_id":"GS-10-HAPPY-EN","run_id":"4c63c390-1734-422d-9824-aa452318276a","result":"完整主链通过后暂停人审"},
-    {"case_id":"GS-11-HAPPY-ZH","run_id":"0d4c1715-22ac-4d7b-a6fc-af2c9f1952f1","result":"中文主链通过后暂停人审"}
+    {"case_id":"GS-01-BLOCKED-ZH","result":"Intake 阻断字段通过"},
+    {"case_id":"GS-04-INVALID-SCHEMA","result":"schemaVersion 安全失败通过"},
+    {"case_id":"GS-05-EVIDENCE-NULL","result":"null evidenceRefs 拒绝通过"},
+    {"case_id":"GS-10-HAPPY-EN","result":"完整主链通过后暂停人审"},
+    {"case_id":"GS-11-HAPPY-ZH","result":"中文主链通过后暂停人审"}
   ],
-  "capabilities_verified": ["结构化 Intake 接入", "阶段 Gate 链路", "安全阻断/失败", "evidenceRefs 严格校验", "人工复核暂停态", "真实 Run ID 追溯"],
+  "capabilities_verified": ["结构化 Intake 接入", "阶段 Gate 链路", "安全阻断/失败", "evidenceRefs 严格校验", "人工复核暂停态", "真实 API 调用汇总"],
   "not_claimed": ["业务准确率", "真实客户效果", "ROI", "生产可用性", "SLA/性能优势", "成本结论", "人工批准完成"],
-  "engineering_showcase": ["Decision Contract 驱动断言", "Golden Set 分支覆盖", "真实 API Run ID 证据链", "安全失败与人审边界", "延迟统计口径审计"],
+  "engineering_showcase": ["Decision Contract 驱动断言", "Golden Set 分支覆盖", "真实 API 调用汇总", "安全失败与人审边界", "延迟统计口径审计"],
   "source_files": [
-    "docs/CASE_BRIEF.md", "docs/DECISION_CONTRACT.md", "docs/WORKFLOW_AUDIT.md", "poc/tests/golden-set.json", "poc/tests/run_eval.py", "poc/reports/eval-summary.json", "poc/reports/EVAL_REPORT.md", "poc/reports/failure-analysis.md"
+    "docs/CASE_BRIEF.md", "docs/DECISION_CONTRACT.md", "docs/WORKFLOW_AUDIT.md", "poc/tests/run_eval.py", "poc/reports/POC_REPORT.md"
   ]
 }

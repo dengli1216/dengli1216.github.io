@@ -63,7 +63,7 @@ export const industrialVisualInspectionCase = {
     ],
     evidenceNote: "困难样本未通过时优先停止自动判断并转人工，而不是输出高置信度错误结论。",
     datasetSummary: "12 张 synthetic_generated POC 图；不能外推真实生产准确率。",
-    evidenceSource: "portfolio-evidence.json + poc/reports/poc-final-report.md + Golden Set"
+    evidenceSource: "portfolio-evidence.json + poc/reports/poc-final-report.md（脱敏汇总）"
   },
   decisionBoundary: {
     title: "POC 已证明什么，尚未证明什么",

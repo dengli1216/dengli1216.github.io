@@ -20,7 +20,7 @@ function renderEvidence(data) {
 
   const cases = document.querySelector("#evidence-cases");
   cases.innerHTML = data.representative_evidence.map((item) => `
-    <article class="evidence-case"><span class="case-id">${item.case_id}</span><strong>${item.result}</strong><code>Run ID<br>${item.run_id}</code></article>
+    <article class="evidence-case"><span class="case-id">${item.case_id}</span><strong>${item.result}</strong><code>脱敏代表用例</code></article>
   `).join("");
 }
 
