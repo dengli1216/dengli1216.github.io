@@ -130,10 +130,22 @@ window.translations = {
 };
 const featured = [
   {
+    slug: "ai-learning-platform", live: true, detailPath: "cases/ai-learning-platform/",
+    s: "verified",
+    zh: [
+      "AI 智学平台 · 全栈 AI 应用生产化落地",
+      "既有教学业务系统需要接入真实身份、学习数据与生产依赖，而非停留在 AI Demo。",
+      "Java / Python 服务边界、LangGraph、pgvector RAG、Redis Worker、真实模型与 Docker Runtime。",
+      "44 条已批准 Golden Set；Recall@5 100%；3 条真实 E2E 通过。",
+      "将 AI 能力落到可验证的业务链路与工程边界。",
+    ],
+    en: ["AI Learning Platform", "Production-shaped full-stack AI integration.", "Java/Python boundary, RAG, real models and runtime verification.", "44 approved Golden Set; 3 E2E paths passed.", "Evidence-backed AI engineering."],
+  },
+  {
     slug: "atv630-rag-maintenance", live: true, detailPath: "cases/atv630-rag-maintenance/",
     s: "partial",
     zh: [
-      "AI 设备运维知识助手",
+      "AI 设备运维知识助手RAG",
       "ATV630 现场故障排查需要快速定位官方依据，并避免跨品牌、无证据与危险操作建议。",
       "Dify 原生 RAG 设计：metadata 检索、证据 Gate、安全升级与结构化引用。",
       "40 条私有 Golden Set 已锁定；真实 Dify API 回归待本地凭据。",
@@ -145,24 +157,6 @@ const featured = [
       "Dify-native RAG design with metadata retrieval, evidence gates, safety escalation, and structured citations.",
       "40 private Golden Set cases are locked; real Dify API regression awaits local credentials.",
       "An assistant that knows when not to answer.",
-    ],
-  },
-  {
-    slug: "insurance-claims",
-    s: "verified",
-    zh: [
-      "AI 保险理赔智能助手",
-      "理赔初筛需要整合分散信号，并让高风险案件优先进入专业审核。",
-      "确定性风险路由、受约束 LLM 解释与强制人工复核。",
-      "28/28 真实 API 运行；6 条 Critical Case 三次一致。",
-      "将理赔风险分流变成可追溯的审核决策支持。",
-    ],
-    en: [
-      "AI Claims Triage Assistant",
-      "Claims intake needs consolidated signals and priority handling for higher-risk cases.",
-      "Deterministic routing, constrained LLM explanation, and mandatory human review.",
-      "28/28 real API runs; 6 critical cases stable across three runs.",
-      "Make claims-risk triage traceable decision support for reviewers.",
     ],
   },
   {
@@ -187,7 +181,7 @@ const featured = [
     slug: "industrial-visual-inspection", live: true, detailPath: "cases/industrial-visual-inspection/",
     s: "verified",
     zh: [
-      "AI工业视觉巡检",
+      "AI工业视觉巡检POC",
       "存量设备巡检缺少非侵入式、可复核的最小闭环。",
       "图像理解、规则归一化、异常提示与人工复核建议。",
       "12/12 fixture pipeline；Schema 12/12；Critical Gate 10/10。",
@@ -199,6 +193,24 @@ const featured = [
       "Image understanding, rule normalization, anomaly prompts, and human-review suggestions.",
       "12/12 fixture pipeline; Schema 12/12; Critical Gate 10/10.",
       "Validate an inspection workflow without changing equipment control systems.",
+    ],
+  },
+  {
+    slug: "insurance-claims",
+    s: "verified",
+    zh: [
+      "AI 保险理赔智能助手POC",
+      "理赔初筛需要整合分散信号，并让高风险案件优先进入专业审核。",
+      "确定性风险路由、受约束 LLM 解释与强制人工复核。",
+      "28/28 真实 API 运行；6 条 Critical Case 三次一致。",
+      "将理赔风险分流变成可追溯的审核决策支持。",
+    ],
+    en: [
+      "AI Claims Triage Assistant",
+      "Claims intake needs consolidated signals and priority handling for higher-risk cases.",
+      "Deterministic routing, constrained LLM explanation, and mandatory human review.",
+      "28/28 real API runs; 6 critical cases stable across three runs.",
+      "Make claims-risk triage traceable decision support for reviewers.",
     ],
   },
   {
@@ -316,36 +328,21 @@ const more = [
       "An interactive presales prototype for 3D product exploration and value explanation.",
     ],
   },
-  {
-    slug: "rag-knowledge-ui",
-    detailPath: "cases/rag-knowledge-ui/",
-    s: "developed",
-    zh: [
-      "RAG 知识库界面",
-      "知识检索体验",
-      "展示企业知识检索、引用与内容溯源的界面原型。",
-    ],
-    en: [
-      "RAG Knowledge UI",
-      "Knowledge retrieval experience",
-      "A UI prototype for enterprise knowledge retrieval, citations, and traceability.",
-    ],
-  },
-  {
-    slug: "ai-agent-workflow",
-    detailPath: "cases/ai-agent-workflow/",
-    s: "developed",
-    zh: [
-      "智学平台 Agent",
-      "Agent 工作流",
-      "将复杂任务的拆解、执行状态与工具链路可视化。",
-    ],
-    en: [
-      "Learning Platform Agent",
-      "Agent workflow",
-      "Visualize complex task decomposition, execution state, and tool paths.",
-    ],
-  },
+  // {
+  //   slug: "ai-agent-workflow",
+  //   detailPath: "cases/ai-agent-workflow/",
+  //   s: "developed",
+  //   zh: [
+  //     "智学平台 Agent",
+  //     "Agent 工作流",
+  //     "将复杂任务的拆解、执行状态与工具链路可视化。",
+  //   ],
+  //   en: [
+  //     "Learning Platform Agent",
+  //     "Agent workflow",
+  //     "Visualize complex task decomposition, execution state, and tool paths.",
+  //   ],
+  // },
 ];
 const capabilities = [
     ["业务需求识别", "Business Discovery"],

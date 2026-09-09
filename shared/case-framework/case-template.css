@@ -105,7 +105,7 @@ h1 { max-width: 840px; margin-bottom: 24px; font-size: clamp(2.5rem, 5vw, 4.9rem
 }
 .value-grid article, .roi-value-grid article, .custom-card-grid article {
   min-height: 148px;
-  padding: 24px 24px 24px 0;
+  padding: 24px 24px 24px 24px;
 }
 .value-grid article + article, .roi-value-grid article + article, .custom-card-grid article + article {
   padding-left: 24px;
