@@ -1,0 +1,1 @@
+{"documents":21,"chunks":52,"goldenSet":44,"recallAt5":1,"sourceHitRate":1,"mrr":0.943,"citationValidity":1,"pythonTests":38,"coreE2E":{"passed":3,"total":3}}
