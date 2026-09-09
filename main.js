@@ -130,6 +130,18 @@ window.translations = {
 };
 const featured = [
   {
+    slug: "ai-learning-platform", live: true, detailPath: "cases/ai-learning-platform/",
+    s: "verified",
+    zh: [
+      "AI 智学平台 · 全栈 AI 应用生产化落地",
+      "既有教学业务系统需要接入真实身份、学习数据与生产依赖，而非停留在 AI Demo。",
+      "Java / Python 服务边界、LangGraph、pgvector RAG、Redis Worker、真实模型与 Docker Runtime。",
+      "44 条已批准 Golden Set；Recall@5 100%；3 条真实 E2E 通过。",
+      "将 AI 能力落到可验证的业务链路与工程边界。",
+    ],
+    en: ["AI Learning Platform", "Production-shaped full-stack AI integration.", "Java/Python boundary, RAG, real models and runtime verification.", "44 approved Golden Set; 3 E2E paths passed.", "Evidence-backed AI engineering."],
+  },
+  {
     slug: "atv630-rag-maintenance", live: true, detailPath: "cases/atv630-rag-maintenance/",
     s: "partial",
     zh: [

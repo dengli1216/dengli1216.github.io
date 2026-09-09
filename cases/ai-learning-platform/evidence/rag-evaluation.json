@@ -1,0 +1,5 @@
+{
+  "corpus": { "documents": 21, "chunks": 52, "grade": 5, "subject": "数学", "scope": "分数" },
+  "goldenSet": 44,
+  "metrics": { "recallAt5": 1.0, "sourceHitRate": 1.0, "mrr": 0.943, "citationValidity": 1.0 }
+}
