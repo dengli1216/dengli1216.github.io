@@ -18,10 +18,10 @@ window.translations = {
     "featured.title": "旗舰商业案例",
     "featured.copy":
       "优先展示已验证、业务价值高、能够证明完整 AI 解决方案能力的案例。",
-    "validation.eyebrow": "VALIDATION EVIDENCE",
-    "validation.title": "POC 验证与工程证据",
-    "validation.copy":
-      "以下均来自案例已有的 POC 文档、测试集或评估报告；不将合成数据外推为生产结果。",
+    "validation.eyebrow": "验证证据",
+    "validation.title": "可复核的 POC 证据",
+    "validation.copy": "通过黄金测试集、真实 API 回归、关键场景复测和人工/安全 Gate，明确验证结果与方案边界。",
+    "validation.disclaimer": "数据来自已公开的 POC 汇总与评估记录，代表对应测试范围内的验证结果",
     "more.eyebrow": "MORE SOLUTIONS",
     "more.title": "更多解决方案与案例",
     "more.copy": "建设中的高价值方向，与已开发的补充案例并列呈现。",
@@ -59,7 +59,13 @@ window.translations = {
     "status.developed": "开发中",
     "status.prototype": "原型",
     "status.planning": "规划中",
-    "evidence.source": "证据来源",
+    "evidence.method": "验证方法",
+    "evidence.source": "来源",
+    "evidence.matrix.case": "案例",
+    "evidence.matrix.tests": "测试覆盖",
+    "evidence.matrix.run": "真实运行",
+    "evidence.matrix.repeat": "关键复测",
+    "evidence.matrix.gate": "边界 / Gate",
   },
   en: {
     brand: "SOLUTION PORTFOLIO",
@@ -82,9 +88,9 @@ window.translations = {
     "featured.copy":
       "Validated, high-value cases that demonstrate end-to-end AI solution capability.",
     "validation.eyebrow": "VALIDATION EVIDENCE",
-    "validation.title": "POC Validation & Engineering Evidence",
-    "validation.copy":
-      "All evidence comes from existing POC documents, test sets, or evaluation reports; synthetic data is not extrapolated as production results.",
+    "validation.title": "Evidence You Can Review, Not Just a Demo",
+    "validation.copy": "Golden sets, real API regression, repeated key scenarios, and human or safety gates make the validated scope and solution boundary explicit.",
+    "validation.disclaimer": "Data comes from published POC summaries and evaluation records. It represents results within the stated test scope, not production outcomes or client ROI.",
     "more.eyebrow": "MORE SOLUTIONS",
     "more.title": "More Solutions",
     "more.copy":
@@ -125,7 +131,13 @@ window.translations = {
     "status.developed": "Developed",
     "status.prototype": "Prototype",
     "status.planning": "In planning",
-    "evidence.source": "Evidence source",
+    "evidence.method": "Validation method",
+    "evidence.source": "Source",
+    "evidence.matrix.case": "Case",
+    "evidence.matrix.tests": "Test coverage",
+    "evidence.matrix.run": "Real runs",
+    "evidence.matrix.repeat": "Key-scenario repeats",
+    "evidence.matrix.gate": "Boundary / gate",
   },
 };
 const featured = [
@@ -232,71 +244,77 @@ const featured = [
     ],
   },
 ];
-const evidence = [
-  [
-    "Golden Set",
-    "Golden Set",
-    "30 + 12 + 12",
-    "招投标、方案分析与工业巡检的既有合成测试集。",
-    "各案例 poc/tests/",
-    "Existing synthetic test sets for tender, solution analysis, and inspection.",
-    "Each case poc/tests/",
-  ],
-  [
-    "API 调用",
-    "API Calls",
-    "30/30 · 20/20",
-    "招投标 30/30 API runs；方案分析 20 次真实 API 调用。",
-    "两案例 page-evidence / eval-summary",
-    "Tender: 30/30 API runs; solution analysis: 20 real API calls.",
-    "page-evidence / eval-summary",
-  ],
-  [
-    "Regression",
-    "Regression",
-    "52/52",
-    "方案分析工作流的分支断言全部通过。",
-    "ai-solution-copilot/poc/reports/eval-summary.json",
-    "All branch assertions passed for the solution-analysis workflow.",
-    "ai-solution-copilot/poc/reports/eval-summary.json",
-  ],
-  [
-    "Critical Gate",
-    "Critical Gate",
-    "10/10",
-    "工业巡检 fixture pipeline 的关键案例 Gate 已通过。",
-    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
-    "Critical-case gate passed in the inspection fixture pipeline.",
-    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
-  ],
-  [
-    "Human Review",
-    "Human Review",
-    "必需",
-    "旗舰案例均保留人工审批或人工复核边界。",
-    "各案例 case-spec.yaml",
-    "All featured cases retain an approval or human-review boundary.",
-    "Each case case-spec.yaml",
-    "Required",
-  ],
-  [
-    "Schema / Consistency",
-    "Schema / Consistency",
-    "12/12 · 4/4",
-    "工业巡检 Schema 12/12；方案分析关键案例三次一致 4/4。",
-    "各案例 evaluation summary",
-    "Inspection Schema: 12/12; solution-analysis key-case consistency: 4/4.",
-    "Each case evaluation summary",
-  ],
-  [
-    "P50 / P95",
-    "P50 / P95",
-    "0.005 / 0.014 ms",
-    "工业巡检 fixture adapter 基线；非真实 VLM 延迟。",
-    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
-    "Inspection fixture-adapter baseline; not real VLM latency.",
-    "industrial-visual-inspection/poc/reports/evaluation-summary.json",
-  ],
+const evidenceCases = [
+  {
+    zh: {
+      name: "AI 招投标风险决策",
+      tests: "30 条合成黄金测试集",
+      run: "真实 API 30 / 30",
+      repeat: "5 个关键案例 × 3 次",
+      gate: "Schema、引文与人工复核",
+    },
+    en: {
+      name: "AI Tender Risk Decision",
+      tests: "30 synthetic golden-set cases",
+      run: "Real API 30 / 30",
+      repeat: "5 key cases × 3 runs",
+      gate: "Schema, citations, and human review",
+    },
+  },
+  {
+    zh: {
+      name: "AI 需求与方案分析",
+      tests: "12 组测试场景",
+      run: "真实 API 20 次",
+      repeat: "4 个关键场景 × 3 次",
+      gate: "52 / 52 契约与分支断言",
+    },
+    en: {
+      name: "AI Solution Copilot",
+      tests: "12 test scenarios",
+      run: "20 real API calls",
+      repeat: "4 key scenarios × 3 runs",
+      gate: "52 / 52 contract and branch assertions",
+    },
+  },
+  {
+    zh: {
+      name: "工业视觉巡检 POC",
+      tests: "12 张合成测试图",
+      run: "真实 API 12 / 12",
+      repeat: "困难样本单独 Gate",
+      gate: "不安全猜测 0；Critical 4 / 10",
+    },
+    en: {
+      name: "Industrial Visual Inspection POC",
+      tests: "12 synthetic test images",
+      run: "Real API 12 / 12",
+      repeat: "Dedicated gate for difficult samples",
+      gate: "0 unsafe guesses; Critical 4 / 10",
+    },
+  },
+  {
+    zh: {
+      name: "AI 保险理赔智能助手",
+      tests: "29 条黄金测试集",
+      run: "真实 API 28 / 28",
+      repeat: "6 个关键案例 × 3 次",
+      gate: "最终人工审核；模拟 POC",
+    },
+    en: {
+      name: "AI Insurance Claims Assistant",
+      tests: "29 golden-set cases",
+      run: "Real API 28 / 28",
+      repeat: "6 critical cases × 3 runs",
+      gate: "Final human review; simulated POC",
+    },
+  },
+];
+const evidenceMethod = [
+  ["黄金测试集", "Golden set", "覆盖正常、异常、边界与关键场景。", "Covers normal, exception, boundary, and key scenarios."],
+  ["真实 API / 模型运行", "Real API / model runs", "避免只用 Mock / 静态 Demo 证明方案。", "Avoids proving a solution only with mocks or static demos."],
+  ["关键场景重复验证", "Repeated key-scenario checks", "对高风险或关键分支重复执行，检查稳定性。", "Repeats high-risk or key branches to check stability."],
+  ["人工复核 / 安全 Gate", "Human review / safety gates", "明确模型不能自动跨越的业务边界。", "Makes clear which business boundaries a model cannot cross automatically."],
 ];
 const more = [
   // {
@@ -471,12 +489,14 @@ function render() {
       );
     })
     .join("");
-  document.querySelector("#evidence-grid").innerHTML = evidence
-    .map(
-      (x) =>
-        `<article class="evidence-card"><span>${l === "zh" ? x[0] : x[1]}</span><strong>${l === "zh" ? x[2] : x[7] || x[2]}</strong><p>${l === "zh" ? x[3] : x[5]}</p><small>${t("evidence.source")}：${l === "zh" ? x[4] : x[6]}</small></article>`,
-    )
+  document.querySelector("#evidence-grid").innerHTML = evidenceCases
+    .map((item) => {
+      const content = item[l];
+      return `<tr><th scope="row"><strong>${esc(content.name)}</strong><small>${t("evidence.source")}：${l === "zh" ? "对应案例 POC Evidence" : "corresponding case POC evidence"}</small></th><td data-label="${t("evidence.matrix.tests")}">${esc(content.tests)}</td><td data-label="${t("evidence.matrix.run")}">${esc(content.run)}</td><td data-label="${t("evidence.matrix.repeat")}">${esc(content.repeat)}</td><td data-label="${t("evidence.matrix.gate")}">${esc(content.gate)}</td></tr>`;
+    })
     .join("");
+  const evidenceMethodElement = document.querySelector("#evidence-method");
+  if (evidenceMethodElement) evidenceMethodElement.innerHTML = `<p>${t("evidence.method")}</p><ol>${evidenceMethod.map((step) => `<li><strong>${esc(l === "zh" ? step[0] : step[1])}</strong><span>${esc(l === "zh" ? step[2] : step[3])}</span></li>`).join("")}</ol>`;
   document.querySelector("#more-grid").innerHTML = more
     .map((x) => {
       const [title, type, copy] = x[l];
