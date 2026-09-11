@@ -1,6 +1,7 @@
 window.translations = {
   zh: {
     brand: "解决方案作品集",
+    "nav.resume": "在线简历",
     "nav.cases": "旗舰案例",
     "nav.validation": "验证证据",
     "nav.playbook": "落地手册",
@@ -69,6 +70,7 @@ window.translations = {
   },
   en: {
     brand: "SOLUTION PORTFOLIO",
+    "nav.resume": "Resume",
     "nav.cases": "Featured Cases",
     "nav.validation": "Evidence",
     "nav.playbook": "Playbook",
